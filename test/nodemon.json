@@ -4,7 +4,7 @@
 
     "env":{ 
 
-        "MONGO_ATLAS_PW" : "lee90057679!"
+        "MONGO_ATLAS_PW" : "secretadmin"
     }
 
 

@@ -12,10 +12,13 @@ mongoose.connect('mongodb+srv://admin:secretadmin@secret-admirer-vhakq.mongodb.n
 
 mongoose.connection.once('open', function(){
 
-console.log('connection successful');
+    console.log('connection successful');
+    
+    }).on('error' ,function(error){
+    
+    console.log('connection error', error);
+    
+    });
 
-}).on('error' ,function(error){
 
-console.log('connection error', error);
-
-});
+ 
