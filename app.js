@@ -1,41 +1,34 @@
 const express = require('express');
-const app = express();
+//const moment = require('moment');
 const path = require('path');
+const logger = require('./middleware/logger')
+
+const app = express();
+
+//Init middleware
+//app.use(logger);
+
+//Body Parser Middleware
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 
 
-// sending text to local host
-app.get('/', (req, res) => {
-
-    res.send('Hello World!');
-
-});
-
-
-/*
-get all members in schema
-app.get('api/schema', (res, req) => res.json('schema'));
-
-*/
-
-
-/*
-set a static folder
+//set a static folder
 app.use(express.static(path.join(__dirname, 'templates')));
-*/
 
+
+
+//Initiate a html file to website manually
 /*
-
-Initiate a html file to website manually
-
 app.get('/', (req, res) => { 
 
-    res.sendFile(path.join(__dirname, 'templates', 'html file'));
+    res.sendFile(path.join(__dirname, 'templates', 'index.html'));
 
 });
 
 */
 
-
+app.use('/api/members', require('./routes/api/members'));
 
 const PORT = process.env.PORT || 5000;
 
