@@ -1,9 +1,25 @@
 const express = require('express');
-//const moment = require('moment');
+const mongoose = require('mongoose');
 const path = require('path');
 const logger = require('./middleware/logger')
 
 const app = express();
+
+//mongoose
+mongoose.connect('mongodb://localhost/sadb');
+let db = mongoose.connection;
+
+//chekc for db connections
+db.once('open', function(){
+
+    console.log('Connected to mongoDB');
+});
+
+//check for db errors
+db.on('error', function(){
+    console.log(err);
+});
+
 
 //Init middleware
 //app.use(logger);
