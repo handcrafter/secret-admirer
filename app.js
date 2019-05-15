@@ -5,6 +5,9 @@ const logger = require('./middleware/logger')
 
 const app = express();
 
+//ES6 Promises
+mongoose.Promise = global.Promise;
+
 //mongoose
 mongoose.connect('mongodb://localhost/sadb');
 let db = mongoose.connection;
