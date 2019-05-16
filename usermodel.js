@@ -5,7 +5,7 @@ var Users = require('./templates/models/Users');
 //ES6 Promises
 mongoose.Promise = global.Promise;
 //mongoose
-mongoose.connect('mongodb://localhost/sadb');
+mongoose.connect('mongodb://localhost/secret-admirer');
 let db = mongoose.connection;
 //chekc for db connections
 db.once('open', function(){ console.log('Connected to mongoDB');
