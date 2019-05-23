@@ -26,16 +26,16 @@ describe('saving records', function() {
     });
 
     it('Sign in a user', function(done) {
-        var findUser = new user.User({
+        var existingUser = new user.User({
             id: "aaa",
             password: "aaa"
         });
 
-        if(expect(user.User.findOne(findUser.id))){
-            if(expect(user.User.findOne(findUser.password))){ done();  }
-            else{done(new Error("Fail to sign in user : Wrong Password"));}
+        if (expect(user.User.findOne(existingUser.id))) {
+            if (expect(user.User.findOne(existingUser.password))) { done();  }
+            else { done(new Error("Fail to sign in user : Wrong Password")); }
         }        
-        else{done(new Error("Faill to sign in user : User ID does not exist"));}
+        else{ done(new Error("Faill to sign in user : User ID does not exist")); }
     });
 
     it('Close the connection with database', function(done) {
