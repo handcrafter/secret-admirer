@@ -1,16 +1,24 @@
 const express = require('express');
 const path = require('path');
-const app = express();
-const routeLogin = require('./routes/api/login');
+const routeLogin = require('./routes/login');
 
-//Body Parser Middleware
+var database = require('./db/database');
+
+var logger = require('./middleware/logger');
+
+const app = express();
+
+// middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname, 'client')));
+app.use(logger)
 
-//set a static folder
-app.use(express.static(path.join(__dirname, 'templates')));
+// databse
+database.connect();
 
+//routers
 app.use(routeLogin);
-app.use('/api/members', require('./routes/api/members'));
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log('Server started on PORT ' + PORT));
