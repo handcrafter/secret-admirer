@@ -15,7 +15,7 @@ module.exports.connect = function() {
     });
 
     // check for db errors
-    db.on('error', function() {
+    db.on('error', function(err) {
         console.log(err);
     });
 }

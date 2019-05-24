@@ -3,18 +3,32 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  },
   "scripts": {
     "test": "mocha",
     "start": "node app",
-    "dev": "nodemon app"
+    "create": "webpack",
+    "dev": "nodemon app",
+    "client": "webpack-dev-server --open"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "css-loader": "^2.1.1",
     "express": "^4.16.4",
+    "html-webpack-plugin": "^3.2.0",
     "js-beautify": "^1.6.14",
     "mocha": "^6.1.4",
     "moment": "^2.24.0",
@@ -23,7 +37,13 @@
     "nodemon": "^1.19.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "uuid": "^3.3.2"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "style-loader": "^0.23.1",
+    "uuid": "^3.3.2",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.4.1"
   },
   "devDependencies": {
     "chai": "^4.2.0"
