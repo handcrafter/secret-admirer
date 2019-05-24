@@ -32,10 +32,14 @@ describe('saving records', function() {
         });
 
         if (expect(user.User.findOne(existingUser.id))) {
-            if (expect(user.User.findOne(existingUser.password))) { done();  }
-            else { done(new Error("Fail to sign in user : Wrong Password")); }
-        }        
-        else{ done(new Error("Faill to sign in user : User ID does not exist")); }
+            if (expect(user.User.findOne(existingUser.password))) {
+                done();
+            } else {
+                done(new Error("Fail to sign in user : Wrong Password"));
+            }
+        } else {
+            done(new Error("Faill to sign in user : User ID does not exist"));
+        }
     });
 
     it('Close the connection with database', function(done) {
