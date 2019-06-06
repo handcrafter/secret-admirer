@@ -4,7 +4,6 @@ const routeLogin = require('./routes/login');
 var database = require('./db/database');
 var cors = require('cors');
 var logger = require('./middleware/logger');
-
 const app = express();
 
 // middlewares
@@ -14,8 +13,6 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(logger)
 
-
- 
 // databse
 database.connect();
 

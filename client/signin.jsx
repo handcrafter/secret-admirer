@@ -12,8 +12,6 @@ function postSend(url, data) {
       'Accept': 'application/json'
     }),
   }).then((result)=>{
-    console.log("result came back")
-    console.log(result)
     ReactDOM.render(<Signup />, document.getElementById('app'));
   })
   .catch((error) =>{
@@ -33,7 +31,7 @@ class Signin extends Component {
     this.setState({ [event.target.name] : event.target.value });
   };
   handleSubmit(event) {
-    postSend('http://localhost:5000/signin',this.state);
+    postSend('http://localhost:5000/signin', this.state);
     event.preventDefault();
   }
     render() { 
@@ -45,13 +43,13 @@ class Signin extends Component {
                 <label>Enter Your Credentials to sign In</label>
                 <div className ="form-group">
                 <p>user id:
-                    <input  type="text" value = {this.state.id} onChange={this.handleChange} name="id" placeholder="Enter your ID..."  required />
-                    </p><br/>
+                    <input  type="text" value = {this.state.id} onChange={this.handleChange} name="id" placeholder="Enter your ID..."  required /></p>
+                    <br/>
                 </div>
                 <div className = "form-group">
                     <p>Password:
-                    <input type="text" value = {this.state.password} onChange={this.handleChange} name="password" placeholder="Enter your password" required />
-                    </p><br/>
+                    <input type="text" value = {this.state.password} onChange={this.handleChange} name="password" placeholder="Enter your password" required /></p>
+                    <br/>
                 </div>
                 <button className = "btn btn-success" type="submit" value="Sign In"> Sign In</button>
             </form>
