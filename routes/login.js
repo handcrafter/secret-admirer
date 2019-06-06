@@ -10,9 +10,9 @@ router.post('/login', urlencodedParser, function(req,res){
     console.log(req.body);
     var newUser = new user.User(req.body);
     newUser.save().then(item => {
-        res.redirect('/signin.html');
+        res.send('signup is Successful')
     }).catch(err => {
-        res.status(400).send("Unable to save to database");
+        res.status(400).send(err, "Unable to save to database");
     });
 });
 
@@ -30,7 +30,7 @@ router.post('/signin', urlencodedParser, async(req,res) => {
         if (!userpass) {
             return res.status(400).send('Wrong password');
         }
-        res.redirect('/login-success.html');
+        res.send('login-success');
     }
 });
 
