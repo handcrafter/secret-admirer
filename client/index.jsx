@@ -4,7 +4,6 @@ import Signin from './signin.jsx';
 import Signup from './signup.jsx';
 require('./css/index.css');
 
-
 class App extends React.Component {
     render() {
     	return(
@@ -16,7 +15,6 @@ class App extends React.Component {
     	)
     }
 }
-
 ReactDom.render(
 	<App />,
 	document.getElementById('app')

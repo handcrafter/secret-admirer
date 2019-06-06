@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import Signup from './signup.jsx';
 import ReactDOM from 'react-dom';
-//import'whatwg-fetch';
 
 function postSend(url, data) {
   return fetch(url, {
-    credentials: 'same-origin',
-    mode: 'cors', 
+    credentials: 'same-origin', 
     method: 'POST', // 'GET', 'PUT', 'DELETE', etc.
     body: JSON.stringify(data), // Coordinate the body type with 'Content-Type'
     headers: new Headers({
@@ -23,7 +21,6 @@ function postSend(url, data) {
   })
 };
 
-
 class Signin extends Component {
   constructor(props){
     super(props);
@@ -31,31 +28,13 @@ class Signin extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   componentDidMount() {
-      /*
-    const API = 'http://localhost:8080/';
-    const DEFAULT_QUERY = 'routes';
-    fetch(API + DEFAULT_QUERY, {
-  headers : { 
-    'Content-Type': 'application/json',
-    'Accept': 'application/json'
-   },
-   mode: 'cors'
-
-  }).then(response => response.json())
-    .then(data => this.setState({ data }))
-    .catch(function(err) {console.log(err)});
-    */
 }
-
   handleChange = event => {
     this.setState({ [event.target.name] : event.target.value });
   };
   handleSubmit(event) {
     postSend('http://localhost:5000/signin',this.state);
     event.preventDefault();
-   
-    
-    
   }
     render() { 
         return ( 
