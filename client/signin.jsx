@@ -74,7 +74,6 @@ class Signin extends Component {
                 <br />
             </div>
             <button className="btn btn-success" type="submit" value="Sign In">
-                {" "}
                 Sign In
             </button>
             </form>

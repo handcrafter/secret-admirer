@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import ReactDom from 'react-dom';
 import React from 'react';
 import Signin from './signin.jsx';

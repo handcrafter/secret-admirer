@@ -4,9 +4,10 @@ class Main extends Component {
     state = {}
     render() { 
         return (
-        <div>
-            Welcome!
-        </div>  );
+            <div>
+                Welcome!
+            </div>  
+            );
     }
 }
  

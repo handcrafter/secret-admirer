@@ -17,11 +17,11 @@ function postSend(url, data) {
 })
     .catch((error) =>{
         console.error(error, 'postRequest error');
-  })
+    })
 };
 
 class Signup extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = { id: "", password: "" }
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -36,7 +36,7 @@ class Signup extends Component {
         postSend('http://localhost:5000/signup', this.state);
         event.preventDefault();
     }
-    
+
     render() {
         return (
             <div>
@@ -61,7 +61,8 @@ class Signup extends Component {
                     <button className = "btn btn-success" type="submit" value="Sign up"> Sign Up</button>
                 </form>
             </div>
-        )}
+        )
+    }
 }
 
 export default Signup;
