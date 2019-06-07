@@ -1,9 +1,10 @@
 const express = require('express');
 const path = require('path');
 const routeLogin = require('./routes/login');
+const cors = require('cors');
 var database = require('./db/database');
-var cors = require('cors');
 var logger = require('./middleware/logger');
+
 const app = express();
 
 // middlewares
