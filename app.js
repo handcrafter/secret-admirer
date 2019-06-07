@@ -1,14 +1,14 @@
 const express = require('express');
 const path = require('path');
 const routeLogin = require('./routes/login');
-
+const cors = require('cors');
 var database = require('./db/database');
-
 var logger = require('./middleware/logger');
 
 const app = express();
 
 // middlewares
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'dist')));
