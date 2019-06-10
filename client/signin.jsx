@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Main from "./mainPage.jsx";
 import ReactDOM from "react-dom";
+import Signup from './signup.jsx';
 
 function postSend(url, data) {
     return fetch(url, {
@@ -35,6 +36,11 @@ class Signin extends Component {
 
     handleSubmit(event) {
         postSend("http://localhost:5000/signin", this.state);
+        event.preventDefault();
+    }
+
+    handleSignup(event){
+        ReactDOM.render(<Signup />, document.getElementById("app"));
         event.preventDefault();
     }
 
@@ -76,6 +82,9 @@ class Signin extends Component {
             <button className="btn btn-success" type="submit" value="Sign In">
                 Sign In
             </button>
+            </form>
+            <form onSubmit={this.handleSignup}> 
+                <button className="btn btn-success" type="submit" value="Sign In"> Sign Up </button> 
             </form>
         </div>
         );

@@ -1,4 +1,47 @@
  body {
     background: powderblue;
  }
- 
+
+ .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+    text-align: center;
+  }
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  .container {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+  .container img {
+    -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
+    filter: blur(5px);  
+  }
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+  }
+  .outer {
+    position: relative;
+    height: 300px;
+}
+
+.inner {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50%;
+}
