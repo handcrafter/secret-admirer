@@ -16,7 +16,9 @@ class App extends React.Component {
                             alt = "main image"
                             width = "100%"
                             height = "100%"/>
-                            <div class="centered"><h1 color="white"> Search up images of your favorite celebrities! </h1></div>
+                        <div class="centered">
+                            <h1 color="white"> Search up images of your favorite celebrities! </h1>
+                        </div>
                     </div>
                 </div>
                 <div class = "column">

@@ -39,7 +39,7 @@ class Signin extends Component {
         event.preventDefault();
     }
 
-    handleSignup(event){
+    handleSignup(event) {
         ReactDOM.render(<Signup />, document.getElementById("app"));
         event.preventDefault();
     }
@@ -84,7 +84,7 @@ class Signin extends Component {
             </button>
             </form>
             <form onSubmit={this.handleSignup}> 
-                <button className="btn btn-success" type="submit" value="Sign In"> Sign Up </button> 
+                <button className="btn btn-success" type="submit" value="Sign Up"> Sign Up </button> 
             </form>
         </div>
         );
