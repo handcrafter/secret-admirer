@@ -47,13 +47,12 @@ class Signin extends Component {
     render() {
     return (
         <div>
-            <h1>Welcome to Secret Admirer</h1>
+            <h1 class = "txtClr">Join Secret Admirer today!</h1>
             <form onSubmit={this.handleSubmit}>
             <hr />
-            <label>Enter Your Credentials to sign In</label>
             <div className="form-group">
                 <p>
-                    user id:
+                    Username : 
                     <input
                         type="text"
                         value={this.state.id}
@@ -63,11 +62,10 @@ class Signin extends Component {
                         required
                     />
                 </p>
-                <br />
             </div>
             <div className="form-group">
                 <p>
-                Password:
+                Password : 
                     <input
                         type="text"
                         value={this.state.password}
@@ -77,14 +75,11 @@ class Signin extends Component {
                         required
                     />
                 </p>
-                <br />
             </div>
-            <button className="btn btn-success" type="submit" value="Sign In">
-                Sign In
+            <button className="btn btn-success btnLogin" type="submit" value="Sign In" color="White">
+                Log In
             </button>
-            </form>
-            <form onSubmit={this.handleSignup}> 
-                <button className="btn btn-success" type="submit" value="Sign Up"> Sign Up </button> 
+            <button className= "btn btn-success btnSignup" type="button" onClick={this.handleSignup}>Sign Up</button>
             </form>
         </div>
         );

@@ -1,5 +1,5 @@
  body {
-    background: powderblue;
+    background: white;
  }
 
  .column {
@@ -39,14 +39,46 @@
     
 }
 
-.outer {
-    position: relative;
-    height: 300px;
+button{
+    margin-bottom: 20px;
+    margin-left: 20px;
 }
 
-.inner {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 50%;
+.btnSignup{
+    background-color: #008CBA;
+    border-color: #008CBA;
+    color: white;
+}
+.btnSignup:hover{
+    background-color: white;
+    border-color:  #008CBA;
+    color:  #008CBA;
+
+}
+
+.btnLogin{
+    background-color: white;
+    border-color: #008CBA;
+    color: #008CBA;
+}
+.btnLogin:hover{
+    background-color:  #008CBA;
+    border-color: white;
+    color: white;
+}
+
+input{
+    margin-left : 15px;
+}
+
+.mainRight{
+    margin-top : 15%;
+}
+
+.txtClr{
+    color: #008CBA;
+}
+.signup{
+    text-align: center;
+    margin-top : 15%;
 }
