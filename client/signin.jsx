@@ -15,9 +15,12 @@ function postSend(url, data) {
     })
     .then(result => {
         console.log(result.status);
-        if(result.status === 200){ReactDOM.render(<Main />, document.getElementById("app"));}
-        else if(result.status === 400){alert("Wrong Password!")}
-        else{alert("Username doesn't exist, Please Sign up!")}
+        if(result.status === 200){
+            ReactDOM.render(<Main />, document.getElementById("app"));}
+        else if(result.status === 400){
+            alert("Wrong Password!")}
+        else{
+            alert("Username doesn't exist, Please Sign up!")}
         
     })
     .catch(error => {

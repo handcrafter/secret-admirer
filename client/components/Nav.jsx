@@ -18,7 +18,7 @@ class Nav extends Component {
                     </Link>  
                 </ul>
             </nav>
-         );
+        );
     }
 }
   

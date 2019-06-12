@@ -21,7 +21,7 @@ router.post('/signin', urlencodedParser, async(req, res) => {
    console.log(req.body)
     let userid = await user.User.findOne({id: req.body.id});
     if (!userid) {
-        res.status(300).send('Invalid id please sign up');
+        res.status(401).send('Invalid id please sign up');
     } else {
         let userpass = await user.User.findOne({
             id: req.body.id,
