@@ -13,6 +13,7 @@ function postSend(url, data) {
     }),
 })
     .then((result) => {
+
         ReactDOM.render(<Signin />, document.getElementById('app'));
 })
     .catch((error) =>{
@@ -39,26 +40,23 @@ class Signup extends Component {
 
     render() {
         return (
-            <div>
-                <h1>Welcome to Secret Admirer</h1>
+            <div className = "signup">
+                <h1 className = "txtClr"> Create an Account</h1>
                 <form onSubmit={this.handleSubmit}>
                     <hr/>
-                    <label>Enter Your Credentials to sign up</label>
                     <div className ="form-group">
                         <p>
                             user id:
                             <input  type="text" value = {this.state.id} onChange={this.handleChange} name="id" placeholder="Enter your ID..."  required />
                         </p>
-                        <br/>
                     </div>
                     <div className = "form-group">
                         <p>
                             Password:
                             <input type="text" value = {this.state.password} onChange={this.handleChange} name="password" placeholder="Enter your password" required />
                         </p>
-                        <br/>
                     </div>
-                    <button className = "btn btn-success" type="submit" value="Sign up"> Sign Up</button>
+                    <button className = "btn btn-success btnSignup" type="submit" value="Sign up"> Sign Up</button>
                 </form>
             </div>
         )

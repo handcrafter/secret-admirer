@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Main from "./mainPage.jsx";
 import ReactDOM from "react-dom";
+import Signup from './signup.jsx';
 
 function postSend(url, data) {
     return fetch(url, {
@@ -13,7 +14,14 @@ function postSend(url, data) {
         })
     })
     .then(result => {
-        ReactDOM.render(<Main />, document.getElementById("app"));
+        console.log(result.status);
+        if(result.status === 200){
+            ReactDOM.render(<Main />, document.getElementById("app"));}
+        else if(result.status === 400){
+            alert("Wrong Password!")}
+        else{
+            alert("Username doesn't exist, Please Sign up!")}
+        
     })
     .catch(error => {
         console.error(error, "postRequest error");
@@ -38,16 +46,20 @@ class Signin extends Component {
         event.preventDefault();
     }
 
+    handleSignup(event) {
+        ReactDOM.render(<Signup />, document.getElementById("app"));
+        event.preventDefault();
+    }
+
     render() {
     return (
-        <div>
-            <h1>Welcome to Secret Admirer</h1>
+        <div className= "signup">
+            <h1 className = "txtClr">Join Secret Admirer today!</h1>
             <form onSubmit={this.handleSubmit}>
             <hr />
-            <label>Enter Your Credentials to sign In</label>
             <div className="form-group">
                 <p>
-                    user id:
+                    Username : 
                     <input
                         type="text"
                         value={this.state.id}
@@ -57,11 +69,10 @@ class Signin extends Component {
                         required
                     />
                 </p>
-                <br />
             </div>
             <div className="form-group">
                 <p>
-                Password:
+                Password : 
                     <input
                         type="text"
                         value={this.state.password}
@@ -71,11 +82,11 @@ class Signin extends Component {
                         required
                     />
                 </p>
-                <br />
             </div>
-            <button className="btn btn-success" type="submit" value="Sign In">
-                Sign In
+            <button className="btn btn-success btnLogin" type="submit" value="Sign In" color="White">
+                Log In
             </button>
+            <button className= "btn btn-success btnSignup" type="button" onClick={this.handleSignup}>Sign Up</button>
             </form>
         </div>
         );
