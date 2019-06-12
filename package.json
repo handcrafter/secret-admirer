@@ -48,6 +48,7 @@
     "popper.js": "^1.15.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1",
     "style-loader": "^0.23.1",
     "uuid": "^3.3.2",
     "webpack": "^4.32.2",
