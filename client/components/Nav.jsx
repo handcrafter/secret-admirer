@@ -6,14 +6,14 @@ class Nav extends Component {
         return ( 
             <nav>
                 <h3>Secret Admirer</h3>
-                <ul class = "nav-links">
-                    <Link class="navStyle" to="/findstar">
+                <ul className = "nav-links">
+                    <Link className="navStyle" to="/findstar">
                         <li> Find your Star</li>
                     </Link>
-                    <Link class="navStyle" to="/mystar">
+                    <Link className="navStyle" to="/mystar">
                         <li>My star</li>
                     </Link>
-                    <Link class="navStyle" to="/saved">
+                    <Link className="navStyle" to="/saved">
                         <li> Saved</li>
                     </Link>  
                 </ul>

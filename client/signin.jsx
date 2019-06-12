@@ -14,7 +14,11 @@ function postSend(url, data) {
         })
     })
     .then(result => {
-        ReactDOM.render(<Main />, document.getElementById("app"));
+        console.log(result.status);
+        if(result.status === 200){ReactDOM.render(<Main />, document.getElementById("app"));}
+        else if(result.status === 400){alert("Wrong Password!")}
+        else{alert("Username doesn't exist, Please Sign up!")}
+        
     })
     .catch(error => {
         console.error(error, "postRequest error");
@@ -46,8 +50,8 @@ class Signin extends Component {
 
     render() {
     return (
-        <div>
-            <h1 class = "txtClr">Join Secret Admirer today!</h1>
+        <div className= "signup">
+            <h1 className = "txtClr">Join Secret Admirer today!</h1>
             <form onSubmit={this.handleSubmit}>
             <hr />
             <div className="form-group">

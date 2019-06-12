@@ -13,6 +13,7 @@ function postSend(url, data) {
     }),
 })
     .then((result) => {
+
         ReactDOM.render(<Signin />, document.getElementById('app'));
 })
     .catch((error) =>{
@@ -39,8 +40,8 @@ class Signup extends Component {
 
     render() {
         return (
-            <div class = "signup">
-                <h1 class = "txtClr"> Create an Account</h1>
+            <div className = "signup">
+                <h1 className = "txtClr"> Create an Account</h1>
                 <form onSubmit={this.handleSubmit}>
                     <hr/>
                     <div className ="form-group">

@@ -49,11 +49,11 @@ button{
     border-color: #008CBA;
     color: white;
 }
+
 .btnSignup:hover{
     background-color: white;
     border-color:  #008CBA;
     color:  #008CBA;
-
 }
 
 .btnLogin{
@@ -72,7 +72,7 @@ input{
 }
 
 .mainRight{
-    margin-top : 15%;
+    margin-top : 10%;
 }
 
 .txtClr{
@@ -104,3 +104,8 @@ nav{
 .navStyle{
     color: white;
 };
+
+.navMenu{
+    text-align: center;
+    align-items: center;
+}

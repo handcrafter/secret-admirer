@@ -5,11 +5,8 @@ class MyStar extends Component {
     render() { 
         return (
             <h1> My Star</h1>
-          );
+        );
     }
 }
  
 export default MyStar;
-<h1>
-    My Star
-</h1>

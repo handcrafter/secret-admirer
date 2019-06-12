@@ -5,7 +5,7 @@ class Saved extends Component {
     render() { 
         return ( 
             <h1>Saved images</h1>
-         );
+        );
     }
 }
  
