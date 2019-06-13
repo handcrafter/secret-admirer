@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Signin from './signin.jsx';
+import Index  from './index.jsx';
 
 function postSend(url, data) {
     return fetch(url, {
@@ -13,8 +14,14 @@ function postSend(url, data) {
     }),
 })
     .then((result) => {
-
-        ReactDOM.render(<Signin />, document.getElementById('app'));
+        console.log(result.status)
+        if(result.status === 200){
+            alert("Signup successful")
+            ReactDOM.render(<Index />, document.getElementById('app'));
+        }
+        else{
+            alert("Existing username please try other ID");
+        }
 })
     .catch((error) =>{
         console.error(error, 'postRequest error');

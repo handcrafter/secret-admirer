@@ -4,6 +4,7 @@ const routeLogin = require('./routes/login');
 const cors = require('cors');
 var database = require('./db/database');
 var logger = require('./middleware/logger');
+var Celebrity = require('./db/celebrity');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(logger)
 
 // databse
 database.connect();
+Celebrity.init();
 
 //routers
 app.use(routeLogin);

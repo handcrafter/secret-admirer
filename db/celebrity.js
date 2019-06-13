@@ -3,33 +3,28 @@ const uniqueValidator = require('mongoose-unique-validator');
 
 var Schema = mongoose.Schema;
 
-//Star schema
-var CelebSchema = new Schema({
-   name: {type: String, required: true, unique: true},
-   occupation: String,
-   albums: Number
+//Celebrity schema
+var CelebritySchema = new Schema({
+    name: {type: String, required: true, unique: true},
+    gender: String,
+    albums: Number
 });
 
-CelebSchema.plugin(uniqueValidator);
+CelebritySchema.plugin(uniqueValidator);
 
-var Celeb = mongoose.model('Celeb', CelebSchema, 'Celebrities');  
-module.exports.Celeb = Celeb;
+var Celebrity = mongoose.model('Celebrity', CelebritySchema, 'Celebrity');  
+module.exports.Celebrity = Celebrity;
 
-exports.init = function(){
-    var celebs = [{name: 'BTS', occupation: 'BoyGroup'},
-        {name: 'IZ*ONE', occupation: 'GirlGroup'},
-        {name: 'TWICE', occupation: 'GirlGroup'}]
+module.exports.init = function(){
+    var celebs = [{name: 'BTS', gender: 'M'},
+                {name: 'IZ*ONE', gender: 'F'},
+                {name: 'TWICE', gender: 'F'}]
 
-    
-
-    Celeb.collection.insert(celebs, function (err, docs) {
-        if (err){ 
-            return console.error('celebs are already in the database');
-        } 
-        else {
+    Celebrity.collection.insert(celebs, function (err, docs) {
+        if (err) { 
+            console.error('celebs are already in the database');
+        } else {
             console.log("Celebs are inserted to collection");
         }
-    });
-    
+    });    
 }
-
