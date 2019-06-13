@@ -3,3 +3,4 @@ package-lock.json
 data
 dist
 .eslintrc.js
+.vscode
