@@ -5,7 +5,8 @@ class FindStar extends Component {
         super(props);
         this.state = {
             Celebrity: [],
-            click: ''
+            click: '',
+            isLoaded : false
         };
         this.handleClick = this.handleClick.bind(this);
     }
@@ -19,7 +20,7 @@ class FindStar extends Component {
     )}
 
     handleClick(event){
-        this.setState({click: event.target.id}, () => console.log(this.state.click));
+        this.setState({click: event.target.id, isLoaded: true}, () => console.log(this.state.click));
         event.preventDefault();
     }
     
@@ -40,10 +41,15 @@ class FindStar extends Component {
                     </div>
                     <div className = "column">
                         {this.state.click}
+                        <div className = "container">
+                            <img src = {"client/src/" + `${this.state.click}`+"1.jpg"}
+                                        alt = "main image"
+                                        width = "100%"
+                                        height = "100%"/> :
+                        </div>
                     </div>
                 </div>
             </div>
-        
         );
     }
 }
