@@ -6,7 +6,8 @@ class FindStar extends Component {
         this.state = {
             Celebrity: [],
             click: '',
-            isLoaded : false
+            isLoaded : false,
+            imgPath : ''
         };
         this.handleClick = this.handleClick.bind(this);
     }
@@ -15,12 +16,17 @@ class FindStar extends Component {
         fetch('http://localhost:5000/list')
         .then((res) => res.json())
         .then((data) => {
+            console.log(data);
             this.setState({Celebrity:data}, () => console.log(this.state.Celebrity));
         }
     )}
 
     handleClick(event){
         this.setState({click: event.target.id, isLoaded: true}, () => console.log(this.state.click));
+        this.state.Celebrity.map(celeb => 
+            {if(celeb.name === event.target.id) 
+                this.setState({imgPath: celeb.imgPath});
+            })
         event.preventDefault();
     }
     
@@ -42,7 +48,7 @@ class FindStar extends Component {
                     <div className = "column">
                         {this.state.click}
                         <div className = "container">
-                            <img src = {"client/src/" + `${this.state.click}`+"1.jpg"}
+                            <img src = {this.state.imgPath}
                                         alt = "main image"
                                         width = "100%"
                                         height = "100%"/> :
