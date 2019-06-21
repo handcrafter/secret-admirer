@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Signin from './signin.jsx';
 import Index  from './index.jsx';
 
 function postSend(url, data) {

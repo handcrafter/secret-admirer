@@ -13,7 +13,8 @@ class App extends React.Component {
                     <div className = "row">
                         <div className = "column">
                             <div className = "container">
-                                <img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/‘LG_Q7_BTS_에디션’_예약_판매_시작_%2842773472410%29_%28cropped%29.jpg/560px-‘LG_Q7_BTS_에디션’_예약_판매_시작_%2842773472410%29_%28cropped%29.jpg" 
+                                <img className = "imgBlur"
+                                    src = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/‘LG_Q7_BTS_에디션’_예약_판매_시작_%2842773472410%29_%28cropped%29.jpg/560px-‘LG_Q7_BTS_에디션’_예약_판매_시작_%2842773472410%29_%28cropped%29.jpg" 
                                     alt = "main image"
                                     width = "100%"
                                     height = "100%"/>
@@ -30,8 +31,10 @@ class App extends React.Component {
         )
     }
 }
+
 ReactDom.render(
     <App />,
     document.getElementById('app')
 )
+
 export default App;

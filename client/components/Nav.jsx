@@ -5,7 +5,7 @@ class Nav extends Component {
     render() { 
         return ( 
             <nav>
-                <h3>Secret Admirer</h3>
+                <h3 href = "#">Secret Admirer</h3>
                 <ul className = "nav-links">
                     <Link className="navStyle" to="/findstar">
                         <li> Find your Star</li>
