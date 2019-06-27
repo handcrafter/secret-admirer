@@ -6,17 +6,17 @@ function postUpdate(url, data) {
         method: 'POST', // 'GET', 'PUT', 'DELETE', etc.
         body: JSON.stringify(data), // Coordinate the body type with 'Content-Type'
         headers: new Headers({
-            'Content-Type': 'application/json',
+            'Content-Type' : 'application/json',
             'Accept': 'application/json'
-    }),
-})
+        }),
+    })
     .then((result) => {
         if (result.status === 200){
             console.log("favorite added")
         } else{
             console.log("favorite fail")
         }
-})
+    })
     .catch((error) =>{
         console.error(error, 'postRequest error');
     })
@@ -46,14 +46,14 @@ class FindStar extends Component {
     handleClick(event){
         this.setState({click: event.target.id, isLoaded: true}, () => console.log(this.state.click));
         this.state.Celebrity.map(celeb => {
-            if (celeb.name === event.target.id) 
-                this.setState({imgPath: celeb.imgPath});
+            if (celeb.name === event.target.id) {
+                this.setState({imgPath: celeb.imgPath});} 
             })
         event.preventDefault();
     }
 
     handleFavorite(event){
-        postUpdate('http://localhost:5000/addFav', {username: 'anotheruser', favorite: this.state.click});
+        postUpdate('http://localhost:5000/addFav', {username: 'test', favorite: this.state.click});
         event.preventDefault();
     }
 
