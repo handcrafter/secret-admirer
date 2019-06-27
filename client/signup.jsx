@@ -33,6 +33,7 @@ class Signup extends Component {
         this.state = { id: "", password: "" }
         this.handleSubmit = this.handleSubmit.bind(this)
   }
+  
     componentDidMount() {}
 
     handleChange = event => {
