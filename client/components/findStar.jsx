@@ -11,14 +11,14 @@ function postUpdate(url, data) {
         }),
     }).then((result) => {
         if (result.status === 200) {
-            console.log("favorite added")
-        } else if(result.status === 401){
-            console.log("Unable to save to the favorite list")
+            console.log("favorite added");
+        } else if (result.status === 401) {
+            console.log("Unable to save to the favorite list");
         } else {
-            console.log("Celebrity is already in favorite list")
+            console.log("Celebrity is already in favorite list");
         }
-    }).catch((error) =>{
-        console.error(error, 'postRequest error');
+    }).catch((error) => {
+        console.error(error, 'Cannot fetch the data using post');
     })
 }
 
@@ -47,8 +47,9 @@ class FindStar extends Component {
         this.setState({click: event.target.id, isLoaded: true}, () => console.log(this.state.click));
         this.state.Celebrity.map(celeb => {
             if (celeb.name === event.target.id) {
-                this.setState({imgPath: celeb.imgPath});} 
-            })
+                this.setState({imgPath: celeb.imgPath});
+            } 
+        })
         event.preventDefault();
     }
 

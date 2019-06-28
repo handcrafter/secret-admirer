@@ -11,10 +11,10 @@ router.get('/list', urlencodedParser, function(req, res) {
         "name": 1, 
         "imgPath" : 1
     }).then(function(err, doc) {
-        if(err){ 
-            res.send(err) 
-        } else{ 
-            res.send(doc) 
+        if (err) { 
+            res.send(err); 
+        } else { 
+            res.send(doc); 
         }
     })
 });
