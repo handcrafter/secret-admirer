@@ -6,7 +6,6 @@ import Saved from './components/saved.jsx';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 class Main extends Component {
-    state = {}
     render() { 
         return (
             <Router>
