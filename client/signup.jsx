@@ -10,19 +10,17 @@ function postSend(url, data) {
         headers: new Headers({
             'Content-Type': 'application/json',
             'Accept': 'application/json'
-    }),
-})
-    .then((result) => {
+        }),
+    }).then((result) => {
         console.log(result.status)
-        if(result.status === 200){
+        if (result.status === 200) {
             alert("Signup successful")
             ReactDOM.render(<Index />, document.getElementById('app'));
         }
-        else{
+        else {
             alert("Existing username please try other ID");
         }
-})
-    .catch((error) =>{
+    }).catch((error) => {
         console.error(error, 'postRequest error');
     })
 };
@@ -32,7 +30,7 @@ class Signup extends Component {
         super(props);
         this.state = { id: "", password: "" }
         this.handleSubmit = this.handleSubmit.bind(this)
-  }
+    }
   
     componentDidMount() {}
 

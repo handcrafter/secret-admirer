@@ -9,15 +9,15 @@ function postUpdate(url, data) {
             'Content-Type' : 'application/json',
             'Accept': 'application/json'
         }),
-    })
-    .then((result) => {
-        if (result.status === 200){
+    }).then((result) => {
+        if (result.status === 200) {
             console.log("favorite added")
-        } else{
-            console.log("favorite fail")
+        } else if(result.status === 401){
+            console.log("Unable to save to the favorite list")
+        } else {
+            console.log("Celebrity is already in favorite list")
         }
-    })
-    .catch((error) =>{
+    }).catch((error) =>{
         console.error(error, 'postRequest error');
     })
 }
@@ -53,7 +53,7 @@ class FindStar extends Component {
     }
 
     handleFavorite(event){
-        postUpdate('http://localhost:5000/addFav', {username: 'test', favorite: this.state.click});
+        postUpdate('http://localhost:5000/addFav', {username: 'test1', favorite: this.state.click});
         event.preventDefault();
     }
 
