@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const routeLogin = require('./routes/login');
 const routeList = require('./routes/celebrityList');
+const routeFavorite = require('./routes/favorite');
 const cors = require('cors');
 var database = require('./db/database');
 var logger = require('./middleware/logger');
@@ -23,6 +24,7 @@ Celebrity.init();
 //routers
 app.use(routeLogin);
 app.use(routeList);
+app.use(routeFavorite);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log('Server started on PORT ' + PORT));

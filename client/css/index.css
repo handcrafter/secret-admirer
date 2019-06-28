@@ -44,6 +44,12 @@ button{
     margin-left: 20px;
 }
 
+.btnFav{
+    background-color: #008CBA;
+    border-color: #008CBA;
+    color: white;
+}
+
 .btnSignup{
     background-color: #008CBA;
     border-color: #008CBA;
