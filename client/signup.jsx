@@ -28,8 +28,8 @@ function postSend(url, data) {
 class Signup extends Component {
     constructor(props) {
         super(props);
-        this.state = { id: "", password: "" }
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.state = { id: "", password: "" };
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
   
     componentDidMount() {}

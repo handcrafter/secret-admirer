@@ -40,6 +40,7 @@ class FindStar extends Component {
         .then((res) => res.json())
         .then((data) => {
             this.setState({Celebrity:data}, () => console.log(this.state.Celebrity));
+            console.log(this.props);
         }
     )}
 
