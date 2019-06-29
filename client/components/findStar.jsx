@@ -33,6 +33,7 @@ class FindStar extends Component {
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleFavorite = this.handleFavorite.bind(this);
+        this.handleRemove = this.handleRemove.bind(this);
     }
     
     componentDidMount(){
@@ -59,6 +60,30 @@ class FindStar extends Component {
         event.preventDefault();
     }
 
+    handleRemove(){
+        var data = {username: 'test1', favorite: this.state.click};
+        fetch('http://localhost:5000/removeFav', {
+            credentials: 'same-origin',
+            method: 'POST', // 'GET', 'PUT', 'DELETE', etc.
+            body: JSON.stringify(data), // Coordinate the body type with 'Content-Type'
+            headers: new Headers({
+                'Content-Type' : 'application/json',
+                'Accept': 'application/json'
+            })
+        }).then((result) => {
+            if (result.status === 200) {
+                console.log('removed from the favorite list');
+            } else if (result.status === 401) {
+                console.log('Selected celebrity is already removed from the list please add first');
+            } else {
+                console.log('user have not set any favorite yet');
+            }
+        }).catch((error) => {
+            console.log('Fetch call cannot get a response from database', error);
+        });
+        event.preventDefault();
+    }
+
     render() {
         return (
             <div>
@@ -74,9 +99,24 @@ class FindStar extends Component {
                             )}
                         </ul>
                     </div>
-                    <div className = "column" onSubmit={this.handleFavorite}>
-                        {this.state.click}
-                        <a href="#" onClick={this.handleFavorite}> fav </a>
+                    <div className = "column">
+                        <div className = "row rowCentered">
+                            {this.state.click}
+                            <form onSubmit={this.handleFavorite}>
+                                <div>
+                                    <button className="btn btnFav" type="submit" value="Favorite">
+                                        fav
+                                    </button>
+                                </div>
+                            </form>
+                            <form onSubmit={this.handleRemove}>
+                                <div>
+                                    <button className="btn btnFav" type="submit">
+                                        remove
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                         <div className = "container">
                             <img 
                                 src =  {this.state.imgPath}

@@ -16,6 +16,11 @@
     clear: both;
 }
 
+.rowCentered {
+    position: relative;
+    left: 50%;
+    right: 50%;
+}
 * {
     box-sizing: border-box;
 }
@@ -36,7 +41,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
 }
 
 button{
@@ -45,8 +49,8 @@ button{
 }
 
 .btnFav{
-    background-color: #008CBA;
-    border-color: #008CBA;
+    background-color: #f0e32c;
+    border-color: #f0e32c;
     color: white;
 }
 

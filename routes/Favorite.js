@@ -42,4 +42,37 @@ router.post('/addFav', urlencodedParser, async(req, res) => {
     }
 });
 
+router.post('/removeFav', urlencodedParser, async(req, res) => {
+    let username = await favorite.Favorite.findOne({
+        username: req.body.username
+    });
+
+    if (!username) {
+        res.status(400).send('No celebrities in the list to remove');
+    } else {
+        // Check if selected celebrity is in the favorite list
+        var remove = false;
+        username.favorite.forEach(function(item, index) {
+            if (item === req.body.favorite) {
+                remove = true;
+                return;
+            }
+        })
+
+        if (!remove) {
+            res.status(401).send('Selected celebrity is not in favorite list');
+        } else {
+            var query = { $pull: {favorite: req.body.favorite} };
+            favorite.Favorite.updateOne( {username: req.body.username}, query, function(error, result){
+                if (error) {
+                    console.log('Cannot remove celebrity from the list', error);
+                    res.status(401).send('error removing a celebrity from the favorite list');
+                } else {
+                    res.send('Successfully removed from favorite list');
+                }
+            })
+        }
+    }
+})
+
 module.exports = router;
