@@ -29,11 +29,11 @@ class FindStar extends Component {
             Celebrity: [],
             click: '',
             isLoaded : false,
-            imgPath : ''
+            imgPath : '',
+            isFavorite: false
         };
         this.handleClick = this.handleClick.bind(this);
-        this.handleFavorite = this.handleFavorite.bind(this);
-        this.handleRemove = this.handleRemove.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     
     componentDidMount(){
@@ -41,46 +41,78 @@ class FindStar extends Component {
         .then((res) => res.json())
         .then((data) => {
             this.setState({Celebrity:data}, () => console.log(this.state.Celebrity));
-            console.log(this.props);
         }
     )}
 
     handleClick(event){
-        this.setState({click: event.target.id, isLoaded: true}, () => console.log(this.state.click));
+        this.setState({click: event.target.id, isLoaded: true}, () => {
+            console.log(this.state.click);
+
+            //Check if selected celebrity is in the favorite list
+            var data = {username: 'test1', favorite: this.state.click};
+            fetch('http://localhost:5000/favButton', {
+                credentials: 'same-origin',
+                method: 'POST', // 'GET', 'PUT', 'DELETE', etc.
+                body: JSON.stringify(data), // Coordinate the body type with 'Content-Type'
+                headers: new Headers({
+                    'Content-Type' : 'application/json',
+                    'Accept': 'application/json'
+                })
+            }).then((result) => {
+                if (result.status === 200) {
+                    console.log('favorite turn on');
+                    this.setState({isFavorite : true});
+                } else {
+                    console.log('favorite turn off');
+                    this.setState({isFavorite : false});
+                }
+            }).catch((error) => {
+                console.log('Fetch call cannot get a response from database', error);
+            });
+        });
+
         this.state.Celebrity.map(celeb => {
             if (celeb.name === event.target.id) {
                 this.setState({imgPath: celeb.imgPath});
             } 
         })
+      
         event.preventDefault();
     }
 
-    handleFavorite(event){
-        postUpdate('http://localhost:5000/addFav', {username: 'test1', favorite: this.state.click});
-        event.preventDefault();
-    }
-
-    handleRemove(){
+    handleSubmit(event){
         var data = {username: 'test1', favorite: this.state.click};
-        fetch('http://localhost:5000/removeFav', {
-            credentials: 'same-origin',
-            method: 'POST', // 'GET', 'PUT', 'DELETE', etc.
-            body: JSON.stringify(data), // Coordinate the body type with 'Content-Type'
-            headers: new Headers({
-                'Content-Type' : 'application/json',
-                'Accept': 'application/json'
-            })
-        }).then((result) => {
-            if (result.status === 200) {
-                console.log('removed from the favorite list');
-            } else if (result.status === 401) {
-                console.log('Selected celebrity is already removed from the list please add first');
-            } else {
-                console.log('user have not set any favorite yet');
-            }
-        }).catch((error) => {
-            console.log('Fetch call cannot get a response from database', error);
-        });
+        if (!this.state.isFavorite) {
+            postUpdate('http://localhost:5000/addFav', data);
+            //change isFavorite state to opposite, in case user clicks favorite button multiple times on one celebrity
+            this.setState(prevState => ({
+                isFavorite : !prevState.isFavorite
+            }))
+        } else {
+            fetch('http://localhost:5000/removeFav', {
+                credentials: 'same-origin',
+                method: 'POST', // 'GET', 'PUT', 'DELETE', etc.
+                body: JSON.stringify(data), // Coordinate the body type with 'Content-Type'
+                headers: new Headers({
+                    'Content-Type' : 'application/json',
+                    'Accept': 'application/json'
+                })
+            }).then((result) => {
+                if (result.status === 200) {
+                    console.log('removed from the favorite list');
+                } else if (result.status === 401) {
+                    console.log('Selected celebrity is already removed from the list. please add to the favorite list first');
+                } else {
+                    console.log('user have not set any favorite yet');
+                }
+            }).catch((error) => {
+                console.log('Fetch call cannot get a response from database', error);
+            });
+
+            this.setState(prevState => ({
+                isFavorite : !prevState.isFavorite
+            }))
+        }
         event.preventDefault();
     }
 
@@ -102,17 +134,10 @@ class FindStar extends Component {
                     <div className = "column">
                         <div className = "row rowCentered">
                             {this.state.click}
-                            <form onSubmit={this.handleFavorite}>
+                            <form onSubmit={this.handleSubmit}>
                                 <div>
                                     <button className="btn btnFav" type="submit" value="Favorite">
                                         fav
-                                    </button>
-                                </div>
-                            </form>
-                            <form onSubmit={this.handleRemove}>
-                                <div>
-                                    <button className="btn btnFav" type="submit">
-                                        remove
                                     </button>
                                 </div>
                             </form>

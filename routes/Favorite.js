@@ -75,4 +75,18 @@ router.post('/removeFav', urlencodedParser, async(req, res) => {
     }
 })
 
+router.post('/favButton', urlencodedParser, async(req, res) => {
+    // if selected celebrity is in database turn fav button On and if not turn off the button
+    let isFavorite = await favorite.Favorite.findOne({
+        username: req.body.username,
+        favorite: req.body.favorite
+    });
+
+    if (isFavorite) {
+        res.send('Favorite button On');
+    } else {
+        res.status(400).send('Favorite button Off');
+    }
+})
+
 module.exports = router;
