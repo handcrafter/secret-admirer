@@ -33,7 +33,7 @@ class FindStar extends Component {
             isFavorite: false
         };
         this.handleClick = this.handleClick.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleFavorite = this.handleFavorite.bind(this);
     }
     
     componentDidMount() {
@@ -80,7 +80,7 @@ class FindStar extends Component {
         event.preventDefault();
     }
 
-    handleSubmit(event) {
+    handleFavorite(event) {
         var data = {username: 'test1', favorite: this.state.click};
         if (!this.state.isFavorite) {
             postUpdate('http://localhost:5000/addFavorite', data);
@@ -134,13 +134,11 @@ class FindStar extends Component {
                     <div className = "column">
                         <div className = "row rowCentered">
                             {this.state.click}
-                            <form onSubmit={this.handleSubmit}>
                                 <div>
-                                    <button className="btn btnFav" type="submit" value="Favorite">
+                                    <button className="btn btnFav" type="submit" value="Favorite" onClick={this.handleFavorite}>
                                         Favorite
                                     </button>
                                 </div>
-                            </form>
                         </div>
                         <div className = "container">
                             <img 
