@@ -36,21 +36,21 @@ class FindStar extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     
-    componentDidMount(){
+    componentDidMount() {
         fetch('http://localhost:5000/list')
         .then((res) => res.json())
         .then((data) => {
             this.setState({Celebrity:data}, () => console.log(this.state.Celebrity));
-        }
-    )}
+        })
+    }
 
-    handleClick(event){
+    handleClick(event) {
         this.setState({click: event.target.id, isLoaded: true}, () => {
             console.log(this.state.click);
 
             //Check if selected celebrity is in the favorite list
             var data = {username: 'test1', favorite: this.state.click};
-            fetch('http://localhost:5000/favButton', {
+            fetch('http://localhost:5000/isFavorite', {
                 credentials: 'same-origin',
                 method: 'POST', // 'GET', 'PUT', 'DELETE', etc.
                 body: JSON.stringify(data), // Coordinate the body type with 'Content-Type'
@@ -76,20 +76,20 @@ class FindStar extends Component {
                 this.setState({imgPath: celeb.imgPath});
             } 
         })
-      
+
         event.preventDefault();
     }
 
-    handleSubmit(event){
+    handleSubmit(event) {
         var data = {username: 'test1', favorite: this.state.click};
         if (!this.state.isFavorite) {
-            postUpdate('http://localhost:5000/addFav', data);
+            postUpdate('http://localhost:5000/addFavorite', data);
             //change isFavorite state to opposite, in case user clicks favorite button multiple times on one celebrity
             this.setState(prevState => ({
                 isFavorite : !prevState.isFavorite
             }))
         } else {
-            fetch('http://localhost:5000/removeFav', {
+            fetch('http://localhost:5000/removeFavorite', {
                 credentials: 'same-origin',
                 method: 'POST', // 'GET', 'PUT', 'DELETE', etc.
                 body: JSON.stringify(data), // Coordinate the body type with 'Content-Type'
@@ -137,7 +137,7 @@ class FindStar extends Component {
                             <form onSubmit={this.handleSubmit}>
                                 <div>
                                     <button className="btn btnFav" type="submit" value="Favorite">
-                                        fav
+                                        Favorite
                                     </button>
                                 </div>
                             </form>

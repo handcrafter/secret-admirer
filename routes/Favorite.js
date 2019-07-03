@@ -5,7 +5,7 @@ const favorite = require('../db/favorite');
 const router = express.Router();
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
-router.post('/addFav', urlencodedParser, async(req, res) => {
+router.post('/addFavorite', urlencodedParser, async(req, res) => {
     let username = await favorite.Favorite.findOne({
         username: req.body.username
     });
@@ -13,19 +13,16 @@ router.post('/addFav', urlencodedParser, async(req, res) => {
     if (!username) {
         var newUser = new favorite.Favorite(req.body);
         newUser.save().then(item => {
-            res.send('added to favorite');
+            res.send('added to favorite list');
         }) 
     } else {
         // if user have been used favorite before then update the list 
-        var userfav = false;
-        username.favorite.forEach(function(item, index) {
-            if (item === req.body.favorite) {
-                userfav = true;
-                return;
-            }
-        })
-
-        if (!userfav) {
+        var inList = false;
+        if (username.favorite.includes(req.body.favorite)) {
+            inList = true;
+        }
+       
+        if (!inList) {
             var newVal = { $push: {favorite: req.body.favorite} };
             favorite.Favorite.updateOne( {username: req.body.username}, newVal, function(err, result) { 
                 if (err) { 
@@ -42,7 +39,7 @@ router.post('/addFav', urlencodedParser, async(req, res) => {
     }
 });
 
-router.post('/removeFav', urlencodedParser, async(req, res) => {
+router.post('/removeFavorite', urlencodedParser, async(req, res) => {
     let username = await favorite.Favorite.findOne({
         username: req.body.username
     });
@@ -52,12 +49,9 @@ router.post('/removeFav', urlencodedParser, async(req, res) => {
     } else {
         // Check if selected celebrity is in the favorite list
         var remove = false;
-        username.favorite.forEach(function(item, index) {
-            if (item === req.body.favorite) {
-                remove = true;
-                return;
-            }
-        })
+        if (username.favorite.includes(req.body.favorite)) {
+            remove = true;
+        }
 
         if (!remove) {
             res.status(401).send('Selected celebrity is not in favorite list');
@@ -75,8 +69,8 @@ router.post('/removeFav', urlencodedParser, async(req, res) => {
     }
 })
 
-router.post('/favButton', urlencodedParser, async(req, res) => {
-    // if selected celebrity is in database turn fav button On and if not turn off the button
+router.post('/isFavorite', urlencodedParser, async(req, res) => {
+    // if selected celebrity is in database turn favorite button On and if not turn off the button
     let isFavorite = await favorite.Favorite.findOne({
         username: req.body.username,
         favorite: req.body.favorite
