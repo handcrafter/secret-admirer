@@ -32,7 +32,7 @@ class FindStar extends Component {
             imgPath : '',
             isFavorite: false
         };
-        this.handleClick = this.handleClick.bind(this);
+        this.handleClickedCelebrity = this.handleClickedCelebrity.bind(this);
         this.handleFavorite = this.handleFavorite.bind(this);
     }
     
@@ -44,7 +44,7 @@ class FindStar extends Component {
         })
     }
 
-    handleClick(event) {
+    handleClickedCelebrity(event) {
         this.setState({click: event.target.id, isLoaded: true}, () => {
             console.log(this.state.click);
 
@@ -124,7 +124,7 @@ class FindStar extends Component {
                         <ul>
                             {this.state.Celebrity.map(celeb => 
                                 <div key = {celeb._id}>
-                                    <a href="#" onClick={this.handleClick} id = {celeb.name}>
+                                    <a href="#" onClick={this.handleClickedCelebrity} id = {celeb.name}>
                                         {celeb.name}
                                     </a>
                                 </div>
