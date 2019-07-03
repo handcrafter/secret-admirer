@@ -32,8 +32,8 @@ class FindStar extends Component {
             imgPath : '',
             isFavorite: false
         };
-        this.handleClick = this.handleClick.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.isFavorite = this.isFavorite.bind(this);
+        this.handleFavorite = this.handleFavorite.bind(this);
     }
     
     componentDidMount() {
@@ -44,7 +44,7 @@ class FindStar extends Component {
         })
     }
 
-    handleClick(event) {
+    isFavorite(event) {
         this.setState({click: event.target.id, isLoaded: true}, () => {
             console.log(this.state.click);
 
@@ -80,7 +80,7 @@ class FindStar extends Component {
         event.preventDefault();
     }
 
-    handleSubmit(event) {
+    handleFavorite(event) {
         var data = {username: 'test1', favorite: this.state.click};
         if (!this.state.isFavorite) {
             postUpdate('http://localhost:5000/addFavorite', data);
@@ -124,7 +124,7 @@ class FindStar extends Component {
                         <ul>
                             {this.state.Celebrity.map(celeb => 
                                 <div key = {celeb._id}>
-                                    <a href="#" onClick={this.handleClick} id = {celeb.name}>
+                                    <a href="#" onClick={this.isFavorite} id = {celeb.name}>
                                         {celeb.name}
                                     </a>
                                 </div>
@@ -134,13 +134,11 @@ class FindStar extends Component {
                     <div className = "column">
                         <div className = "row rowCentered">
                             {this.state.click}
-                            <form onSubmit={this.handleSubmit}>
                                 <div>
-                                    <button className="btn btnFav" type="submit" value="Favorite">
+                                    <button className="btn btnFav" type="submit" value="Favorite" onClick={this.handleFavorite}>
                                         Favorite
                                     </button>
                                 </div>
-                            </form>
                         </div>
                         <div className = "container">
                             <img 

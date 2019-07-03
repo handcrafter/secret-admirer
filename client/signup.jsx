@@ -29,16 +29,16 @@ class Signup extends Component {
     constructor(props) {
         super(props);
         this.state = { id: "", password: "" };
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmit = this.handleSignup.bind(this);
     }
   
     componentDidMount() {}
 
-    handleChange = event => {
+    handleInputChange = event => {
         this.setState({ [event.target.name] : event.target.value });
     };
 
-    handleSubmit(event) {
+    handleSignup(event) {
         postSend('http://localhost:5000/signup', this.state);
         event.preventDefault();
     }
@@ -47,18 +47,18 @@ class Signup extends Component {
         return (
             <div className = "signup">
                 <h1 className = "txtClr"> Create an Account</h1>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSignup}>
                     <hr/>
                     <div className ="form-group">
                         <p>
                             user id:
-                            <input  type="text" value = {this.state.id} onChange={this.handleChange} name="id" placeholder="Enter your ID..."  required />
+                            <input  type="text" value = {this.state.id} onChange={this.handleInputChange} name="id" placeholder="Enter your ID..."  required />
                         </p>
                     </div>
                     <div className = "form-group">
                         <p>
                             Password:
-                            <input type="text" value = {this.state.password} onChange={this.handleChange} name="password" placeholder="Enter your password" required />
+                            <input type="text" value = {this.state.password} onChange={this.handleInputChange} name="password" placeholder="Enter your password" required />
                         </p>
                     </div>
                     <button className = "btn btn-success btnSignup" type="submit" value="Sign up"> Sign Up</button>

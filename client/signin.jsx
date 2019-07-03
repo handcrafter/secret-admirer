@@ -32,16 +32,16 @@ class Signin extends Component {
     constructor(props) {
         super(props);
         this.state = { id: "", password: "" };
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSignin = this.handleSignin.bind(this);
     }
 
     componentDidMount() {}
 
-    handleChange = event => {
+    handleInputChange = event => {
         this.setState({ [event.target.name]: event.target.value });
     };
 
-    handleSubmit(event) {
+    handleSignin(event) {
         postSend("http://localhost:5000/signin", this.state);
         event.preventDefault();
     }
@@ -55,7 +55,7 @@ class Signin extends Component {
     return (
         <div className= "signup">
             <h1 className = "txtClr">Join Secret Admirer today!</h1>
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSignin}>
             <hr />
             <div className="form-group">
                 <p>
@@ -63,7 +63,7 @@ class Signin extends Component {
                     <input
                         type="text"
                         value={this.state.id}
-                        onChange={this.handleChange}
+                        onChange={this.handleInputChange}
                         name="id"
                         placeholder="Enter your ID..."
                         required
@@ -76,7 +76,7 @@ class Signin extends Component {
                     <input
                         type="text"
                         value={this.state.password}
-                        onChange={this.handleChange}
+                        onChange={this.handleInputChange}
                         name="password"
                         placeholder="Enter your password"
                         required
