@@ -121,6 +121,7 @@ class FindStar extends Component {
             <div>
                 <div className = "row">
                     <div className = "column">
+                        <h3>Choose your Celebrity from the list!</h3>
                         <ul>
                             {this.state.Celebrity.map(celeb => 
                                 <div key = {celeb._id}>
