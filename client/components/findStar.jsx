@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {ListGroup, ListGroupItem, Button, Alert, Card, CardImg, CardBody, CardTitle, Container, Row, Col} from 'reactstrap';
 
 function postUpdate(url, data) {
     return fetch(url, {
@@ -118,39 +119,44 @@ class FindStar extends Component {
 
     render() {
         return (
-            <div>
-                <div className = "row">
-                    <div className = "column">
-                        <h3>Choose your Celebrity from the list!</h3>
+            <Container>
+                <Row>
+                    <br/>
+                </Row>
+                <Row>
+                    <Col>
+                        <Alert color="info">
+                                <h3>Choose your Celebrity from the list!</h3>
+                        </Alert>
                         <ul>
                             {this.state.Celebrity.map(celeb => 
                                 <div key = {celeb._id}>
-                                    <a href="#" onClick={this.isFavorite} id = {celeb.name}>
-                                        {celeb.name}
-                                    </a>
+                                    <ListGroup>
+                                        <ListGroupItem onClick={this.isFavorite} id = {celeb.name} className =  "listItem">
+                                           {celeb.name}
+                                        </ListGroupItem>
+                                    </ListGroup>
                                 </div>
                             )}
                         </ul>
-                    </div>
-                    <div className = "column">
-                        <div className = "row rowCentered">
-                            {this.state.click}
-                                <div>
-                                    <button className="btn btnFav" type="submit" value="Favorite" onClick={this.handleFavorite}>
-                                        Favorite
-                                    </button>
-                                </div>
+                    </Col>
+                    <Col>
+                        <div className="container">
+                            <Card>
+                                <CardImg width="100%" height="100%" src = {this.state.imgPath} alt = "celeb img"/>
+                                <CardBody>
+                                    <CardTitle className = "listItem">
+                                        {this.state.click}
+                                    </CardTitle>
+                                    <Button className="btn btnFav" type="submit" value="Favorite" onClick={this.handleFavorite}>
+                                    Favorite
+                                    </Button>
+                                </CardBody>
+                            </Card>
                         </div>
-                        <div className = "container">
-                            <img 
-                                src =  {this.state.imgPath}
-                                alt = "main image"
-                                width = "100%"
-                                height = "100%"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    </Col>
+                </Row>
+            </Container>
         );
     }
 }

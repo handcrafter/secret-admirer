@@ -99,7 +99,7 @@ nav{
     justify-content: space-around;
     align-items: center;
     min-height: 10vh;
-    background: #008CBA;
+    background: linear-gradient(to right,rgb(120, 224, 216),#008CBA);
     color: white;
 }
 
@@ -113,9 +113,18 @@ nav{
 
 .navStyle{
     color: white;
+    font-family: Copperplate, "Copperplate Gothic Light";
 };
+
+.navStyle:li{
+    font-size: 30;
+}
 
 .navMenu{
     text-align: center;
     align-items: center;
+}
+
+.listItem{
+    color: black;
 }
