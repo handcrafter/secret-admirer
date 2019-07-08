@@ -30,11 +30,11 @@ class FindStar extends Component {
             Celebrity: [],
             click: '',
             isLoaded : false,
-            imgPath : '',
-            isFavorite: false
+            imgPath : 'client/src/InitImg.jpg',
+            isFavourite: false
         };
-        this.isFavorite = this.isFavorite.bind(this);
-        this.handleFavorite = this.handleFavorite.bind(this);
+        this.isFavourite = this.isFavourite.bind(this);
+        this.handleFavourite = this.handleFavourite.bind(this);
     }
     
     componentDidMount() {
@@ -45,13 +45,13 @@ class FindStar extends Component {
         })
     }
 
-    isFavorite(event) {
+    isFavourite(event) {
         this.setState({click: event.target.id, isLoaded: true}, () => {
             console.log(this.state.click);
 
             //Check if selected celebrity is in the favorite list
-            var data = {username: 'test1', favorite: this.state.click};
-            fetch('http://localhost:5000/isFavorite', {
+            var data = {username: 'test1', favourite: this.state.click};
+            fetch('http://localhost:5000/isFavourite', {
                 credentials: 'same-origin',
                 method: 'POST', // 'GET', 'PUT', 'DELETE', etc.
                 body: JSON.stringify(data), // Coordinate the body type with 'Content-Type'
@@ -62,10 +62,10 @@ class FindStar extends Component {
             }).then((result) => {
                 if (result.status === 200) {
                     console.log('favorite turn on');
-                    this.setState({isFavorite : true});
+                    this.setState({isFavourite : true});
                 } else {
                     console.log('favorite turn off');
-                    this.setState({isFavorite : false});
+                    this.setState({isFavourite : false});
                 }
             }).catch((error) => {
                 console.log('Fetch call cannot get a response from database', error);
@@ -81,16 +81,16 @@ class FindStar extends Component {
         event.preventDefault();
     }
 
-    handleFavorite(event) {
-        var data = {username: 'test1', favorite: this.state.click};
-        if (!this.state.isFavorite) {
-            postUpdate('http://localhost:5000/addFavorite', data);
+    handleFavourite(event) {
+        var data = {username: 'test1', favourite: this.state.click};
+        if (!this.state.isFavourite) {
+            postUpdate('http://localhost:5000/addFavourite', data);
             //change isFavorite state to opposite, in case user clicks favorite button multiple times on one celebrity
             this.setState(prevState => ({
-                isFavorite : !prevState.isFavorite
+                isFavourite : !prevState.isFavourite
             }))
         } else {
-            fetch('http://localhost:5000/removeFavorite', {
+            fetch('http://localhost:5000/removeFavourite', {
                 credentials: 'same-origin',
                 method: 'POST', // 'GET', 'PUT', 'DELETE', etc.
                 body: JSON.stringify(data), // Coordinate the body type with 'Content-Type'
@@ -100,7 +100,7 @@ class FindStar extends Component {
                 })
             }).then((result) => {
                 if (result.status === 200) {
-                    console.log('removed from the favorite list');
+                    console.log('removed from the favourite list');
                 } else if (result.status === 401) {
                     console.log('Selected celebrity is already removed from the list. please add to the favorite list first');
                 } else {
@@ -111,7 +111,7 @@ class FindStar extends Component {
             });
 
             this.setState(prevState => ({
-                isFavorite : !prevState.isFavorite
+                isFavourite : !prevState.isFavourite
             }))
         }
         event.preventDefault();
@@ -132,7 +132,7 @@ class FindStar extends Component {
                             this.state.Celebrity.map(celeb => 
                                 <div key = {celeb._id}>
                                     <ListGroup>
-                                        <ListGroupItem onClick={this.isFavorite} id = {celeb.name} className =  "listItem">
+                                        <ListGroupItem onClick={this.isFavourite} id = {celeb.name} className =  "listItem">
                                            {celeb.name}
                                         </ListGroupItem>
                                     </ListGroup>
@@ -147,8 +147,8 @@ class FindStar extends Component {
                                     <CardTitle className = "listItem">
                                         {this.state.click}
                                     </CardTitle>
-                                    <Button className="btn btnFav" type="submit" value="Favorite" onClick={this.handleFavorite}>
-                                    Favorite
+                                    <Button className="btn btnFav" type="submit" value="Favorite" onClick={this.handleFavourite}>
+                                    Favourite
                                     </Button>
                                 </CardBody>
                             </Card>

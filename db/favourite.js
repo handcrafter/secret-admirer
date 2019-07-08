@@ -3,21 +3,21 @@ const uniqueValidator = require('mongoose-unique-validator');
 
 var Schema = mongoose.Schema;
 
-//favorite schema
-var FavoriteSchema = new Schema({
+//favourite schema
+var FavouriteSchema = new Schema({
     username: {
         type: String,
         required: true,
         unique:true,
         index: true
     },
-    favorite: [{
+    favourite: [{
         type: String,
         index: true
     }]
 });
 
-FavoriteSchema.plugin(uniqueValidator);
+FavouriteSchema.plugin(uniqueValidator);
 
-var Favorite = mongoose.model('Favorite', FavoriteSchema);
-module.exports.Favorite = Favorite;
+var Favourite = mongoose.model('Favourite', FavouriteSchema);
+module.exports.Favourite = Favourite;
