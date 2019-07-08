@@ -1,7 +1,7 @@
 # Secret Admirer
 
 Secret admirer allows you to find the best picture of celebrities.
-Become the number one fan of your favorite star today!
+Become the number one fan of your favourite star today!
 
 This application is developed with node.js mongoDB and React.
 

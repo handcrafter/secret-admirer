@@ -18,7 +18,7 @@ class App extends React.Component {
                                     width = "100%"
                                     height = "100%"/>
                                 <div className ="centered">
-                                    <h1 color="white"> Search up images of your favorite celebrities! </h1>
+                                    <h1 color="white"> Search up images of your favourite celebrities! </h1>
                                 </div>
                             </div>
                         </div>
