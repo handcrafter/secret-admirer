@@ -1,6 +1,7 @@
 import ReactDom from 'react-dom';
 import React from 'react';
 import Signin from './signin.jsx';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 require('./css/index.css');
 
