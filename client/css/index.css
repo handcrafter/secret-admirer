@@ -128,3 +128,9 @@ nav{
 .listItem{
     color: black;
 }
+
+.titleColour{
+    background: linear-gradient(to right,rgb(120, 224, 216),#008CBA);
+    -webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}

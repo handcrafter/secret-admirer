@@ -126,24 +126,23 @@ class FindStar extends Component {
                 <Row>
                     <Col>
                         <Alert color="info">
-                                <h3>Choose your Celebrity from the list!</h3>
+                            <h3>Choose your Celebrity from the list!</h3>
                         </Alert>
-                        <ul>
-                            {this.state.Celebrity.map(celeb => 
+                        <ul> {
+                            this.state.Celebrity.map(celeb => 
                                 <div key = {celeb._id}>
                                     <ListGroup>
                                         <ListGroupItem onClick={this.isFavorite} id = {celeb.name} className =  "listItem">
                                            {celeb.name}
                                         </ListGroupItem>
                                     </ListGroup>
-                                </div>
-                            )}
-                        </ul>
+                                </div>)
+                        } </ul>
                     </Col>
                     <Col>
                         <div className="container">
                             <Card>
-                                <CardImg width="100%" height="100%" src = {this.state.imgPath} alt = "celeb img"/>
+                                <CardImg width="100%" height="50%" src = {this.state.imgPath} alt = "celeb img"/>
                                 <CardBody>
                                     <CardTitle className = "listItem">
                                         {this.state.click}

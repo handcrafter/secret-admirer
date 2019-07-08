@@ -54,7 +54,7 @@ class Signin extends Component {
     render() {
     return (
         <div className= "signup">
-            <h1 className = "txtClr">Join Secret Admirer today!</h1>
+            <h1 className = "titleColour">JOIN SECRET ADMIRER TODAY!</h1>
             <form onSubmit={this.handleSignin}>
             <hr />
             <div className="form-group">
