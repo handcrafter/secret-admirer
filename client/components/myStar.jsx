@@ -53,8 +53,7 @@ class MyStar extends Component {
                                             {fav}
                                         </ListGroupItem>
                                     </ListGroup>
-                                </div>
-                            )
+                                </div>)
                         } </ul>
                     </Col>
                     <Col>
