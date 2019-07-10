@@ -83,4 +83,16 @@ router.post('/isFavourite', urlencodedParser, async(req, res) => {
     }
 })
 
+router.post('/listFavourite', urlencodedParser, async(req, res) => {
+    favourite.Favourite.findOne({
+        username: req.body.username
+    }).then(function(list) {
+        if (list) {
+            res.send(list);
+        } else {
+            console.log('User does not have favourite list');
+        }
+    })
+})
+
 module.exports = router;
