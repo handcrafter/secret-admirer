@@ -97,4 +97,18 @@ router.get('/favouriteList', urlencodedParser, function(req, res) {
     })
 });
 
+router.post('/listFavourite', urlencodedParser, async(req, res) => {
+    console.log(req.body.username);
+    favourite.Favourite.findOne({
+        username: req.body.username
+    }).then(function(doc) {
+        console.log(doc);
+        if (doc) {
+            res.send(doc);
+        } else {
+            console.log('cannot get document')
+        }
+    })
+})
+
 module.exports = router;
