@@ -83,30 +83,14 @@ router.post('/isFavourite', urlencodedParser, async(req, res) => {
     }
 })
 
-router.get('/favouriteList', urlencodedParser, function(req, res) {
-    favourite.Favourite.find({},{
-        "_id" : 1,
-        "username" : 1,
-        "favourite" : 1
-    }).then(function(err, doc) {
-        if (err) { 
-            res.send(err); 
-        } else { 
-            res.send(doc); 
-        }
-    })
-});
-
 router.post('/listFavourite', urlencodedParser, async(req, res) => {
-    console.log(req.body.username);
     favourite.Favourite.findOne({
         username: req.body.username
-    }).then(function(doc) {
-        console.log(doc);
-        if (doc) {
-            res.send(doc);
+    }).then(function(list) {
+        if (list) {
+            res.send(list);
         } else {
-            console.log('cannot get document')
+            console.log('User does not have favourite list');
         }
     })
 })

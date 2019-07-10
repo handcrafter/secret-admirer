@@ -11,19 +11,7 @@ class MyStar extends Component {
         };
         this.renderImage = this.renderImage.bind();
     }
-/*
-    componentDidMount() {
-        fetch('http://localhost:5000/favouriteList')
-        .then((res) => res.json())
-        .then((data) => {
-            data.map(fav => {
-                if (fav.username === 'test1') {
-                    this.setState({FavouriteList:fav.favourite}, () => console.log(this.state.FavouriteList));
-                }
-            })
-        })
-    }
-*/
+
     componentDidMount() {
         var data = {username : 'test1'};
         fetch('http://localhost:5000/listFavourite', {
@@ -33,15 +21,15 @@ class MyStar extends Component {
             headers: new Headers({
                 'Content-Type' : 'application/json',
                 'Accept': 'application/json'
-                })
+            })
         }).then(response => response.json()
         ).then((result) =>  {
                 this.setState({FavouriteList:result.favourite}, () => console.log(this.state.FavouriteList));
         }).catch((error) => {
-            console.log(error, 'Cannot get ');
+            console.log(error, 'Cannot get favourite list');
         })
-
     }
+
     renderImage(event) {
         this.setState({click: event.target.id, isLoaded: true}, () => {
             console.log(this.state.click);
