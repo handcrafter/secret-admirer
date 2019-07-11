@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Container, Row, Col, ListGroup, ListGroupItem, Card, CardBody, CardTitle, CardImg} from 'reactstrap';
+import {Container, Row, Col, ListGroup, ListGroupItem, Card, CardBody, CardTitle, CardImg, Alert} from 'reactstrap';
 
 class MyStar extends Component {
      constructor(props) {
@@ -62,7 +62,10 @@ class MyStar extends Component {
                     <br/>
                 </Row>   
                 <Row>
-                    <Col>
+                    <Col xs="4">
+                        <Alert color="info">
+                            <h3>My favourite celebrity list</h3>
+                        </Alert>
                         <ul> {
                             this.state.FavouriteList.map(fav => 
                                 <div key = {fav}>
