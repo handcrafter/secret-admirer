@@ -33,7 +33,8 @@ class MyStar extends Component {
     renderImage(event) {
         this.setState({click: event.target.id, isLoaded: true}, () => {
             console.log(this.state.click);
-
+            
+            //Get image path of selected celebrity
             var target = {click: this.state.click};
             fetch('http://localhost:5000/getImgPath', {
                 credentials : 'same-origin',
