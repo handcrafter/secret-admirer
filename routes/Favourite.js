@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const favourite = require('../db/favourite');
+const celebrity = require('../db/celebrity');
 
 const router = express.Router();
 var urlencodedParser = bodyParser.urlencoded({extended: false});
@@ -91,6 +92,20 @@ router.post('/listFavourite', urlencodedParser, async(req, res) => {
             res.send(list);
         } else {
             console.log('User does not have favourite list');
+        }
+    })
+})
+
+router.post('/getImgPath', urlencodedParser, async(req, res) => {
+    celebrity.Celebrity.findOne({
+        name : req.body.click
+    }, {
+        "imgPath" : 1
+    }).then(function(path) {
+        if (path) {
+            res.send(path);
+        } else {
+            console.log('Such celebrity does not exist');
         }
     })
 })

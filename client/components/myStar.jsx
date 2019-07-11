@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Container, Row, Col, ListGroup, ListGroupItem} from 'reactstrap';
+import {Container, Row, Col, ListGroup, ListGroupItem, Card, CardBody, CardTitle, CardImg} from 'reactstrap';
 
 class MyStar extends Component {
      constructor(props) {
@@ -9,7 +9,7 @@ class MyStar extends Component {
             ImgPath : 'client/src/InitImg.jpg',
             click : ''
         };
-        this.renderImage = this.renderImage.bind();
+        this.renderImage = this.renderImage.bind(this);
     }
 
     componentDidMount() {
@@ -33,7 +33,25 @@ class MyStar extends Component {
     renderImage(event) {
         this.setState({click: event.target.id, isLoaded: true}, () => {
             console.log(this.state.click);
+            
+            //Get image path of selected celebrity
+            var target = {click: this.state.click};
+            fetch('http://localhost:5000/getImgPath', {
+                credentials : 'same-origin',
+                method: 'POST',
+                body: JSON.stringify(target),
+                headers: new Headers({
+                    'Content-Type' : 'application/json',
+                    'Accept': 'application/json'
+                })
+            }).then(response => response.json()
+            ).then((path) => {
+                this.setState({ImgPath: path.imgPath})
+            }).catch((error) => {
+                console.log('Cannot get image path of selected celebrity', error)
+            })
          })
+
         event.preventDefault();
     }
 
@@ -49,7 +67,7 @@ class MyStar extends Component {
                             this.state.FavouriteList.map(fav => 
                                 <div key = {fav}>
                                     <ListGroup>
-                                        <ListGroupItem id={fav} className = "listItem">
+                                        <ListGroupItem id={fav} className = "listItem" onClick={this.renderImage}>
                                             {fav}
                                         </ListGroupItem>
                                     </ListGroup>
@@ -57,7 +75,14 @@ class MyStar extends Component {
                         } </ul>
                     </Col>
                     <Col>
-
+                        <Card>
+                            <CardImg width="100%" height="50%" src = {this.state.ImgPath} alt = "celeb img"/>
+                            <CardBody>
+                                <CardTitle className = "listItem">
+                                    {this.state.click}
+                                </CardTitle>
+                            </CardBody>
+                        </Card>
                     </Col>
                 </Row>
             </Container>
