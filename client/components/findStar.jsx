@@ -124,7 +124,7 @@ class FindStar extends Component {
                     <br/>
                 </Row>
                 <Row>
-                    <Col>
+                    <Col xs = "4">
                         <Alert color="info">
                             <h3>Choose your Celebrity from the list!</h3>
                         </Alert>
