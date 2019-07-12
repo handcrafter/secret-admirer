@@ -124,16 +124,13 @@ class FindStar extends Component {
                     <br/>
                 </Row>
                 <Row>
-                    <Col>
-                        <Alert color="info">
-                            <h3>Choose your Celebrity from the list!</h3>
-                        </Alert>
-                        <ul> {
+                    <Col xs="2">
+                        <ul className="celebul"> {
                             this.state.Celebrity.map(celeb => 
-                                <div key = {celeb._id}>
-                                    <ListGroup>
+                                <div key = {celeb._id} className="listItem">
+                                    <ListGroup width="100">
                                         <ListGroupItem onClick={this.isFavourite} id = {celeb.name} className =  "listItem">
-                                           {celeb.name}
+                                            {celeb.name}
                                         </ListGroupItem>
                                     </ListGroup>
                                 </div>)

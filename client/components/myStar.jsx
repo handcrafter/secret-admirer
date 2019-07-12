@@ -62,8 +62,8 @@ class MyStar extends Component {
                     <br/>
                 </Row>   
                 <Row>
-                    <Col>
-                        <ul> {
+                    <Col xs="2">
+                        <ul className="celebul"> {
                             this.state.FavouriteList.map(fav => 
                                 <div key = {fav}>
                                     <ListGroup>
@@ -75,14 +75,36 @@ class MyStar extends Component {
                         } </ul>
                     </Col>
                     <Col>
-                        <Card>
-                            <CardImg width="100%" height="50%" src = {this.state.ImgPath} alt = "celeb img"/>
-                            <CardBody>
-                                <CardTitle className = "listItem">
-                                    {this.state.click}
-                                </CardTitle>
-                            </CardBody>
-                        </Card>
+                        <Row className = "galleryRow">
+                            <Col className = "galleryCol">
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                            </Col>
+                            <Col>
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                            </Col>
+                            <Col>
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                            </Col>
+                            <Col>
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
             </Container>
