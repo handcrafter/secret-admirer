@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import {Container, Row, Col, ListGroup, ListGroupItem, Card, CardBody, CardTitle, CardImg} from 'reactstrap';
+import {Container, Row, Col, ListGroup, ListGroupItem} from 'reactstrap';
+import Gallery from "react-photo-gallery";
+import Carousel, { Modal, ModalGateway } from 'react-images';
+
+const images = [
+    { src: 'client/src/BTS1.jpg', width: 4, height: 5}, 
+    { src: 'client/src/BTS2.jpeg', width: 3, height: 3},
+    { src: 'client/src/BTS3.jpg', width: 3, height: 4},
+    { src: 'client/src/BTS4.jpg', width: 4, height: 5}];
 
 class MyStar extends Component {
      constructor(props) {
@@ -7,9 +15,15 @@ class MyStar extends Component {
         this.state = {
             FavouriteList: [],
             ImgPath : 'client/src/InitImg.jpg',
-            click : ''
+            click : '',
+            modalIsOpen: false
         };
         this.renderImage = this.renderImage.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
+    }
+
+    toggleModal = () => {
+        this.setState(state => ({ modalIsOpen: !state.modalIsOpen }));
     }
 
     componentDidMount() {
@@ -56,6 +70,7 @@ class MyStar extends Component {
     }
 
     render() { 
+        const { modalIsOpen } = this.state;
         return (
             <Container>
                 <Row>
@@ -75,36 +90,14 @@ class MyStar extends Component {
                         } </ul>
                     </Col>
                     <Col>
-                        <Row className = "galleryRow">
-                            <Col className = "galleryCol">
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                            </Col>
-                            <Col>
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                            </Col>
-                            <Col>
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                            </Col>
-                            <Col>
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                                <img className = "galleryImg" src={this.state.ImgPath} alt = "Gallery img" />
-                            </Col>
-                        </Row>
+                        <Gallery photos={images} direction={"column"} onClick={this.toggleModal} />
+                        <ModalGateway>
+                            {modalIsOpen ? (
+                            <Modal onClose={this.toggleModal}>
+                                <Carousel views={images} />
+                            </Modal>
+                            ) : null}
+                        </ModalGateway>
                     </Col>
                 </Row>
             </Container>

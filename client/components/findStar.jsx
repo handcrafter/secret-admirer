@@ -74,7 +74,7 @@ class FindStar extends Component {
 
         this.state.Celebrity.map(celeb => {
             if (celeb.name === event.target.id) {
-                this.setState({imgPath: celeb.imgPath});
+                this.setState({imgPath: celeb.imgPath[0]});
             } 
         })
 
