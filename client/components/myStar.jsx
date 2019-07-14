@@ -93,9 +93,9 @@ class MyStar extends Component {
                         <Gallery photos={images} direction={"column"} onClick={this.toggleModal} />
                         <ModalGateway>
                             {modalIsOpen ? (
-                            <Modal onClose={this.toggleModal}>
-                                <Carousel views={images} />
-                            </Modal>
+                                <Modal onClose={this.toggleModal}>
+                                    <Carousel views={images} />
+                                </Modal>
                             ) : null}
                         </ModalGateway>
                     </Col>
