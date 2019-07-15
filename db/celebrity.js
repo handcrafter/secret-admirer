@@ -7,7 +7,11 @@ var Schema = mongoose.Schema;
 var CelebritySchema = new Schema({
     name: {type: String, required: true, unique: true},
     gender: String,
-    albums: Number
+    albums: Number,
+    imgPath: [{
+        type: String,
+        index: true
+    }]
 });
 
 CelebritySchema.plugin(uniqueValidator);
@@ -16,9 +20,9 @@ var Celebrity = mongoose.model('Celebrity', CelebritySchema, 'Celebrity');
 module.exports.Celebrity = Celebrity;
 
 module.exports.init = function(){
-    var celebs = [{name: 'BTS', gender: 'M', imgPath: 'client/src/BTS1.jpg'},
-                  {name: 'IZ*ONE', gender: 'F',imgPath: 'client/src/IZ*ONE1.jpg'},
-                  {name: 'TWICE', gender: 'F', imgPath: 'client/src/TWICE1.jpg'}]
+    var celebs = [{name: 'BTS', gender: 'M', imgPath: ['client/src/BTS1.jpg', 'client/src/BTS2.jpeg']},
+                  {name: 'IZ*ONE', gender: 'F',imgPath: ['client/src/IZ*ONE1.jpg']},
+                  {name: 'TWICE', gender: 'F', imgPath: ['client/src/TWICE1.jpg']}]
 
     Celebrity.collection.insert(celebs, function (err, docs) {
         if (err) { 
