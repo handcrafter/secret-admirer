@@ -16,13 +16,21 @@ class MyStar extends Component {
             FavouriteList: [],
             ImgPath : 'client/src/InitImg.jpg',
             click : '',
-            modalIsOpen: false
+            modalIsOpen: false,
+            selectedIndex: 0
         };
         this.renderImage = this.renderImage.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
-    toggleModal = () => {
+    toggleModal = (event, image) => {
+        this.setState(state => ({ 
+            modalIsOpen: !state.modalIsOpen,
+            selectedIndex: image.index }));
+    }
+
+    closeModal = () => {
         this.setState(state => ({ modalIsOpen: !state.modalIsOpen }));
     }
 
@@ -93,8 +101,8 @@ class MyStar extends Component {
                         <Gallery photos={images} direction={"column"} onClick={this.toggleModal} />
                         <ModalGateway>
                             {modalIsOpen ? (
-                                <Modal onClose={this.toggleModal}>
-                                    <Carousel views={images} />
+                                <Modal onClose={this.closeModal}>
+                                    <Carousel currentIndex={this.state.selectedIndex} views={images} />
                                 </Modal>
                             ) : null}
                         </ModalGateway>
