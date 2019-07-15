@@ -20,17 +20,18 @@ class MyStar extends Component {
             selectedIndex: 0
         };
         this.renderImage = this.renderImage.bind(this);
-        this.toggleModal = this.toggleModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
+        this.viewSelectedImage = this.viewSelectedImage.bind(this);
+        this.closeSelectedImage = this.closeSelectedImage.bind(this);
     }
 
-    toggleModal = (event, image) => {
+    viewSelectedImage = (event, image) => {
         this.setState(state => ({ 
             modalIsOpen: !state.modalIsOpen,
-            selectedIndex: image.index }));
+            selectedIndex: image.index 
+        }));
     }
 
-    closeModal = () => {
+    closeSelectedImage = () => {
         this.setState(state => ({ modalIsOpen: !state.modalIsOpen }));
     }
 
@@ -98,10 +99,10 @@ class MyStar extends Component {
                         } </ul>
                     </Col>
                     <Col>
-                        <Gallery photos={images} direction={"column"} onClick={this.toggleModal} />
+                        <Gallery photos={images} direction={"column"} onClick={this.viewSelectedImage} />
                         <ModalGateway>
                             {modalIsOpen ? (
-                                <Modal onClose={this.closeModal}>
+                                <Modal onClose={this.closeSelectedImage}>
                                     <Carousel currentIndex={this.state.selectedIndex} views={images} />
                                 </Modal>
                             ) : null}
