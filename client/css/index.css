@@ -111,6 +111,10 @@ nav{
     list-style: none;
 }
 
+.current {
+    border-bottom: 4px solid white;
+  }
+
 .navStyle{
     color: white;
     font-family: Copperplate, "Copperplate Gothic Light";
