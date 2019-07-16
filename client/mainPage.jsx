@@ -12,7 +12,7 @@ class Main extends Component {
                 <div>
                     <Nav />
                     <Switch>
-                        <Route path="/findstar" exact component={FindStar}/>
+                        <Route path="/findstar" component={FindStar}/>
                         <Route path="/mystar" component={MyStar}/>
                         <Route path="/saved" component={Saved}/>
                     </Switch>
