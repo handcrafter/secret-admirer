@@ -9,9 +9,9 @@ class Nav extends Component {
                     <h3 className="logo">Secret Admirer</h3>
                 </Link>
                 <ul className = "nav-links">  
-                    <li><NavLink to="/findstar" className="navStyle" activeClassName="current">Find My Star</NavLink></li>
-                    <li><NavLink to="/mystar" className="navStyle" activeClassName="current">My Star</NavLink></li> 
-                    <li><NavLink to="/saved" className="navStyle" activeClassName="current">Saved</NavLink></li> 
+                    <li><NavLink to="/findstar" className="navHeadings" activeClassName="current">Find My Star</NavLink></li>
+                    <li><NavLink to="/mystar" className="navHeadings" activeClassName="current">My Star</NavLink></li> 
+                    <li><NavLink to="/saved" className="navHeadings" activeClassName="current">Saved</NavLink></li> 
                 </ul>
             </nav>
         );

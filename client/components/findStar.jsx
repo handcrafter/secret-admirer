@@ -41,7 +41,7 @@ class FindStar extends Component {
         fetch('http://localhost:5000/list')
         .then((res) => res.json())
         .then((data) => {
-            this.setState({Celebrity:data}, () => console.log(this.state.Celebrity));
+            this.setState({Celebrity:data});
         })
     }
 

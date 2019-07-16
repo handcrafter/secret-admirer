@@ -43,58 +43,59 @@
     transform: translate(-50%, -50%);
 }
 
-button{
+button {
     margin-bottom: 20px;
     margin-left: 20px;
 }
 
-.btnFav{
+.btnFav {
     background-color: #f0e32c;
     border-color: #f0e32c;
     color: white;
 }
 
-.btnSignup{
+.btnSignup {
     background-color: #008CBA;
     border-color: #008CBA;
     color: white;
 }
 
-.btnSignup:hover{
+.btnSignup:hover {
     background-color: white;
     border-color:  #008CBA;
     color:  #008CBA;
 }
 
-.btnLogin{
+.btnLogin {
     background-color: white;
     border-color: #008CBA;
     color: #008CBA;
 }
-.btnLogin:hover{
+
+.btnLogin:hover {
     background-color:  #008CBA;
     border-color: white;
     color: white;
 }
 
-input{
+input {
     margin-left : 15px;
 }
 
-.mainRight{
+.mainRight {
     margin-top : 10%;
 }
 
-.txtClr{
+.txtClr {
     color: #008CBA;
 }
 
-.signup{
+.signup {
     text-align: center;
     margin-top : 15%;
 }
 
-nav{
+nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -103,7 +104,7 @@ nav{
     color: white;
 }
 
-.nav-links{
+.nav-links {
     width: 40%;
     display: flex;
     justify-content: space-around;
@@ -117,55 +118,55 @@ nav{
     font-size : 30px;
 }
 
-.navStyle{
+.navHeadings {
     color: white;
     font-size : 20px;
 };
 
-.navStyle:li{
+.navStyle:li {
     font-size: 30;
 }
 
-.navMenu{
+.navMenu {
     text-align: center;
     align-items: center;
 }
 
-.listItem{
+.listItem {
     color: black;
 }
 
-.titleColour{
+.titleColour {
     background: linear-gradient(to right,rgb(120, 224, 216),#008CBA);
     -webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
 
-.galleryRow{
+.galleryRow {
     display: flex;
     flex-wrap: wrap;
     padding: 0 4px;
 }
 
-.galleryCol{
+.galleryCol {
     flex: 25%;
     max-width: 25%;
     padding: 0 4px;
 }
 
-.galleryImg{
+.galleryImg {
     margin-top: 8px;
     vertical-align: middle;
     width: 100%;
 }
 
-.celebul{
+.celebul {
     padding-right : 0px;
     padding-left : 0px;
     margin-left : 0px;
 }
 
-.logo{
+.logo {
     color:white;
     margin-top: 5px;
 }
