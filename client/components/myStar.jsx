@@ -3,18 +3,13 @@ import {Container, Row, Col, ListGroup, ListGroupItem} from 'reactstrap';
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from 'react-images';
 
-const images = [
-    { src: 'client/src/BTS1.jpg', width: 4, height: 5}, 
-    { src: 'client/src/BTS2.jpeg', width: 3, height: 3},
-    { src: 'client/src/BTS3.jpg', width: 3, height: 4},
-    { src: 'client/src/BTS4.jpg', width: 4, height: 5}];
-
 class MyStar extends Component {
      constructor(props) {
         super(props);
         this.state = {
             FavouriteList: [],
-            ImgPath : 'client/src/InitImg.jpg',
+            ImgPath : [],
+            imgFormat: [{src: 'client/src/InitImg.jpg', width:4, height:5}],
             click : '',
             modalIsOpen: false,
             selectedIndex: 0
@@ -54,8 +49,11 @@ class MyStar extends Component {
     }
 
     renderImage(event) {
-        this.setState({click: event.target.id, isLoaded: true}, () => {
+        this.setState({click: event.target.id}, () => {
             console.log(this.state.click);
+
+            //To avoid infinte concatenation on imgFormat and for the inital image
+            this.setState({imgFormat: [{src: 'client/src/InitImg.jpg', width:4, height:5}]});
             
             //Get image path of selected celebrity
             var target = {click: this.state.click};
@@ -69,7 +67,15 @@ class MyStar extends Component {
                 })
             }).then(response => response.json()
             ).then((path) => {
-                this.setState({ImgPath: path.imgPath})
+                this.setState({ImgPath: path.imgPath});
+                
+                // Change array of img paths into the format that Gallery can interprete
+                this.state.ImgPath.map(path => {
+                    var format = {src: `${path}`, width: 4, height: 5};
+                    var joined = this.state.imgFormat.concat(format);
+                    this.setState({imgFormat: joined});
+                })
+        
             }).catch((error) => {
                 console.log('Cannot get image path of selected celebrity', error)
             })
@@ -99,11 +105,11 @@ class MyStar extends Component {
                         } </ul>
                     </Col>
                     <Col>
-                        <Gallery photos={images} direction={"column"} onClick={this.viewSelectedImage} />
+                        <Gallery photos={this.state.imgFormat} direction={"column"} onClick={this.viewSelectedImage} />)}
                         <ModalGateway>
                             {modalIsOpen ? (
                                 <Modal onClose={this.closeSelectedImage}>
-                                    <Carousel currentIndex={this.state.selectedIndex} views={images} />
+                                    <Carousel currentIndex={this.state.selectedIndex} views={this.state.imgFormat} />
                                 </Modal>
                             ) : null}
                         </ModalGateway>

@@ -20,8 +20,10 @@ var Celebrity = mongoose.model('Celebrity', CelebritySchema, 'Celebrity');
 module.exports.Celebrity = Celebrity;
 
 module.exports.init = function(){
-    var celebs = [{name: 'BTS', gender: 'M', imgPath: ['client/src/BTS1.jpg', 'client/src/BTS2.jpeg']},
-                  {name: 'IZ*ONE', gender: 'F',imgPath: ['client/src/IZ*ONE1.jpg']},
+    var celebs = [{name: 'BTS', gender: 'M', imgPath: 
+                    ['client/src/BTS1.jpg', 'client/src/BTS2.jpeg', 'client/src/BTS3.jpg', 'client/src/BTS4.jpg']},
+                  {name: 'IZ*ONE', gender: 'F',imgPath: 
+                    ['client/src/IZ*ONE1.jpg', 'client/src/IZ*ONE2.jpg', 'client/src/IZ*ONE3.jpeg']},
                   {name: 'TWICE', gender: 'F', imgPath: ['client/src/TWICE1.jpg']}]
 
     Celebrity.collection.insert(celebs, function (err, docs) {
