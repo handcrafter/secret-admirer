@@ -109,15 +109,17 @@ nav{
     justify-content: space-around;
     align-items: center;
     list-style: none;
+    margin-top : 5px;
 }
 
 .current {
-    border-bottom: 4px solid white;
-  }
+    font-weight: bolder;
+    font-size : 30px;
+}
 
 .navStyle{
     color: white;
-    font-family: Copperplate, "Copperplate Gothic Light";
+    font-size : 20px;
 };
 
 .navStyle:li{
@@ -165,4 +167,5 @@ nav{
 
 .logo{
     color:white;
+    margin-top: 5px;
 }
