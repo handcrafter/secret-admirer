@@ -35,13 +35,13 @@ module.exports.init = function(){
         }
     });  
     
-    var c = new Crawler({
+    var crawler = new Crawler({
         maxConnections : 10,
-        // This will be called for each crawled page
+        
         callback : function (error, res, done) {
-            if(error){
+            if (error) {
                 console.log(error);
-            }else{
+            } else {
                 var $ = res.$;
                 var list = $("div.div-col> ul> li>[href *= 'wiki']a").toArray();
                 var stars =[]
@@ -54,6 +54,6 @@ module.exports.init = function(){
         }
     });
 
-    c.queue('https://en.wikipedia.org/wiki/List_of_South_Korean_idol_groups_(2010s)');
+    crawler.queue('https://en.wikipedia.org/wiki/List_of_South_Korean_idol_groups_(2010s)');
 
 }
