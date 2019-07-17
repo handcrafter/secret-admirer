@@ -72,8 +72,8 @@ class MyStar extends Component {
                 // Change array of img paths into the format that Gallery can interprete
                 this.state.ImgPath.map(path => {
                     var format = {src: `${path}`, width: 4, height: 5};
-                    var joined = this.state.imgFormat.concat(format);
-                    this.setState({imgFormat: joined});
+                    var newImgFormat = this.state.imgFormat.concat(format);
+                    this.setState({imgFormat: newImgFormat});
                 })
         
             }).catch((error) => {
