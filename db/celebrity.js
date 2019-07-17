@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
+const Crawler = require('crawler');
 
 var Schema = mongoose.Schema;
 
@@ -32,5 +33,27 @@ module.exports.init = function(){
         } else {
             console.log("Celebs are inserted to collection");
         }
-    });    
+    });  
+    
+    var c = new Crawler({
+        maxConnections : 10,
+        // This will be called for each crawled page
+        callback : function (error, res, done) {
+            if(error){
+                console.log(error);
+            }else{
+                var $ = res.$;
+                var list = $("div.div-col> ul> li>[href *= 'wiki']a").toArray();
+                var stars =[]
+                list.map(celeb => {
+                    stars.push(celeb.attribs.title);
+                })
+                console.log(stars);
+            }
+            done();
+        }
+    });
+
+    c.queue('https://en.wikipedia.org/wiki/List_of_South_Korean_idol_groups_(2010s)');
+
 }
