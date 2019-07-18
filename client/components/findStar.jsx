@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {List, ListGroup, ListGroupItem, Button, Alert, Card, CardImg, CardBody, CardTitle, Container, Row, Col} from 'reactstrap';
+import {ListGroup, ListGroupItem, Button, Card, CardImg, CardBody, CardTitle, Container, Row, Col} from 'reactstrap';
 
 function postUpdate(url, data) {
     return fetch(url, {
