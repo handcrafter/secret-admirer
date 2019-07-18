@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {ListGroup, ListGroupItem, Button, Alert, Card, CardImg, CardBody, CardTitle, Container, Row, Col} from 'reactstrap';
+import {List, ListGroup, ListGroupItem, Button, Alert, Card, CardImg, CardBody, CardTitle, Container, Row, Col} from 'reactstrap';
 
 function postUpdate(url, data) {
     return fetch(url, {
@@ -28,6 +28,7 @@ class FindStar extends Component {
         super(props);
         this.state = {
             Celebrity: [],
+            searchedList: [],
             click: '',
             isLoaded : false,
             imgPath : 'client/src/InitImg.jpg',
@@ -35,13 +36,19 @@ class FindStar extends Component {
         };
         this.isFavourite = this.isFavourite.bind(this);
         this.handleFavourite = this.handleFavourite.bind(this);
+        this.searchList = this.searchList.bind(this);
     }
     
     componentDidMount() {
         fetch('http://localhost:5000/list')
         .then((res) => res.json())
         .then((data) => {
-            this.setState({Celebrity:data});
+            var celebNames = [];
+            data.map(name => {
+                celebNames.push(name.name);
+            })
+            //Initial celebity list
+            this.setState({Celebrity:celebNames, searchedList: celebNames});
         })
     }
 
@@ -117,6 +124,16 @@ class FindStar extends Component {
         event.preventDefault();
     }
 
+    searchList(event) {
+        var updatedList = this.state.Celebrity;
+        updatedList = updatedList.filter(function(item) {
+            return item.toLowerCase().search(
+                event.target.value.toLowerCase()) !== -1;
+        })
+        this.setState({searchedList : updatedList});
+        event.preventDefault();
+    }
+
     render() {
         return (
             <Container>
@@ -125,15 +142,19 @@ class FindStar extends Component {
                 </Row>
                 <Row>
                     <Col xs="2">
+                        <form className="searchForm">
+                            <fieldset>
+                                <input type="text" placeholder="Search" onChange={this.searchList} className="searchBox"/>
+                            </fieldset>
+                        </form>
                         <ul className="celebul"> {
-                            this.state.Celebrity.map(celeb => 
-                                <div key = {celeb._id} className="listItem">
-                                    <ListGroup width="100">
-                                        <ListGroupItem onClick={this.isFavourite} id = {celeb.name} className =  "listItem">
-                                            {celeb.name}
-                                        </ListGroupItem>
-                                    </ListGroup>
-                                </div>)
+                            this.state.searchedList.map(searched => 
+                                <ListGroup width="100">
+                                    <ListGroupItem onClick={this.isFavourite} className="listItem" id={searched}>
+                                        {searched}
+                                    </ListGroupItem>
+                                </ListGroup>
+                            )
                         } </ul>
                     </Col>
                     <Col>
