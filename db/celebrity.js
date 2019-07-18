@@ -36,7 +36,12 @@ module.exports.init = function(){
 
                     //Find if a celebrity is already in the database 
                     Celebrity.collection.findOne({name : `${star.attribs.title}`}, function(err, result) {
-                        if (!result) {
+                        if (err) {
+                            console.log('Error during validating duplicates');
+                        } else if (result) {
+                            // Document is not inserted when duplicate is found
+                            console.log('Document will not be updated since duplicate is found')
+                        } else {
                             //Insert the celebrity to the database if duplicate is not found
                             var celebSchema = {name: `${star.attribs.title}`};
 
@@ -47,11 +52,6 @@ module.exports.init = function(){
                                     console.log('document updated');
                                 }
                             })
-                        } else if (result) {
-                            // Document is not inserted when duplicate is found
-                            console.log('Document will not be updated since duplicate is found')
-                        } else if (err){
-                            console.log('Error during validating duplicates');
                         }
                     })
                 })
