@@ -31,28 +31,29 @@ module.exports.init = function(){
             } else {
                 var $ = res.$;
                 var list = $("div.div-col> ul> li>[href *= 'wiki']a").toArray();
-                var celebName = [];
-                var stars = [];
+                
+                list.map(star => {
 
-                // Get a list of celebrity names
-                list.map(celeb => {
-                    celebName.push(celeb.attribs.title);
+                    //Find if a celebrity is already in the database 
+                    Celebrity.collection.findOne({name : `${star.attribs.title}`}, function(err, result) {
+                        if (!result) {
+                            //Insert star to the database if duplicate is not found
+                            var celebSchema = {name: `${star.attribs.title}`};
+                            Celebrity.collection.insertOne(celebSchema, function(fail, suc) {
+                                if (fail) {
+                                    console.log('Fail to insert the document');
+                                } else {
+                                    console.log('document updated');
+                                }
+                            })
+                        } else if (result) {
+                            // Document is not inserted when duplicate is found
+                            console.log('Document will not be updated since duplicate is found')
+                        } else if (result){
+                            console.log('Error during validating duplicates');
+                        }
+                    })
                 })
-
-                // Transfrom names into Celebrity schema and store it into stars 
-                celebName.map(star => {
-                    var celebSchema = {name: `${star}`};
-                    stars.push(celebSchema)
-                })
-
-                //Insert to the database
-                Celebrity.collection.insert(stars, function (err, docs) {
-                    if (err) { 
-                        console.error('celebs are already in the database');
-                    } else {
-                        console.log("Celebs are inserted to collection");
-                    }
-                });
             }   
             done();
         }
