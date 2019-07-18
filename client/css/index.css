@@ -182,3 +182,21 @@ nav {
     font-size: 2rem;
     width : 100%;
 }
+
+.frontPage {
+    text-align: center;
+    margin-top: 20%;
+    vertical-align: middle;
+    position: relative;
+    top: 50%;
+}
+
+.frontPage p {
+    font-size: 50px;
+    font-weight: bolder;
+}
+
+.frontSearch {
+    font-size: 2rem;
+    width: 70%;
+}
