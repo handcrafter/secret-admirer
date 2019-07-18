@@ -170,3 +170,15 @@ nav {
     color:white;
     margin-top: 5px;
 }
+.searchForm {
+    margin-bottom : 20px;
+}
+
+.searchBox {
+    padding-right : 0px;
+    padding-left : 0px;
+    margin-left : 0px;
+    margin-right : 0px;
+    font-size: 2rem;
+    width : 100%;
+}
