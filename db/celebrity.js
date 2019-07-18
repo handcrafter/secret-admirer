@@ -21,20 +21,7 @@ var Celebrity = mongoose.model('Celebrity', CelebritySchema, 'Celebrity');
 module.exports.Celebrity = Celebrity;
 
 module.exports.init = function(){
-    var celebs = [{name: 'BTS', gender: 'M', imgPath: 
-                    ['client/src/BTS1.jpg', 'client/src/BTS2.jpeg', 'client/src/BTS3.jpg', 'client/src/BTS4.jpg']},
-                  {name: 'IZ*ONE', gender: 'F',imgPath: 
-                    ['client/src/IZ*ONE1.jpg', 'client/src/IZ*ONE2.jpg', 'client/src/IZ*ONE3.jpeg']},
-                  {name: 'TWICE', gender: 'F', imgPath: ['client/src/TWICE1.jpg']}]
 
-    Celebrity.collection.insert(celebs, function (err, docs) {
-        if (err) { 
-            console.error('celebs are already in the database');
-        } else {
-            console.log("Celebs are inserted to collection");
-        }
-    });  
-    
     var crawler = new Crawler({
         maxConnections : 10,
         
@@ -44,16 +31,34 @@ module.exports.init = function(){
             } else {
                 var $ = res.$;
                 var list = $("div.div-col> ul> li>[href *= 'wiki']a").toArray();
-                var stars =[]
-                list.map(celeb => {
-                    stars.push(celeb.attribs.title);
+                
+                list.map(star => {
+
+                    //Find if a celebrity is already in the database 
+                    Celebrity.collection.findOne({name : `${star.attribs.title}`}, function(err, result) {
+                        if (err) {
+                            console.log('Error during validating duplicates');
+                        } else if (result) {
+                            // Document is not inserted when duplicate is found
+                            console.log('Document will not be updated since duplicate is found')
+                        } else {
+                            //Insert the celebrity to the database if duplicate is not found
+                            var celebSchema = {name: `${star.attribs.title}`};
+
+                            Celebrity.collection.insertOne(celebSchema, function(fail, suc) {
+                                if (fail) {
+                                    console.log('Fail to insert the document');
+                                } else {
+                                    console.log('document updated');
+                                }
+                            })
+                        }
+                    })
                 })
-                console.log(stars);
-            }
+            }   
             done();
         }
     });
 
     crawler.queue('https://en.wikipedia.org/wiki/List_of_South_Korean_idol_groups_(2010s)');
-
 }
