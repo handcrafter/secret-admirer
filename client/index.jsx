@@ -1,14 +1,14 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SearchImage from './components/searchImage.jsx';
+import MainPage from './mainPage.jsx';
 
 require('./css/index.css');
 
 class App extends React.Component {
 
     handleSignup(event) {
-        ReactDOM.render(<SearchImage />, document.getElementById("app"));
+        ReactDOM.render(<MainPage />, document.getElementById("app"));
         event.preventDefault();
     }
 
