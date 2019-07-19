@@ -105,7 +105,7 @@ class MyStar extends Component {
                         } </ul>
                     </Col>
                     <Col>
-                        <Gallery photos={this.state.imgFormat} direction={"column"} onClick={this.viewSelectedImage} />)}
+                        <Gallery photos={this.state.imgFormat} direction={"column"} onClick={this.viewSelectedImage} />
                         <ModalGateway>
                             {modalIsOpen ? (
                                 <Modal onClose={this.closeSelectedImage}>
