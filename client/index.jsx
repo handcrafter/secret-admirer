@@ -1,11 +1,17 @@
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
 import React from 'react';
-import Signin from './signin.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import MainPage from './mainPage.jsx';
 
 require('./css/index.css');
 
 class App extends React.Component {
+
+    handleSignup(event) {
+        ReactDOM.render(<MainPage />, document.getElementById("app"));
+        event.preventDefault();
+    }
+
     render() {
         return(
                 <div className="frontPage">
@@ -14,6 +20,7 @@ class App extends React.Component {
                         <br/>
                         <fieldset>
                             <input type="text" placeholder="Search" className="frontSearch"/>
+                            <button type="button" onClick={this.handleSignup} className="btnSearch">Go</button>
                         </fieldset>
                     </form>
                 </div>
@@ -21,7 +28,7 @@ class App extends React.Component {
     }
 }
 
-ReactDom.render(
+ReactDOM.render(
     <App />,
     document.getElementById('app')
 )

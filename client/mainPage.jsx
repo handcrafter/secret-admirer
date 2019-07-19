@@ -3,6 +3,7 @@ import Nav from './components/Nav.jsx';
 import FindStar from './components/findStar.jsx';
 import MyStar from './components/myStar.jsx';
 import Saved from './components/saved.jsx';
+import SearchImage from './components/searchImage.jsx'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 class Main extends Component {
@@ -15,6 +16,7 @@ class Main extends Component {
                         <Route path="/findstar" component={FindStar}/>
                         <Route path="/mystar" component={MyStar}/>
                         <Route path="/saved" component={Saved}/>
+                        <SearchImage />
                     </Switch>
                 </div>  
             </Router>
