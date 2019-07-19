@@ -8,6 +8,7 @@ class searchImage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            //Initial Image
             images: [
                 {src: 'client/src/InitImg.jpg', width: 4, height: 5},
                 {src: 'client/src/InitImg.jpg', width: 4, height: 5},
@@ -40,14 +41,15 @@ class searchImage extends Component {
             <div>
             <Container>
                 <Col>
+                    <br/>
                     <Gallery photos={this.state.images} direction={"column"} onClick={this.viewSelectedImage} />
-                            <ModalGateway>
-                                {modalIsOpen ? (
-                                    <Modal onClose={this.closeSelectedImage}>
-                                        <Carousel currentIndex={this.state.selectedIndex} views={this.state.images} />
-                                    </Modal>
-                                ) : null}
-                            </ModalGateway>
+                    <ModalGateway>
+                        {modalIsOpen ? (
+                            <Modal onClose={this.closeSelectedImage}>
+                                <Carousel currentIndex={this.state.selectedIndex} views={this.state.images} />
+                            </Modal>
+                        ) : null}
+                    </ModalGateway>
                 </Col>
             </Container>
             </div>
