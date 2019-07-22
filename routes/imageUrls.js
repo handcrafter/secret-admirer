@@ -71,7 +71,7 @@ async function extracUrls(imageName) {
     return imagesUrls;
 }
 
-router.post('/getUrl', urlencodedParser, async(req, res) => {
+router.post('/getImageUrl', urlencodedParser, async(req, res) => {
     try {
         const target = [req.body.target];
         if (target.length) {

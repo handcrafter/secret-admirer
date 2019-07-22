@@ -7,7 +7,7 @@ class searchImage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            images: [{src: 'client/src/InitImg.jpg', width: 4, height: 5}],
+            images: [{src: 'client/src/InitImg.jpg', width: 1, height: 1}],
             modalIsOpen: false,
             selectedIndex: 0,
             urls: []
@@ -17,8 +17,8 @@ class searchImage extends Component {
     }
 
     componentDidMount() {
-        var data = {target: 'BTS'};
-        fetch('http://localhost:5000/getUrl', {
+        var data = {target: 'IZONE'};
+        fetch('http://localhost:5000/getImageUrl', {
             credentials: 'same-origin',
             method: 'POST', 
             body: JSON.stringify(data), 
@@ -33,7 +33,7 @@ class searchImage extends Component {
             this.setState(
                 {urls: result}, () => {
                     this.state.urls.map(path => {
-                        var format = {src: `${path}`, width: 4, height: 5};
+                        var format = {src: `${path}`, width: 1, height: 1};
                         var newImgFormat = tmp.concat(format);
                         tmp = newImgFormat;
                     });
