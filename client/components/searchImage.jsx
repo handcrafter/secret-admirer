@@ -47,7 +47,7 @@ class searchImage extends Component {
     viewSelectedImage = (event, image) => {
         this.setState(state => ({ 
             modalIsOpen: !state.modalIsOpen,
-            selectedIndex: image.index,
+            selectedIndex: image.index
         }));
     }
 
