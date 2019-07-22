@@ -13,6 +13,9 @@ module.exports = {
             { test: /\.(css)$/, use: [ 'style-loader','css-loader'] }
         ]
     },
+    externals: {
+        puppeteer: require("puppeteer")
+    },
     mode: 'development',
     plugins: [
         new HtmlWebpackPlugin({

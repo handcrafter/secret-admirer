@@ -3,6 +3,7 @@ const path = require('path');
 const routeLogin = require('./routes/login');
 const routeList = require('./routes/celebrityList');
 const routeFavourite = require('./routes/favourite');
+const routeImageExtractor = require('./routes/imageUrls');
 const cors = require('cors');
 var database = require('./db/database');
 var logger = require('./middleware/logger');
@@ -25,6 +26,7 @@ Celebrity.init();
 app.use(routeLogin);
 app.use(routeList);
 app.use(routeFavourite);
+app.use(routeImageExtractor);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log('Server started on PORT ' + PORT));
