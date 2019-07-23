@@ -5,7 +5,7 @@ import {Link, NavLink} from 'react-router-dom';
 class Nav extends Component {
     render() { 
         return ( 
-            <nav>
+            <nav className="navbar">
                 <Link to="client/mainPage">
                     <h3 className="logo">Secret Admirer</h3>
                 </Link>
