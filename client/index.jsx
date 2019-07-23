@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import MainPage from './mainPage.jsx';
+import Nav from './nav.jsx';
 
 require('./css/index.css');
 
@@ -11,15 +11,15 @@ class App extends React.Component {
         this.state = {
             value: ''
         }
-        this.handleSearch = this.handleSearch.bind(this);
+        this.Search = this.Search.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    handleSearch(event) {
+    Search(event) {
         //Render only if user types something in the input field
         if (this.state.value) {
             var user = this.state.value;
-            ReactDOM.render(<MainPage data={user}/>, document.getElementById("app"));
+            ReactDOM.render(<Nav data={user}/>, document.getElementById("app"));
             event.preventDefault();
         }
     }
@@ -30,23 +30,23 @@ class App extends React.Component {
 
     render() {
         return(
-                <div className="frontPage">
-                    <form onSubmit={this.handleSearch}>
-                        <p className = "titleColour">SECRET ADMIRER</p>
-                        <br/>
-                        <fieldset>
-                            <input 
-                                type="text" 
-                                placeholder = "Search"
-                                className="frontSearch" 
-                                onChange={this.handleInputChange}
-                                value={this.state.value}
-                                required
-                            />
-                            <button type="button" className="btnSearch" onClick={this.handleSearch}>Go</button>
-                        </fieldset>
-                    </form>
-                </div>
+            <div className="frontPage">
+                <form onSubmit={this.Search}>
+                    <p className = "titleColour">SECRET ADMIRER</p>
+                    <br/>
+                    <fieldset>
+                        <input 
+                            type="text" 
+                            placeholder = "Search"
+                            className="frontSearch" 
+                            onChange={this.handleInputChange}                                         
+                            value={this.state.value}
+                            required
+                        />
+                        <button type="button" className="btnSearch" onClick={this.Search}>Go</button>
+                    </fieldset>
+                </form>
+            </div>
         )
     }
 }

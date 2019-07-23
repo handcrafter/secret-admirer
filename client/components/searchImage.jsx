@@ -18,13 +18,13 @@ class searchImage extends Component {
     }
 
     componentDidMount() {
-        //Set data as what user searched and get image urls
-        var data = {target: this.props.userSearched};
+        //Set celebrity as what user searched and get image urls
+        var celebrity = {target: this.props.userSearched};
 
         fetch('http://localhost:5000/getImageUrl', {
             credentials: 'same-origin',
             method: 'POST', 
-            body: JSON.stringify(data), 
+            body: JSON.stringify(celebrity), 
             headers: new Headers({
                 'Content-Type' : 'application/json',
                 'Accept': 'application/json'

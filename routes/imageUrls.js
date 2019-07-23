@@ -63,10 +63,6 @@ async function extracUrls(imageName) {
     });
       
     await scrollDown(page);
-    //console.log("- Clicking 'Show more'");
-    //page.click('#smb');
-    //await scrollDown(page);
-    
     await browser.close();
     return imagesUrls;
 }

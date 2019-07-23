@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Nav from './components/Nav.jsx';
+import NavLink from './components/NavLink.jsx';
 import FindStar from './components/findStar.jsx';
 import MyStar from './components/myStar.jsx';
 import Saved from './components/saved.jsx';
@@ -22,7 +22,7 @@ class Main extends Component {
         return (
             <Router>
                 <div>
-                    <Nav />
+                    <NavLink />
                     <Switch>
                         <Route path="/findstar" component={FindStar}/>
                         <Route path="/mystar" component={MyStar}/>
