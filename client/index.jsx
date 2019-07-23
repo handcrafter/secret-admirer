@@ -1,29 +1,52 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import MainPage from './mainPage.jsx';
+import Nav from './nav.jsx';
 
 require('./css/index.css');
 
 class App extends React.Component {
-
-    handleSignup(event) {
-        ReactDOM.render(<MainPage />, document.getElementById("app"));
-        event.preventDefault();
+    constructor(props){
+        super(props);
+        this.state = {
+            value: ''
+        }
+        this.Search = this.Search.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
+
+    Search(event) {
+        //Render only if user types something in the input field
+        if (this.state.value) {
+            var search = this.state.value;
+            ReactDOM.render(<Nav celebrity={search}/>, document.getElementById("app"));
+            event.preventDefault();
+        }
+    }
+
+    handleInputChange = event => {
+        this.setState({value: event.target.value });
+    };
 
     render() {
         return(
-                <div className="frontPage">
-                    <form>
-                        <p className = "titleColour">SECRET ADMIRER</p>
-                        <br/>
-                        <fieldset>
-                            <input type="text" placeholder="Search" className="frontSearch"/>
-                            <button type="button" onClick={this.handleSignup} className="btnSearch">Go</button>
-                        </fieldset>
-                    </form>
-                </div>
+            <div className="frontPage">
+                <form onSubmit={this.Search}>
+                    <p className = "titleColour">SECRET ADMIRER</p>
+                    <br/>
+                    <fieldset>
+                        <input 
+                            type="text" 
+                            placeholder = "Search"
+                            className="frontSearch" 
+                            onChange={this.handleInputChange}                                         
+                            value={this.state.value}
+                            required
+                        />
+                        <button type="button" className="btnSearch" onClick={this.Search}>Go</button>
+                    </fieldset>
+                </form>
+            </div>
         )
     }
 }

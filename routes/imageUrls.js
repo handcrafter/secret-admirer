@@ -23,7 +23,7 @@ async function scrollDown(page) {
                                 clearInterval(interval);
                                 resolve();
                             }
-                        }, 1000);
+                        }, 1500);
                     } catch (error) {
                         reject(error);
                     }
@@ -63,10 +63,6 @@ async function extracUrls(imageName) {
     });
       
     await scrollDown(page);
-    console.log("- Clicking 'Show more'");
-    page.click('#smb');
-    await scrollDown(page);
-      
     await browser.close();
     return imagesUrls;
 }
@@ -86,7 +82,7 @@ router.post('/getImageUrl', urlencodedParser, async(req, res) => {
         res.status(400).send("An 'imageName' argument is required.");
     }
     catch (error) {
-        console.error(error, 'Image extractor cannot get images');
+        console.error(error, 'Error occur during Image extraction process');
     }
 })
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Container, Row, Col} from 'reactstrap';
+import {Container, Row, Col, Spinner} from 'reactstrap';
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from 'react-images';
 
@@ -10,18 +10,21 @@ class searchImage extends Component {
             images: [{src: 'client/src/InitImg.jpg', width: 1, height: 1}],
             modalIsOpen: false,
             selectedIndex: 0,
-            urls: []
+            urls: [],
+            isLoaded: false
         };
         this.viewSelectedImage = this.viewSelectedImage.bind(this);
         this.closeSelectedImage = this.closeSelectedImage.bind(this);
     }
 
     componentDidMount() {
-        var data = {target: 'IZONE'};
+        //Set celebrity as what user searched and get image urls
+        var celebrity = {target: this.props.celebrity};
+
         fetch('http://localhost:5000/getImageUrl', {
             credentials: 'same-origin',
             method: 'POST', 
-            body: JSON.stringify(data), 
+            body: JSON.stringify(celebrity), 
             headers: new Headers({
                 'Content-Type' : 'application/json',
                 'Accept': 'application/json'
@@ -38,7 +41,7 @@ class searchImage extends Component {
                         tmp = newImgFormat;
                     });
                 });
-            this.setState({images: tmp});
+            this.setState({images: tmp, isLoaded: true});
         }).catch((error) => {
             console.log(error, 'Cannot get searched image urls');
         })
@@ -56,13 +59,16 @@ class searchImage extends Component {
     }
 
     render() { 
-        const { modalIsOpen } = this.state;
+        const { modalIsOpen, isLoaded } = this.state;
         return (
             <div>
             <Container>
                 <Col>
                     <br/>
-                    <Gallery photos={this.state.images} direction={"column"} onClick={this.viewSelectedImage} />
+                    {isLoaded ? 
+                        <Gallery photos={this.state.images} direction={"column"} onClick={this.viewSelectedImage} /> :
+                        <Spinner color="primary" style={{ width: '3rem', height: '3rem' }} type="grow" /> 
+                    }
                     <ModalGateway>
                         {modalIsOpen ? (
                             <Modal onClose={this.closeSelectedImage}>
