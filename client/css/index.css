@@ -121,7 +121,11 @@ nav {
 .navHeadings {
     color: white;
     font-size : 20px;
-};
+}
+
+.navHeadings:hover {
+    color: white;
+}
 
 .navStyle:li {
     font-size: 30;
@@ -170,6 +174,13 @@ nav {
     color:white;
     margin-top: 5px;
 }
+
+.logo:hover {
+    color: white;
+    text-decoration: underline;
+    text-decoration-color: white;
+}
+
 .searchForm {
     margin-bottom : 20px;
 }
