@@ -95,7 +95,7 @@ input {
     margin-top : 15%;
 }
 
-nav {
+.navbar {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -125,15 +125,6 @@ nav {
 
 .navHeadings:hover {
     color: white;
-}
-
-.navStyle:li {
-    font-size: 30;
-}
-
-.navMenu {
-    text-align: center;
-    align-items: center;
 }
 
 .listItem {
@@ -215,3 +206,9 @@ nav {
 .btnSearch {
     font-size: 2rem;
 }
+
+.fullscreen img {
+    width: 600px;
+    height: 500px;
+}
+
