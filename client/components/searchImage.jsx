@@ -19,7 +19,7 @@ class searchImage extends Component {
 
     componentDidMount() {
         //Set celebrity as what user searched and get image urls
-        var celebrity = {target: this.props.userSearched};
+        var celebrity = {target: this.props.celebrity};
 
         fetch('http://localhost:5000/getImageUrl', {
             credentials: 'same-origin',

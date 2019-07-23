@@ -18,8 +18,8 @@ class App extends React.Component {
     Search(event) {
         //Render only if user types something in the input field
         if (this.state.value) {
-            var user = this.state.value;
-            ReactDOM.render(<Nav data={user}/>, document.getElementById("app"));
+            var search = this.state.value;
+            ReactDOM.render(<Nav celebrity={search}/>, document.getElementById("app"));
             event.preventDefault();
         }
     }

@@ -8,13 +8,13 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 class Main extends Component {
     state = {
-        userSearched: "",
+        celebrity: "",
         isLoaded: false}
 
     componentDidMount(){
-        var userSearch = this.props.data;
-        console.log('searched: ' + userSearch);
-        this.setState({userSearched: userSearch, isLoaded:true});
+        var searchCelebrity = this.props.celebrity;
+        console.log('searched: ' + searchCelebrity);
+        this.setState({celebrity: searchCelebrity, isLoaded:true});
     }
 
     render() { 
@@ -27,7 +27,7 @@ class Main extends Component {
                         <Route path="/findstar" component={FindStar}/>
                         <Route path="/mystar" component={MyStar}/>
                         <Route path="/saved" component={Saved}/>
-                        {isLoaded ? <SearchImage userSearched={this.state.userSearched}/> : null}
+                        {isLoaded ? <SearchImage celebrity={this.state.celebrity}/> : null}
                     </Switch>
                 </div>  
             </Router>
