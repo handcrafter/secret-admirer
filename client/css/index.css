@@ -250,3 +250,30 @@ input {
     color: white;
     background-color: #008CBA;
 }
+
+.modalFav {
+    background-color:transparent; 
+    color: white;
+    text-align: center;
+    font-size: 4rem;
+    text-decoration: none;
+    cursor: pointer;
+    position: absolute;
+    right: 100px;
+    top : 50px;
+}
+
+.modalFav:hover {
+    color: rgb(197, 55, 55);
+}
+
+.modalFavClick {
+    color:  rgb(197, 55, 55);
+    font-size: 5rem;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    position: absolute;
+    right: 98px;
+    top : 37px;
+}
