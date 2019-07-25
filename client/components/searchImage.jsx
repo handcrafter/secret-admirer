@@ -16,7 +16,7 @@ class searchImage extends Component {
         };
         this.viewSelectedImage = this.viewSelectedImage.bind(this);
         this.closeSelectedImage = this.closeSelectedImage.bind(this);
-        this.modalFavourite = this.modalFavourite.bind(this);
+        this.setImgAsFavourite = this.setImgAsFavourite.bind(this);
     }
 
     componentDidMount() {
@@ -49,7 +49,7 @@ class searchImage extends Component {
         })
     }
 
-    modalFavourite = () => {
+    setImgAsFavourite = () => {
         this.setState(state => ({ isFavImage: !state.isFavImage }));
     }
     
@@ -70,8 +70,8 @@ class searchImage extends Component {
         const ModalHeader = ({ innerProps, isModal}) => isModal ? (
             <div {...innerProps}>
                 {isFavImage ? 
-                    <p onClick={this.modalFavourite}  className="modalFav" >♡</p> :
-                    <p onClick={this.modalFavourite}  className="modalFavClick" >♥</p>
+                    <p onClick={this.setImgAsFavourite}  className="modalFav" >♡</p> :
+                    <p onClick={this.setImgAsFavourite}  className="modalFavClick" >♥</p>
                 }
             </div>
         ) : null;
