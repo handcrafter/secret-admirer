@@ -9,10 +9,26 @@ class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            value: ''
+            value: '',
+            currentImage: 0
         }
         this.Search = this.Search.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.getRandomImageId = this.getRandomImageId.bind(this);
+    }
+
+    componentDidMount () {
+        setInterval((() => {
+            this.setState({
+                currentImage: this.getRandomImageId()
+            });
+        }), 5000)
+    }    
+
+    getRandomImageId() {
+        const min = 0;
+        const max = 3;
+        return Math.floor(Math.random() * (max - min)) + min;
     }
 
     Search(event) {
@@ -29,23 +45,35 @@ class App extends React.Component {
     };
 
     render() {
+        const images = [
+            "/client/src/BTS1.jpg",
+            "/client/src/BTS2.jpeg",
+            "/client/src/IZ*ONE1.jpg",
+            "/client/src/BTS4.jpg",
+        ];
+
         return(
-            <div className="frontPage">
-                <form onSubmit={this.Search}>
-                    <p className = "titleColour">SECRET ADMIRER</p>
-                    <br/>
-                    <fieldset>
-                        <input 
-                            type="text" 
-                            placeholder = "Search"
-                            className="frontSearch" 
-                            onChange={this.handleInputChange}                                         
-                            value={this.state.value}
-                            required
-                        />
-                        <button type="button" className="btnSearch" onClick={this.Search}>Go</button>
-                    </fieldset>
-                </form>
+            <div>
+                <div className="frontImage">
+                    <img src={images[this.state.currentImage]} />
+                </div>
+                <div className="frontRight">
+                    <form onSubmit={this.Search} className="frontPage">
+                        <p className = "titleColour">SECRET ADMIRER</p>
+                        <br/>
+                        <fieldset>
+                            <input 
+                                type="text" 
+                                placeholder = "Search"
+                                className="mainSearch" 
+                                onChange={this.handleInputChange}                                         
+                                value={this.state.value}
+                                required
+                            />
+                            <button className="buttonGo"> Go </button>
+                        </fieldset>
+                    </form>
+                </div>
             </div>
         )
     }
