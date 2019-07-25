@@ -209,11 +209,12 @@ input {
     font-size: 2rem;
     width: 50%;
     border: 5px solid white;
-    color: #008CBA;
+    color: white;
     border-radius: 20px;
     -webkit-transition: width .35s ease-in-out;
     transition: width .35s ease-in-out;
     background-color: transparent;
+    padding-left: 20px;
 }
 
 .mainSearch::placeholder {

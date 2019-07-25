@@ -64,7 +64,7 @@ class App extends React.Component {
                         <fieldset>
                             <input 
                                 type="text" 
-                                placeholder = "  Search"
+                                placeholder = "Search"
                                 className="mainSearch" 
                                 onChange={this.handleInputChange}                                         
                                 value={this.state.value}
