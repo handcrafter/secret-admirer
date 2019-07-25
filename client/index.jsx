@@ -2,14 +2,9 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from './nav.jsx';
-import {Col} from 'reactstrap';
 
 require('./css/index.css');
 
-const imgs = [
-    {src: 'client/src/bg1.jpeg', altText:'slide1' ,caption: 'Slide 1', header: 'Slide 1 Header'},
-    {src: 'client/src/bg2.jpg', altText:'slide1' ,caption: 'Slide 1', header: 'Slide 1 Header'}
-]
 class App extends React.Component {
     constructor(props){
         super(props);
