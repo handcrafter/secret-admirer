@@ -11,10 +11,12 @@ class searchImage extends Component {
             modalIsOpen: false,
             selectedIndex: 0,
             urls: [],
-            isLoaded: false
+            isLoaded: false,
+            isFavImage: false
         };
         this.viewSelectedImage = this.viewSelectedImage.bind(this);
         this.closeSelectedImage = this.closeSelectedImage.bind(this);
+        this.modalFavourite = this.modalFavourite.bind(this);
     }
 
     componentDidMount() {
@@ -46,6 +48,10 @@ class searchImage extends Component {
             console.log(error, 'Cannot get searched image urls');
         })
     }
+
+    modalFavourite = () => {
+        this.setState(state => ({ isFavImage: !state.isFavImage }));
+    }
     
     viewSelectedImage = (event, image) => {
         this.setState(state => ({ 
@@ -55,11 +61,21 @@ class searchImage extends Component {
     }
 
     closeSelectedImage = () => {
-        this.setState(state => ({ modalIsOpen: !state.modalIsOpen }));
+        this.setState(state => ({ modalIsOpen: !state.modalIsOpen}));
     }
 
     render() { 
-        const { modalIsOpen, isLoaded } = this.state;
+        const { modalIsOpen, isLoaded, isFavImage } = this.state;
+        
+        const ModalHeader = ({ innerProps, isModal}) => isModal ? (
+            <div {...innerProps}>
+                {isFavImage ? 
+                    <p onClick={this.modalFavourite}  className="modalFav" >♡</p> :
+                    <p onClick={this.modalFavourite}  className="modalFavClick" >♥</p>
+                }
+            </div>
+        ) : null;
+
         return (
             <div>
             <Container>
@@ -72,7 +88,7 @@ class searchImage extends Component {
                     <ModalGateway>
                         {modalIsOpen ? (
                             <Modal onClose={this.closeSelectedImage}>
-                                <Carousel currentIndex={this.state.selectedIndex} views={this.state.images} />
+                                <Carousel currentIndex={this.state.selectedIndex} views={this.state.images} components={{ Header: ModalHeader }}/>
                             </Modal>
                         ) : null}
                     </ModalGateway>
