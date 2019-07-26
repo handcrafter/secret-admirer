@@ -30,9 +30,9 @@ async function scrollDown(page) {
                 })
         );
     } catch (error) {
-        console.log('- Error while scrolling:', error);
+        console.err('- Error while scrolling:', error);
     } finally {
-        console.log('- Scrolling finished.');
+        console.err('- Scrolling finished.');
     }
 }
 

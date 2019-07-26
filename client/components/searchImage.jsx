@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Container, Row, Col, Spinner} from 'reactstrap';
+import {Container, Col, Spinner} from 'reactstrap';
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from 'react-images';
 
@@ -24,7 +24,7 @@ class searchImage extends Component {
     }
 
     componentDidMount() {
-        //Set celebrity as what user searched and get image urls
+        // Set celebrity as what user searched and get image urls
         var celebrity = {target: this.props.celebrity};
 
         fetch('http://localhost:5000/getImageUrl', {
@@ -49,7 +49,7 @@ class searchImage extends Component {
                 });
             this.setState({images: tmp, isLoaded: true});
         }).catch((error) => {
-            console.log(error, 'Cannot get searched image urls');
+            console.err(error, 'Cannot get searched image urls');
         })
     }
 
@@ -57,7 +57,7 @@ class searchImage extends Component {
         // data to be saved in the favourite list
         var favImg = {username: 'test', favourite: this.state.favImgUrl};
 
-        //remove from the list if selected image is already in the list, and vice versa
+        // remove from the list if selected image is already in the list, and vice versa
         if (this.state.isFavImage) {
             this.removeFromFavList(favImg);
         } else {
@@ -68,48 +68,48 @@ class searchImage extends Component {
     addToFavList(data) {
         return fetch('http://localhost:5000/addFavourite', {
             credentials: 'same-origin',
-            method: 'POST', // 'GET', 'PUT', 'DELETE', etc.
-            body: JSON.stringify(data), // Coordinate the body type with 'Content-Type'
+            method: 'POST',
+            body: JSON.stringify(data),
             headers: new Headers({
                 'Content-Type' : 'application/json',
                 'Accept': 'application/json'
             }),
         }).then((result) => {
             if (result.status === 200) {
-                //if successfully saved, set isFavourite to true 
-                console.log("favorite added");
+                // if successfully saved, set isFavourite to true 
+                console.log("Favorite added");
                 this.setState({isFavImage: true});
             } else if (result.status === 401) {
-                console.log("Unable to save to the favorite list");
+                console.err("Unable to save to the favorite list");
             } else {
-                console.log("Image url is already in favorite list");
+                console.err("Image url is already in favorite list");
             }
         }).catch((error) => {
-            console.error(error, 'Cannot fetch the data using post');
+            console.err(error, 'Cannot fetch the data using post');
         })
     }
     
     removeFromFavList(data) {
         fetch('http://localhost:5000/removeFavourite', {
             credentials: 'same-origin',
-            method: 'POST', // 'GET', 'PUT', 'DELETE', etc.
-            body: JSON.stringify(data), // Coordinate the body type with 'Content-Type'
+            method: 'POST', 
+            body: JSON.stringify(data), 
             headers: new Headers({
                 'Content-Type' : 'application/json',
                 'Accept': 'application/json'
             })
         }).then((result) => {
             if (result.status === 200) {
-                //if sucessfully removed, set isFavourite to false
-                console.log('removed from the favourite list');
+                // if sucessfully removed, set isFavourite to false
+                console.log('Removed from the favourite list');
                 this.setState({isFavImage: false});
             } else if (result.status === 401) {
-                console.log('Selected img url is already removed from the list. please add to the favorite list first');
+                console.err('Selected img url is already removed from the list. please add to the favorite list first');
             } else {
-                console.log('user have not set any favorite yet');
+                console.err('User have not set any favorite yet');
             }
         }).catch((error) => {
-            console.log('Fetch call cannot get a response from database', error);
+            console.err('Fetch call cannot get a response from database', error);
         });
     }
 
@@ -122,13 +122,13 @@ class searchImage extends Component {
     }
 
     isFavourite(index) {
-        //check if image is already in the list
+        // check if image is already in the list
         var imgUrl = this.state.images[index].src;
         var data = {username: "test", url: imgUrl};
         fetch('http://localhost:5000/isFavourite', {
             credentials: 'same-origin',
-            method: 'POST', // 'GET', 'PUT', 'DELETE', etc.
-            body: JSON.stringify(data), // Coordinate the body type with 'Content-Type'
+            method: 'POST', 
+            body: JSON.stringify(data), 
             headers: new Headers({
                 'Content-Type' : 'application/json',
                 'Accept': 'application/json'
@@ -142,7 +142,7 @@ class searchImage extends Component {
                 this.setState({isFavImage : false, modalIsOpen: true, favImgUrl: imgUrl});
             }
         }).catch((error) => {
-            console.log('Fetch call cannot get a response from database', error);
+            console.err('Fetch call cannot get a response from database', error);
         });
     }
 

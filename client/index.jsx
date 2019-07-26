@@ -32,7 +32,7 @@ class App extends React.Component {
     }
 
     Search(event) {
-        //Render only if user types something in the input field
+        // Render only if user types something in the input field
         if (this.state.value) {
             var search = this.state.value;
             ReactDOM.render(<Nav celebrity={search}/>, document.getElementById("app"));
