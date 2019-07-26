@@ -49,7 +49,7 @@ class searchImage extends Component {
                 });
             this.setState({images: tmp, isLoaded: true});
         }).catch((error) => {
-            console.err(error, 'Cannot get searched image urls');
+            console.error(error, 'Cannot get searched image urls');
         })
     }
 
@@ -80,12 +80,12 @@ class searchImage extends Component {
                 console.log("Favorite added");
                 this.setState({isFavImage: true});
             } else if (result.status === 401) {
-                console.err("Unable to save to the favorite list");
+                console.error("Unable to save to the favorite list");
             } else {
-                console.err("Image url is already in favorite list");
+                console.error("Image url is already in favorite list");
             }
         }).catch((error) => {
-            console.err(error, 'Cannot fetch the data using post');
+            console.error(error, 'Cannot fetch the data using post');
         })
     }
     
@@ -104,12 +104,12 @@ class searchImage extends Component {
                 console.log('Removed from the favourite list');
                 this.setState({isFavImage: false});
             } else if (result.status === 401) {
-                console.err('Selected img url is already removed from the list. please add to the favorite list first');
+                console.error('Selected img url is already removed from the list. please add to the favorite list first');
             } else {
-                console.err('User have not set any favorite yet');
+                console.error('User have not set any favorite yet');
             }
         }).catch((error) => {
-            console.err('Fetch call cannot get a response from database', error);
+            console.error('Fetch call cannot get a response from database', error);
         });
     }
 
@@ -142,7 +142,7 @@ class searchImage extends Component {
                 this.setState({isFavImage : false, modalIsOpen: true, favImgUrl: imgUrl});
             }
         }).catch((error) => {
-            console.err('Fetch call cannot get a response from database', error);
+            console.error('Fetch call cannot get a response from database', error);
         });
     }
 

@@ -27,7 +27,7 @@ module.exports.init = function(){
         
         callback : function (error, res, done) {
             if (error) {
-                console.err(error);
+                console.error(error);
             } else {
                 var $ = res.$;
                 var list = $("div.div-col> ul> li>[href *= 'wiki']a").toArray();
@@ -37,17 +37,17 @@ module.exports.init = function(){
                     //Find if a celebrity is already in the database 
                     Celebrity.collection.findOne({name : `${star.attribs.title}`}, function(err, result) {
                         if (err) {
-                            console.err('Error during validating duplicates');
+                            console.error('Error during validating duplicates');
                         } else if (result) {
                             // Document is not inserted when duplicate is found
-                            console.err('Document will not be updated since duplicate is found')
+                            console.error('Document will not be updated since duplicate is found')
                         } else {
                             //Insert the celebrity to the database if duplicate is not found
                             var celebSchema = {name: `${star.attribs.title}`};
 
                             Celebrity.collection.insertOne(celebSchema, function(fail, suc) {
                                 if (fail) {
-                                    console.err('Fail to insert the document');
+                                    console.error('Fail to insert the document');
                                 } else {
                                     console.log('Document updated');
                                 }

@@ -16,7 +16,7 @@ module.exports.connect = function() {
 
     // check for db errors
     db.on('error', function(err) {
-        console.err(err);
+        console.error(err);
     });
 }
 

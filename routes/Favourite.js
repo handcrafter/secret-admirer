@@ -27,7 +27,7 @@ router.post('/addFavourite', urlencodedParser, async(req, res) => {
             var newVal = { $push: {favourite: req.body.favourite} };
             favourite.Favourite.updateOne( {username: req.body.username}, newVal, function(err, result) { 
                 if (err) { 
-                    console.err('Selected celebrity is already in the database', err);
+                    console.error('Selected celebrity is already in the database', err);
                     res.status(401).send('unable to update');
                 } else {
                     console.log('Document updated');
@@ -60,7 +60,7 @@ router.post('/removeFavourite', urlencodedParser, async(req, res) => {
             var query = { $pull: {favourite: req.body.favourite} };
             favourite.Favourite.updateOne( {username: req.body.username}, query, function(error, result){
                 if (error) {
-                    console.err('Cannot remove celebrity from the list', error);
+                    console.error('Cannot remove celebrity from the list', error);
                     res.status(401).send('error removing a celebrity from the favorite list');
                 } else {
                     res.send('Successfully removed from favorite list');
@@ -90,7 +90,7 @@ router.post('/listFavourite', urlencodedParser, async(req, res) => {
         if (list) {
             res.send(list);
         } else {
-            console.err('User does not have favourite list');
+            console.error('User does not have favourite list');
         }
     })
 })
@@ -104,7 +104,7 @@ router.post('/getImgPath', urlencodedParser, async(req, res) => {
         if (path) {
             res.send(path);
         } else {
-            console.err('Such celebrity does not exist');
+            console.error('Such celebrity does not exist');
         }
     })
 })
