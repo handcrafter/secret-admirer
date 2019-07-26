@@ -135,8 +135,10 @@ class searchImage extends Component {
             })
         }).then((result) => {
             if (result.status === 200) {
+                // if image is found in database, set isFav as true
                 this.setState({isFavImage : true, modalIsOpen: true, favImgUrl: imgUrl});
             } else {
+                // if image is not found, set isFav as false
                 this.setState({isFavImage : false, modalIsOpen: true, favImgUrl: imgUrl});
             }
         }).catch((error) => {
