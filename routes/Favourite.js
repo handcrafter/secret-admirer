@@ -74,9 +74,8 @@ router.post('/isFavourite', urlencodedParser, async(req, res) => {
     // if selected celebrity is in database turn favorite button On and if not turn off the button
     let isFavourite = await favourite.Favourite.findOne({
         username: req.body.username,
-        favourite: req.body.favourite
+        favourite: req.body.url
     });
-
     if (isFavourite) {
         res.send('Favorite button On');
     } else {
