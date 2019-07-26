@@ -9,11 +9,12 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 class Main extends Component {
     state = {
         celebrity: "",
-        isLoaded: false}
+        isLoaded: false
+    }
 
     componentDidMount(){
         var searchCelebrity = this.props.celebrity;
-        console.log('searched: ' + searchCelebrity);
+        console.log('Searched: ' + searchCelebrity);
         this.setState({celebrity: searchCelebrity, isLoaded:true});
     }
 

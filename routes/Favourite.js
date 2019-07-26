@@ -14,7 +14,7 @@ router.post('/addFavourite', urlencodedParser, async(req, res) => {
     if (!username) {
         var newUser = new favourite.Favourite(req.body);
         newUser.save().then(item => {
-            res.send('added to favorite list');
+            res.send('Added to favorite list');
         }) 
     } else {
         // if user have been used favorite before then update the list 
@@ -27,10 +27,10 @@ router.post('/addFavourite', urlencodedParser, async(req, res) => {
             var newVal = { $push: {favourite: req.body.favourite} };
             favourite.Favourite.updateOne( {username: req.body.username}, newVal, function(err, result) { 
                 if (err) { 
-                    console.log('Selected celebrity is already in the database', err);
+                    console.error('Selected celebrity is already in the database', err);
                     res.status(401).send('unable to update');
                 } else {
-                    console.log('document updated');
+                    console.log('Document updated');
                     res.send('update successful');
                 }
             });
@@ -60,7 +60,7 @@ router.post('/removeFavourite', urlencodedParser, async(req, res) => {
             var query = { $pull: {favourite: req.body.favourite} };
             favourite.Favourite.updateOne( {username: req.body.username}, query, function(error, result){
                 if (error) {
-                    console.log('Cannot remove celebrity from the list', error);
+                    console.error('Cannot remove celebrity from the list', error);
                     res.status(401).send('error removing a celebrity from the favorite list');
                 } else {
                     res.send('Successfully removed from favorite list');
@@ -74,9 +74,8 @@ router.post('/isFavourite', urlencodedParser, async(req, res) => {
     // if selected celebrity is in database turn favorite button On and if not turn off the button
     let isFavourite = await favourite.Favourite.findOne({
         username: req.body.username,
-        favourite: req.body.favourite
+        favourite: req.body.url
     });
-
     if (isFavourite) {
         res.send('Favorite button On');
     } else {
@@ -91,7 +90,7 @@ router.post('/listFavourite', urlencodedParser, async(req, res) => {
         if (list) {
             res.send(list);
         } else {
-            console.log('User does not have favourite list');
+            console.error('User does not have favourite list');
         }
     })
 })
@@ -105,7 +104,7 @@ router.post('/getImgPath', urlencodedParser, async(req, res) => {
         if (path) {
             res.send(path);
         } else {
-            console.log('Such celebrity does not exist');
+            console.error('Such celebrity does not exist');
         }
     })
 })
