@@ -4,7 +4,7 @@ import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from 'react-images';
 
 class SavedImage extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             images: [{src: 'client/src/InitImg.jpg', width: 1, height: 1}],
@@ -31,17 +31,17 @@ class SavedImage extends Component {
                 'Accept': 'application/json'
             })
         }).then(response => response.json()
-        ).then((result) =>  {
-            var tmp = [];
+        ).then((result) => {
+            var imgFormat = [];
             this.setState({FavouriteList:result.favourite}, () => {
                 console.log(this.state.FavouriteList);
                 this.state.FavouriteList.map(list => {
                     var format = {src: `${list}`, width: 1, height: 1};
-                    var newImgFormat = tmp.concat(format);
-                    tmp = newImgFormat;
+                    var newImgFormat = imgFormat.concat(format);
+                    imgFormat = newImgFormat;
                 })
             });
-            this.setState({images: tmp}, () => {console.log(this.state.images)});
+            this.setState({images: imgFormat}, () => {console.log(this.state.images)});
         }).catch((error) => {
             console.error(error, 'Cannot get favourite list');
         })
@@ -57,7 +57,7 @@ class SavedImage extends Component {
     }
 
     closeSelectedImage() {
-        this.setState({ modalIsOpen: false});
+        this.setState({modalIsOpen: false});
     }
 
     removeFromFavList() {
@@ -88,7 +88,7 @@ class SavedImage extends Component {
         });
     }
 
-    updateImages(){
+    updateImages() {
         var array = [...this.state.images]; 
         var index = this.state.selectedIndex;
         array.splice(index, 1);
@@ -110,7 +110,7 @@ class SavedImage extends Component {
                   <p className="modalFooter">{this.state.selectedIndex} of {this.state.images.length}</p>
               </span>
             </div>
-          ) : null
+          ) : null;
 
         return (
             <div>

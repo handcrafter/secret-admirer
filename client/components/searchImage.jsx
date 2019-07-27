@@ -153,7 +153,7 @@ class searchImage extends Component {
     render() { 
         const { modalIsOpen, isLoaded, isFavImage } = this.state;
         
-        const ModalHeader = ({ innerProps, isModal} = props) => isModal ? (
+        const ModalHeader = ({ innerProps, isModal}) => isModal ? (
             <div {...innerProps}>
                 {isFavImage ? 
                     <p onClick={this.setImgAsFavourite}  className="modalFavClick">♥</p> :
