@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import NavLink from './components/NavLink.jsx';
 import FindStar from './components/findStar.jsx';
 import MyStar from './components/myStar.jsx';
-import Saved from './components/saved.jsx';
+import Saved from './components/savedImage.jsx';
 import SearchImage from './components/searchImage.jsx'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
