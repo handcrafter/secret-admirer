@@ -40,7 +40,7 @@ module.exports.init = function(){
                             console.error('Error during validating duplicates');
                         } else if (result) {
                             // Document is not inserted when duplicate is found
-                            console.error('Document will not be updated since duplicate is found')
+                            console.log('Document will not be updated since duplicate is found')
                         } else {
                             //Insert the celebrity to the database if duplicate is not found
                             var celebSchema = {name: `${star.attribs.title}`};

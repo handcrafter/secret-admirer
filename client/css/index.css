@@ -277,3 +277,22 @@ input {
     right: 98px;
     top : 37px;
 }
+
+.modalRemove {
+    color: white;
+    text-align: center;
+    font-size: 3rem;
+    text-decoration: none;
+    cursor: pointer;
+    position: absolute;
+    right: 100px;
+    top : 50px;
+}
+
+.modalFooter {
+    position: absolute;
+    right: 25px;
+    bottom: 5px;
+    font-size: 15px;
+    color: white;
+}
