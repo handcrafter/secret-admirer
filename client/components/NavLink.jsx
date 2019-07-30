@@ -13,7 +13,6 @@ class Nav extends Component {
           modalState: "Sign In",
           username: ""
         };
-    
         this.openModal = this.openModal.bind(this);
         this.signin = this.signin.bind(this);
         this.signup = this.signup.bind(this);
