@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import {Container, Col} from 'reactstrap';
-import Gallery from "react-photo-gallery";
+import { Container, Col} from 'reactstrap';
 import Carousel, { Modal, ModalGateway } from 'react-images';
-import {Link} from 'react-router-dom';
+import Gallery from "react-photo-gallery";
 
 class SavedImage extends Component {
     constructor(props) {
@@ -33,8 +32,7 @@ class SavedImage extends Component {
 
     componentDidMount() {
         if (!this.state.username) {
-            console.log("Empty username");
-            // Initial image for sign out state
+            // Empty username indicates signed out state. Default images will be used for gallery display
             this.setState({images: [{src: 'client/src/InitImg.jpg', width: 1, height: 1}]});
         } else {
             var data = {username : this.state.username};

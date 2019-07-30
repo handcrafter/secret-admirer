@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import {Link, NavLink} from 'react-router-dom';
-import Index from '../index.jsx';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, ButtonDropdown, DropdownToggle, DropdownItem, DropdownMenu } from 'reactstrap';
+import { Link, NavLink } from 'react-router-dom';
 
 class Nav extends Component {
     constructor(props) {
@@ -19,7 +17,7 @@ class Nav extends Component {
         this.openModal = this.openModal.bind(this);
         this.signin = this.signin.bind(this);
         this.signup = this.signup.bind(this);
-        this.accountDropDown = this.accountDropDown.bind(this);
+        this.logInDropDown = this.logInDropDown.bind(this);
     }
     
     openModal() {
@@ -101,13 +99,13 @@ class Nav extends Component {
         this.setState({
             username: "",
             id: ""
-        },() => {
+        }, () => {
             console.log(this.state.username);
             this.props.parentCallback(this.state.username);
         });
     }
 
-    accountDropDown() {
+    logInDropDown() {
         this.setState({
             dropdownOpen: !this.state.dropdownOpen
         });
@@ -136,7 +134,7 @@ class Nav extends Component {
                         <li onClick={this.openModal} className="navHeadings">Log In</li>
                     :
                         <div>
-                            <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.accountDropDown}>
+                            <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.logInDropDown}>
                                 <DropdownToggle caret className="loginDrop">
                                     Welcome {" " + this.state.username + "!"}
                                 </DropdownToggle>

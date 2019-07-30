@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {Container, Col, Spinner} from 'reactstrap';
-import Gallery from "react-photo-gallery";
+import { Container, Col, Spinner } from 'reactstrap';
 import Carousel, { Modal, ModalGateway } from 'react-images';
+import Gallery from "react-photo-gallery";
 
 class searchImage extends Component {
     constructor(props) {

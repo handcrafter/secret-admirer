@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavLink from './components/NavLink.jsx';
 import Saved from './components/savedImage.jsx';
 import SearchImage from './components/searchImage.jsx'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 class Main extends Component {
     constructor(props){
