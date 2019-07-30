@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {Link, NavLink} from 'react-router-dom';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, ButtonDropdown, DropdownToggle, DropdownItem, DropdownMenu } from 'reactstrap';
+import { Link, NavLink } from 'react-router-dom';
 
 class Nav extends Component {
     constructor(props) {
@@ -11,11 +11,13 @@ class Nav extends Component {
           password: "",
           login: false,
           modalState: 'Sign In',
-          username: ""
+          username: "",
+          dropdownOpen: false
         };
         this.openModal = this.openModal.bind(this);
         this.signin = this.signin.bind(this);
         this.signup = this.signup.bind(this);
+        this.logInDropDown = this.logInDropDown.bind(this);
     }
     
     openModal() {
@@ -24,8 +26,8 @@ class Nav extends Component {
           modalState: 'Sign In'
         }));
     }
-
-    handleInputChange = event => {
+    
+    handleInputChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
     };
 
@@ -50,7 +52,9 @@ class Nav extends Component {
                         modal: !prevState.modal,
                         login: true,
                         username: this.state.id
-                      }));
+                    }));
+                    // send username to parent if sign in is successful
+                    this.props.parentCallback(this.state.username);
                 } else if (result.status === 400) {
                     alert("Wrong Password!")
                 } else {
@@ -91,6 +95,22 @@ class Nav extends Component {
         }
     }
 
+    logout = () => {
+        this.setState({
+            username: "",
+            id: ""
+        }, () => {
+            console.log(this.state.username);
+            this.props.parentCallback(this.state.username);
+        });
+    }
+
+    logInDropDown() {
+        this.setState({
+            dropdownOpen: !this.state.dropdownOpen
+        });
+    }
+
     render() { 
         return ( 
             <nav className="navbar">
@@ -98,15 +118,35 @@ class Nav extends Component {
                     <h3 className="logo">Secret Admirer</h3>
                 </Link>
                 <ul className = "nav-links">
-                    <li><NavLink to="/saved" className="navHeadings" activeClassName="current">Saved</NavLink></li>
+                    <li>
+                        <NavLink
+                            // pass username to savedImage page
+                            to={{
+                                pathname: "/saved",
+                                state: {username: this.state.username}
+                            }} 
+                            className="navHeadings" 
+                            activeClassName="current">
+                            Saved
+                        </NavLink>
+                    </li>
                     {(this.state.username === "") ? 
-                        <li onClick={this.openModal} className="navHeadings">Log In to Account</li>
+                        <li onClick={this.openModal} className="navHeadings">Log In</li>
                     :
-                        <li className="navHeadings">Welcome {" " + this.state.username + "!"} </li>
+                        <div>
+                            <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.logInDropDown}>
+                                <DropdownToggle caret className="loginDrop">
+                                    Welcome {" " + this.state.username + "!"}
+                                </DropdownToggle>
+                                <DropdownMenu>
+                                    <DropdownItem onClick={this.logout}>Log out</DropdownItem>
+                                </DropdownMenu>
+                            </ButtonDropdown>
+                        </div>
                     }
                 </ul>
 
-                <Modal isOpen={this.state.modal} openModal={this.openModal} className={this.props.className}>
+                <Modal isOpen={this.state.modal} toggle={this.openModal} className={this.props.className}>
                     <ModalHeader openModal={this.openModal}>{this.state.modalState}</ModalHeader>
                     <ModalBody>
                         <div className="form-group">

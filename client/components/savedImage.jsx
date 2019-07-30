@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {Container, Col} from 'reactstrap';
-import Gallery from "react-photo-gallery";
+import { Container, Col} from 'reactstrap';
 import Carousel, { Modal, ModalGateway } from 'react-images';
+import Gallery from "react-photo-gallery";
 
 class SavedImage extends Component {
     constructor(props) {
@@ -12,7 +12,8 @@ class SavedImage extends Component {
             FavouriteList: [],
             selectedIndex: 0,
             modalIsOpen: false,
-            currentImgUrl: ''
+            currentImgUrl: '',
+            username: ""
         };
         this.viewSelectedImage = this.viewSelectedImage.bind(this);
         this.closeSelectedImage = this.closeSelectedImage.bind(this);
@@ -20,31 +21,44 @@ class SavedImage extends Component {
         this.updateImages = this.updateImages.bind(this);
     }
 
+    static getDerivedStateFromProps(props, state) {
+        if (props.location.state.username != state.username) {
+            return {
+                username: props.location.state.username
+            };
+        }
+        return null;
+    }
+
     componentDidMount() {
-        var data = {username : 'test'};
-        fetch('http://localhost:5000/listFavourite', {
-            credentials: 'same-origin',
-            method: 'POST', 
-            body: JSON.stringify(data), 
-            headers: new Headers({
-                'Content-Type' : 'application/json',
-                'Accept': 'application/json'
-            })
-        }).then(response => response.json()
-        ).then((result) => {
-            var imgFormat = [];
-            this.setState({FavouriteList:result.favourite}, () => {
-                console.log(this.state.FavouriteList);
-                this.state.FavouriteList.map(list => {
-                    var format = {src: `${list}`, width: 1, height: 1};
-                    var newImgFormat = imgFormat.concat(format);
-                    imgFormat = newImgFormat;
+        if (!this.state.username) {
+            // Empty username indicates signed out state. Default images will be used for gallery display
+            this.setState({images: [{src: 'client/src/InitImg.jpg', width: 1, height: 1}]});
+        } else {
+            var data = {username : this.state.username};
+            fetch('http://localhost:5000/listFavourite', {
+                credentials: 'same-origin',
+                method: 'POST', 
+                body: JSON.stringify(data), 
+                headers: new Headers({
+                    'Content-Type' : 'application/json',
+                    'Accept': 'application/json'
                 })
-            });
-            this.setState({images: imgFormat}, () => {console.log(this.state.images)});
-        }).catch((error) => {
-            console.error(error, 'Cannot get favourite list');
-        })
+            }).then(response => response.json()
+            ).then((result) => {
+                var imgFormat = [];
+                this.setState({FavouriteList:result.favourite}, () => {
+                    this.state.FavouriteList.map(list => {
+                        var format = {src: `${list}`, width: 1, height: 1};
+                        var newImgFormat = imgFormat.concat(format);
+                        imgFormat = newImgFormat;
+                    })
+                });
+                this.setState({images: imgFormat}, () => {console.log(this.state.images)});
+            }).catch((error) => {
+                console.error(error, 'Cannot get favourite list');
+            })
+        }
     }
 
     viewSelectedImage = (event, image) => {
@@ -61,7 +75,7 @@ class SavedImage extends Component {
     }
 
     removeFromFavList() {
-        var data = {username: 'test', favourite: this.state.currentImgUrl};
+        var data = {username: this.state.username, favourite: this.state.currentImgUrl};
         fetch('http://localhost:5000/removeFavourite', {
             credentials: 'same-origin',
             method: 'POST', 

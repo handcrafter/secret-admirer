@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {Container, Col, Spinner} from 'reactstrap';
-import Gallery from "react-photo-gallery";
+import { Container, Col, Spinner } from 'reactstrap';
 import Carousel, { Modal, ModalGateway } from 'react-images';
+import Gallery from "react-photo-gallery";
 
 class searchImage extends Component {
     constructor(props) {
@@ -13,7 +13,8 @@ class searchImage extends Component {
             urls: [],
             isLoaded: false,
             isFavImage: false,
-            favImgUrl: ''
+            favImgUrl: '',
+            username: ""
         };
         this.viewSelectedImage = this.viewSelectedImage.bind(this);
         this.closeSelectedImage = this.closeSelectedImage.bind(this);
@@ -21,6 +22,16 @@ class searchImage extends Component {
         this.isFavourite = this.isFavourite.bind(this);
         this.addToFavList = this.addToFavList.bind(this);
         this.removeFromFavList = this.removeFromFavList.bind(this);
+    }
+
+    //get updated username when user sign in
+    static getDerivedStateFromProps = (props, state) => {
+        if (props.username != state.username) {
+            return {
+                username: props.username
+            };
+        }
+        return null;
     }
 
     componentDidMount() {
@@ -37,7 +48,6 @@ class searchImage extends Component {
             })
         }).then(response => response.json()
         ).then((result) => {
-            console.log(result);
             var tmp = [];
             this.setState(
                 {urls: result}, () => {
@@ -55,7 +65,7 @@ class searchImage extends Component {
 
     setImgAsFavourite = () => {
         // data to be saved in the favourite list
-        var favImg = {username: 'test', favourite: this.state.favImgUrl};
+        var favImg = {username: this.state.username, favourite: this.state.favImgUrl};
 
         // remove from the list if selected image is already in the list, and vice versa
         if (this.state.isFavImage) {
@@ -124,7 +134,7 @@ class searchImage extends Component {
     isFavourite(index) {
         // check if image is already in the list
         var imgUrl = this.state.images[index].src;
-        var data = {username: "test", url: imgUrl};
+        var data = {username: this.state.username, url: imgUrl};
         fetch('http://localhost:5000/isFavourite', {
             credentials: 'same-origin',
             method: 'POST', 

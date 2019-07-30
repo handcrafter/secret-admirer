@@ -306,3 +306,10 @@ input {
 .navHedaingLogin:hover {
     color: white;
 }
+
+.loginDrop {
+    background: transparent;
+    border-color: transparent;
+    top: 10px;
+    font-size : 20px;
+}
