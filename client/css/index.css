@@ -122,6 +122,8 @@ input {
 
 .navHeadings:hover {
     color: white;
+    text-decoration: underline;
+    text-decoration-color: white;
 }
 
 .listItem {
@@ -294,5 +296,13 @@ input {
     right: 25px;
     bottom: 5px;
     font-size: 15px;
+    color: white;
+}
+
+.navHedaingLogin {
+    color: white;
+}
+
+.navHedaingLogin:hover {
     color: white;
 }

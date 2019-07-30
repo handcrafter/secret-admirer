@@ -13,7 +13,7 @@ class SavedImage extends Component {
             selectedIndex: 0,
             modalIsOpen: false,
             currentImgUrl: ''
-        }
+        };
         this.viewSelectedImage = this.viewSelectedImage.bind(this);
         this.closeSelectedImage = this.closeSelectedImage.bind(this);
         this.removeFromFavList = this.removeFromFavList.bind(this);
@@ -61,7 +61,7 @@ class SavedImage extends Component {
     }
 
     removeFromFavList() {
-        var data = {username: 'test', favourite: this.state.currentImgUrl}
+        var data = {username: 'test', favourite: this.state.currentImgUrl};
         fetch('http://localhost:5000/removeFavourite', {
             credentials: 'same-origin',
             method: 'POST', 
