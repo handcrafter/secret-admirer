@@ -55,7 +55,7 @@ class Nav extends Component {
                         login: true,
                         username: this.state.id
                     }));
-                    //send username to nav if sign in is successful
+                    // send username to parent if sign in is successful
                     this.props.parentCallback(this.state.username);
                 } else if (result.status === 400) {
                     alert("Wrong Password!")
@@ -101,13 +101,15 @@ class Nav extends Component {
         this.setState({
             username: "",
             id: ""
-        },() => {console.log(this.state.username)});
-        this.props.parentCallback(this.state.username);
+        },() => {
+            console.log(this.state.username);
+            this.props.parentCallback(this.state.username);
+        });
     }
 
     accountDropDown() {
         this.setState({
-          dropdownOpen: !this.state.dropdownOpen
+            dropdownOpen: !this.state.dropdownOpen
         });
     }
 
@@ -118,14 +120,17 @@ class Nav extends Component {
                     <h3 className="logo">Secret Admirer</h3>
                 </Link>
                 <ul className = "nav-links">
-                    <li><NavLink
-                        //pass username to saved Image page
-                        to={{
-                            pathname: "/saved",
-                            state: {username: this.state.username}}
-                        } 
-                        params={{username: this.state.username}}
-                        className="navHeadings" activeClassName="current">Saved</NavLink>
+                    <li>
+                        <NavLink
+                            // pass username to savedImage page
+                            to={{
+                                pathname: "/saved",
+                                state: {username: this.state.username}
+                            }} 
+                            className="navHeadings" 
+                            activeClassName="current">
+                            Saved
+                        </NavLink>
                     </li>
                     {(this.state.username === "") ? 
                         <li onClick={this.openModal} className="navHeadings">Log In</li>
@@ -143,7 +148,7 @@ class Nav extends Component {
                     }
                 </ul>
 
-                <Modal isOpen={this.state.modal} toggle={this.openModal} className={this.props.className} onClose={this.openMdal}>
+                <Modal isOpen={this.state.modal} toggle={this.openModal} className={this.props.className}>
                     <ModalHeader openModal={this.openModal}>{this.state.modalState}</ModalHeader>
                     <ModalBody>
                         <div className="form-group">

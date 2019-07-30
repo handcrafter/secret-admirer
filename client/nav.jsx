@@ -36,7 +36,7 @@ class Main extends Component {
                     <NavLink parentCallback = {this.getUsername}/>
                     <Switch>
                         <Route path="/saved" component={Saved}/>
-                        {(isLoaded) ? <SearchImage celebrity={this.state.celebrity} username={this.state.username}/> : null}
+                        {isLoaded ? <SearchImage celebrity={this.state.celebrity} username={this.state.username}/> : null}
                     </Switch>
                 </div>  
             </Router>
