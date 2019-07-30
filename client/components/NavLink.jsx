@@ -10,7 +10,7 @@ class Nav extends Component {
           id: "",
           password: "",
           login: false,
-          modalState: "Sign In",
+          modalState: 'Sign In',
           username: ""
         };
         this.openModal = this.openModal.bind(this);
@@ -21,7 +21,7 @@ class Nav extends Component {
     openModal() {
         this.setState(prevState => ({
           modal: !prevState.modal,
-          modalState: "Sign In"
+          modalState: 'Sign In'
         }));
     }
 
@@ -30,8 +30,8 @@ class Nav extends Component {
     };
 
     signin(event) {
-        if (this.state.modalState === "Sign Up") {
-            this.setState({modalState: "Sign In"});
+        if (this.state.modalState === 'Sign Up') {
+            this.setState({modalState: 'Sign In'});
         } else {
             var userInfo = {id: this.state.id, password: this.state.password};
             return fetch("http://localhost:5000/signin", {
@@ -58,14 +58,14 @@ class Nav extends Component {
                 }
             })
             .catch(error => {
-                console.error(error, "postRequest error");
+                console.error(error, "PostRequest error");
             });
         }
         event.preventDefault();
     }
 
     signup() {
-        if (this.state.modalState === "Sign In") {
+        if (this.state.modalState === 'Sign In') {
             this.setState({modalState: 'Sign Up'});
         } else {
             var userInfo = {id: this.state.id, password: this.state.password};
@@ -80,13 +80,13 @@ class Nav extends Component {
             }).then((result) => {
                 if (result.status === 200) {
                     alert("Signup successful!");
-                    this.setState({modalState: "Sign In"});
+                    this.setState({modalState: 'Sign In'});
                 }
                 else {
                     alert("Existing username please try other ID");
                 }
             }).catch((error) => {
-                console.error(error, 'postRequest error');
+                console.error(error, "PostRequest error");
             })
         }
     }
@@ -99,9 +99,9 @@ class Nav extends Component {
                 </Link>
                 <ul className = "nav-links">
                     <li><NavLink to="/saved" className="navHeadings" activeClassName="current">Saved</NavLink></li>
-                    {(this.state.username === "") ? (
+                    {(this.state.username === "") ? 
                         <li onClick={this.openModal} className="navHeadings">Log In to Account</li>
-                    ) :
+                    :
                         <li className="navHeadings">Welcome {" " + this.state.username + "!"} </li>
                     }
                 </ul>
@@ -137,13 +137,16 @@ class Nav extends Component {
                         </div>
                     </ModalBody>
                     <ModalFooter>
-                        {(this.state.modalState === "Sign In") ? (
+                        {(this.state.modalState === "Sign In") ? 
                             <div>
                                 <Button color="primary" onClick={this.signin}>Sign In</Button>
                                 <Button color="secondary" onClick={this.signup}>Sign Up</Button>
                             </div>
-                        ):
-                            <Button color="primary" onClick={this.signup}>Sign Up</Button>
+                        : 
+                            <div>
+                                <Button color="primary" onClick={this.signup}>Sign Up</Button>
+                                <Button color="secondary" onClick={this.openModal}>Cancel</Button>
+                            </div>        
                         }
                     </ModalFooter>
                 </Modal>
