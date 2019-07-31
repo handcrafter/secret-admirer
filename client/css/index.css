@@ -313,3 +313,24 @@ input {
     top: 10px;
     font-size : 20px;
 }
+
+.navSearch {
+    left: 0;
+    width: 50%;
+    border: 5px solid white;
+    color: white;
+    border-radius: 20px;
+    -webkit-transition: width .35s ease-in-out;
+    transition: width .35s ease-in-out;
+    background-color: transparent;
+    padding-left: 20px;
+}
+
+.navSearch:focus {
+    outline: none;
+    width: 70%;
+}
+
+.navSearch::placeholder {
+    color: white;
+}
