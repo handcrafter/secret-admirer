@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button, ButtonDropdown, DropdownToggle, DropdownItem, DropdownMenu, Input, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Link, NavLink } from 'react-router-dom';
-import { timingSafeEqual } from 'crypto';
 
 class Nav extends Component {
     constructor(props) {
@@ -60,7 +59,6 @@ class Nav extends Component {
                     // send username to parent if sign in is successful
                     var data = {username: this.state.username, celebrity: this.state.celebrity}
                     this.props.parentCallback(data);
-                    //this.props.parentCallback(this.state.username);
                 } else if (result.status === 400) {
                     alert("Wrong Password!")
                 } else {
@@ -119,6 +117,7 @@ class Nav extends Component {
 
     navSearch(event){
         console.log(this.state.celebrity);
+        // Send user searched celebrity value if such value is not empty
         if (this.state.celebrity) {
             var data = {username: this.state.username, celebrity: this.state.celebrity};
             this.props.parentCallback(data);
