@@ -115,7 +115,7 @@ class Nav extends Component {
         });
     }
 
-    navSearch(event){
+    navSearch(event) {
         console.log(this.state.celebrity);
         // Send user searched celebrity value if such value is not empty
         if (this.state.celebrity) {
@@ -126,7 +126,7 @@ class Nav extends Component {
     }
 
     searchInputChange = (event) => {
-        this.setState({celebrity: event.target.value });
+        this.setState({celebrity: event.target.value});
     }
 
     render() { 
