@@ -5,7 +5,7 @@ import Saved from './components/savedImage.jsx';
 import SearchImage from './components/searchImage.jsx'
 
 class Main extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             celebrity: "",
@@ -13,7 +13,7 @@ class Main extends Component {
             username: "",
             isLogout: false
         }
-        this.getUsername = this.getUsername.bind(this);
+        this.getNavLinkData = this.getNavLinkData.bind(this);
     }
     
     componentDidMount(){
@@ -22,9 +22,16 @@ class Main extends Component {
         this.setState({celebrity: searchCelebrity, isLoaded:true});
     }
 
-    getUsername = (childData) => {
+    getNavLinkData = (childData) => {
+        // Rerender search page when new state is updated
         this.setState({
-            username: childData
+            isLoaded: false
+        }, () => {
+            this.setState({
+                celebrity: childData.celebrity,
+                username: childData.username,
+                isLoaded: true
+            })
         })
     }
 
@@ -33,7 +40,7 @@ class Main extends Component {
         return (
             <Router>
                 <div>
-                    <NavLink parentCallback = {this.getUsername}/>
+                    <NavLink parentCallback = {this.getNavLinkData}/>
                     <Switch>
                         <Route path="/saved" component={Saved}/>
                         {isLoaded ? <SearchImage celebrity={this.state.celebrity} username={this.state.username}/> : null}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, ButtonDropdown, DropdownToggle, DropdownItem, DropdownMenu } from 'reactstrap';
+import { Button, ButtonDropdown, DropdownToggle, DropdownItem, DropdownMenu, Input, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Link, NavLink } from 'react-router-dom';
 
 class Nav extends Component {
@@ -12,12 +12,15 @@ class Nav extends Component {
           login: false,
           modalState: 'Sign In',
           username: "",
-          dropdownOpen: false
+          dropdownOpen: false,
+          celebrity: ""
         };
+        this.logInDropDown = this.logInDropDown.bind(this);
         this.openModal = this.openModal.bind(this);
+        this.navSearch = this.navSearch.bind(this);
+        this.searchInputChange = this.searchInputChange.bind(this);
         this.signin = this.signin.bind(this);
         this.signup = this.signup.bind(this);
-        this.logInDropDown = this.logInDropDown.bind(this);
     }
     
     openModal() {
@@ -54,7 +57,8 @@ class Nav extends Component {
                         username: this.state.id
                     }));
                     // send username to parent if sign in is successful
-                    this.props.parentCallback(this.state.username);
+                    var data = {username: this.state.username, celebrity: this.state.celebrity}
+                    this.props.parentCallback(data);
                 } else if (result.status === 400) {
                     alert("Wrong Password!")
                 } else {
@@ -111,12 +115,36 @@ class Nav extends Component {
         });
     }
 
+    navSearch(event) {
+        console.log(this.state.celebrity);
+        // Send user searched celebrity value if such value is not empty
+        if (this.state.celebrity) {
+            var data = {username: this.state.username, celebrity: this.state.celebrity};
+            this.props.parentCallback(data);
+        }
+        event.preventDefault();
+    }
+
+    searchInputChange = (event) => {
+        this.setState({celebrity: event.target.value});
+    }
+
     render() { 
         return ( 
             <nav className="navbar">
                 <Link to="/">
                     <h3 className="logo">Secret Admirer</h3>
                 </Link>
+                <form onSubmit={this.navSearch}>
+                    <input 
+                        type="text" 
+                        placeholder = "Search"
+                        className="navSearch" 
+                        onChange={this.searchInputChange}                                         
+                        value={this.state.celebrity}
+                        required
+                    />
+                </form>
                 <ul className = "nav-links">
                     <li>
                         <NavLink

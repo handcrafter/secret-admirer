@@ -40,9 +40,9 @@ class App extends React.Component {
         }
     }
 
-    handleInputChange = event => {
+    handleInputChange(event) {
         this.setState({value: event.target.value });
-    };
+    }
 
     render() {
         const images = [
