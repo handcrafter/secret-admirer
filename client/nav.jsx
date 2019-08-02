@@ -22,17 +22,23 @@ class Main extends Component {
         this.setState({celebrity: searchCelebrity, isLoaded:true});
     }
 
-    getNavLinkData = (childData) => {
-        // Rerender search page when new state is updated
-        this.setState({
-            isLoaded: false
-        }, () => {
+    getNavLinkData = (userData) => {
+        if (!userData.celebrity) {
             this.setState({
-                celebrity: childData.celebrity,
-                username: childData.username,
-                isLoaded: true
+                username: userData.username
             })
-        })
+        } else {
+            // Rerender search page when new state is updated
+            this.setState({
+                isLoaded: false
+            }, () => {
+                this.setState({
+                    celebrity: userData.celebrity,
+                    username: userData.username,
+                    isLoaded: true
+                })
+            })
+        }
     }
 
     render() { 
