@@ -21,21 +21,13 @@ class SavedImage extends Component {
         this.updateImages = this.updateImages.bind(this);
     }
 
-    static getDerivedStateFromProps(props, state) {
-        if (props.location.state.username != state.username) {
-            return {
-                username: props.location.state.username
-            };
-        }
-        return null;
-    }
-
     componentDidMount() {
-        if (!this.state.username) {
+        console.log(this.props.location.state.username);
+        if (!this.props.location.state.username) {
             // Empty username indicates signed out state. Default images will be used for gallery display
             this.setState({images: [{src: 'client/src/InitImg.jpg', width: 1, height: 1}]});
         } else {
-            var data = {username : this.state.username};
+            var data = {username : this.props.location.state.username};
             fetch('http://localhost:5000/listFavourite', {
                 credentials: 'same-origin',
                 method: 'POST', 
