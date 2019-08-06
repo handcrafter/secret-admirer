@@ -39,10 +39,10 @@ Become the number one fan of your favourite star today!
 - **routes** - handles fetch communication with client and database
 
 ## Dependencies Highlight
-**bcryptjs** generates hashed encryption for user password
-**crawler** text extraction from a website
-**puppeteer** Image retrieval from a website
-**reactstrap** bootstrap style for react components
+- **bcryptjs** generates hashed encryption for user password
+- **crawler** text extraction from a website
+- **puppeteer** Image retrieval from a website
+- **reactstrap** bootstrap style for react components
 
 ## Code Description
 **index.jsx** 
