@@ -2,7 +2,7 @@
 
 Secret admirer allows you to find the best picture of celebrities. Become the number one fan of your favourite star today!
 
-# Technologies
+## Technologies
 -	mongo DB
 -	nodejs
 -	express
@@ -10,8 +10,15 @@ Secret admirer allows you to find the best picture of celebrities. Become the nu
 -	Javascript
 -	HTML
 -	CSS
-## Instruction
 
+## Versions
+- node `v10.15.3`
+- MongoDB `version v4.0.3`
+- express `^4.16.4`
+- react `^16.8.6`
+- web pack `^4.32.2`
+
+## Instruction
 -   first install necessary packages -  `npm install`
 -   Start up database -  `mongod --dbpath data`
 -   start up server -  `npm run dev`
@@ -31,7 +38,6 @@ Secret admirer allows you to find the best picture of celebrities. Become the nu
 - **routes** - handles fetch communication with client and database
 
 ## Dependencies Highlight
-
 **bcryptjs** generates hashed encryption for user password
 **crawler** text extraction from a website
 **puppeteer** Image retrieval from a website
