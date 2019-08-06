@@ -2,8 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const user = require('../db/user');
 const bcrypt = require('bcryptjs');
-
 const router = express.Router();
+
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 router.post('/signup', function(req, res, next) {
@@ -38,7 +38,7 @@ router.put('/signin', urlencodedParser, async(req, res) => {
     console.log(req.body)
     let userid = await user.User.findOne({id: req.body.id});
     if (!userid) {
-         res.status(401).send('Invalid id please sign up');
+        res.status(401).send('Invalid id please sign up');
     } else {
         bcrypt.compare(req.body.password, userid.password, function(err, result) {
             if (result) {
