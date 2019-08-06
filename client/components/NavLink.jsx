@@ -63,7 +63,7 @@ class Nav extends Component {
             var userInfo = {id: this.state.id, password: this.state.password};
             return fetch("http://localhost:5000/signin", {
                 credentials: "same-origin",
-                method: "POST",
+                method: "PUT",
                 body: JSON.stringify(userInfo),
                 headers: new Headers({
                     "Content-Type": "application/json",
@@ -261,7 +261,7 @@ class Nav extends Component {
                             <p>
                             Password : 
                                 <input
-                                    type="text"
+                                    type="password"
                                     value={this.state.password}
                                     onChange={this.handleInputChange}
                                     name="password"
