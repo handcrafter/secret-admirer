@@ -1,6 +1,7 @@
 # Welcome to Secret Admirer
 
-Secret admirer allows you to find the best picture of celebrities. Become the number one fan of your favourite star today!
+Secret admirer allows you to find the best picture of celebrities. 
+Become the number one fan of your favourite star today!
 
 ## Technologies
 -	mongo DB
@@ -30,9 +31,9 @@ Secret admirer allows you to find the best picture of celebrities. Become the nu
 
 ## Structure of Code base
 ###	Client
--	**component** - react page component for displaying searched/saved Images, as well as, login configurations
--	**CSS** - style sheet for react components
--	**Index.jsx** - homepage
+- **component** - react page component for displaying searched/saved Images, as well as, login configurations
+- **CSS** - style sheet for react components
+- **Index.jsx** - homepage
 ###	Server
 - **DB** - stores schemas for user, celebrity, favourites and establishes a connection to the database
 - **routes** - handles fetch communication with client and database
