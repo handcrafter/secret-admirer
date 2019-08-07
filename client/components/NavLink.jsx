@@ -137,13 +137,14 @@ class Nav extends Component {
         });
     }
 
-    navSearch() {
+    navSearch(event) {
         console.log(this.state.celebrity);
         // Send user searched celebrity value if such value is not empty
         if (this.state.celebrity) {
             var data = {username: this.state.username, celebrity: this.state.celebrity};
             this.props.parentCallback(data);
         }
+        event.preventDefault();
     }
 
     searchInputChange = (event) => {
