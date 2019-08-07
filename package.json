@@ -16,7 +16,7 @@
   },
   "scripts": {
     "test": "mocha",
-    "start": "node app",
+    "start": "PORT=80 node app",
     "create": "webpack",
     "dev": "nodemon app",
     "client": "webpack-dev-server --open"
@@ -29,7 +29,6 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
-    "bcrypt": "^3.0.6",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
