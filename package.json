@@ -16,7 +16,7 @@
   },
   "scripts": {
     "test": "mocha",
-    "start": "PORT=80 node app",
+    "start": "PORT=80 concurrently \"nodemon app\" \"webpack-dev-server --open\"",
     "create": "webpack",
     "dev": "nodemon app",
     "client": "webpack-dev-server --open"
