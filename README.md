@@ -1,6 +1,6 @@
 # Welcome to Secret Admirer
 
-Secret admirer allows you to find the best picture of celebrities. 
+Secret admirer allows you to find the best picture of celebrities.
 Become the number one fan of your favourite star today!
 
 ## Technologies
@@ -45,8 +45,8 @@ Become the number one fan of your favourite star today!
 - **reactstrap** bootstrap style for react components
 
 ## Code Description
-**index.jsx** 
-- First page that user will encounter. 
+**index.jsx**
+- First page that user will encounter.
 - user can search their favourite celebrity using search bar
 - searched value is passed to displaying page upon button click handled by search function
 ```
@@ -59,7 +59,7 @@ Search(event) {
 	}
 }
 ```
-**searchImage.jsx** 
+**searchImage.jsx**
 - Displays images in gallery view using `react-photo-gallery`
 - Searched value is sent to image extractor using fetch call then image-extractor returns array of image urls on success
 - Fill the gallery images using extracted urls
@@ -80,11 +80,11 @@ Search(event) {
 </ModalGateway>
 ```
 
-**savedImage.jsx** 
+**savedImage.jsx**
 - Retrieve image urls saved in favourite list from database and display it on the gallery
 - Favourite list is searched based on user ID
 
-**NavLinks.jsx** 
+**NavLinks.jsx**
 - Defines contents to be displayed in navigation bar including login and search bar
 - Provides SignIn/Signup and search functionalities
 - Pass user info to Nav.jsx when sign in is successful
@@ -98,4 +98,3 @@ navSearch() {
 	}
 }
 ```
-
