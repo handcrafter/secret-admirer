@@ -2,10 +2,20 @@
   "name": "secret-admirer",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000/",
   "dependencies": {
+    "babel-loader": "^8.0.5",
+    "bootstrap": "^4.3.1",
+    "crawler": "^1.2.1",
+    "fsevents": "^2.0.7",
+    "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-images": "^1.0.0",
+    "react-photo-gallery": "^8.0.0",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.0.1",
+    "reactstrap": "^8.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
