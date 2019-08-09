@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import NavLink from './NavLink';
 import Saved from './savedImage';
 import SearchImage from './searchImage';
@@ -8,10 +8,12 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            searched: "",
             celebrity: "",
             isLoaded: false,
             username: "",
-            isLogout: false
+            isLogout: false,
+            saved: false
         }
         this.getNavLinkData = this.getNavLinkData.bind(this);
     }
@@ -19,37 +21,55 @@ class Main extends Component {
     componentDidMount(){
         var searchCelebrity = this.props.celebrity;
         console.log('Searched: ' + searchCelebrity);
-        this.setState({celebrity: searchCelebrity, isLoaded:true});
+        this.setState({celebrity: searchCelebrity, isLoaded:true, searched: searchCelebrity});
     }
 
     getNavLinkData = (userData) => {
-        if (!userData.celebrity) {
+        if (userData.saved) {
             this.setState({
-                username: userData.username
+                saved: userData.saved,
+                isLoaded: false
             })
         } else {
-            // Rerender search page when new state is updated
-            this.setState({
-                isLoaded: false
-            }, () => {
+            if (!userData.celebrity) {
+                if (this.state.saved) {
+                    this.setState({ 
+                        username: userData.username,
+                        saved: false,
+                        isLoaded: true
+                    });
+                } else {
+                    this.setState({ username: userData.username});
+                }
+            } else {
                 this.setState({
-                    celebrity: userData.celebrity,
-                    username: userData.username,
-                    isLoaded: true
+                    saved: false,
+                    isLoaded: false
+                }, () => {
+                    this.setState({
+                        celebrity: userData.celebrity,
+                        username: userData.username,
+                        isLoaded: true
+                    })
                 })
-            })
+            }
         }
     }
 
     render() { 
-        const { isLoaded } = this.state;
+        const { isLoaded, saved } = this.state;
         return (
             <Router>
                 <div>
-                    <NavLink parentCallback = {this.getNavLinkData}/>
+                    <NavLink parentCallback = {this.getNavLinkData} celebrity={this.state.celebrity}/>
                     <Switch>
-                        {isLoaded ? <SearchImage celebrity={this.state.celebrity} username={this.state.username}/> : null}
-                        <Route path="/saved" component={Saved}/>
+                        {saved ? 
+                            <Saved username={this.state.username}/>
+                        :
+                            <div>
+                                {isLoaded ? <SearchImage celebrity={this.state.celebrity} username={this.state.username}/> : null}
+                            </div>
+                        }
                     </Switch>
                 </div>  
             </Router>

@@ -22,12 +22,12 @@ class SavedImage extends Component {
     }
 
     componentDidMount() {
-        if (this.props.location.username === "") {
-            console.log(this.props.location.state.username);
+        if (!this.props.username) {
             // Empty username indicates signed out state. Default images will be used for gallery display
             this.setState({images: [{src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/An_up-close_picture_of_a_curious_male_domestic_shorthair_tabby_cat.jpg/1920px-An_up-close_picture_of_a_curious_male_domestic_shorthair_tabby_cat.jpg', width: 1, height: 1}]});
         } else {
-            var data = {username : this.props.location.state.username};
+            this.setState({username: this.props.username});
+            var data = {username : this.props.username};
             fetch('http://localhost:5000/listFavourite', {
                 credentials: 'same-origin',
                 method: 'POST', 
@@ -47,7 +47,7 @@ class SavedImage extends Component {
                         imgFormat = newImgFormat;
                     })
                 });
-                this.setState({images: imgFormat}, () => {console.log(this.state.images)});
+                this.setState({images: imgFormat});
             }).catch((error) => {
                 console.error(error, 'Cannot get favourite list');
             })
@@ -68,6 +68,7 @@ class SavedImage extends Component {
     }
 
     removeFromFavList() {
+        console.log(this.state.username);
         var data = {username: this.state.username, favourite: this.state.currentImgUrl};
         fetch('http://localhost:5000/removeFavourite', {
             credentials: 'same-origin',

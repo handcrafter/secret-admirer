@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, ButtonDropdown, Col, DropdownToggle, DropdownItem, DropdownMenu, ListGroup, ListGroupItem, Modal, ModalHeader, ModalBody, ModalFooter, Row } from 'reactstrap';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Nav extends Component {
     constructor(props) {
@@ -27,6 +27,8 @@ class Nav extends Component {
         this.signin = this.signin.bind(this);
         this.signup = this.signup.bind(this);
         this.dropDownSelect = this.dropDownSelect.bind(this);
+        this.showSaved = this.showSaved.bind(this);
+        this.redirectHome = this.redirectHome.bind(this);
     }
 
     componentDidMount() {
@@ -40,7 +42,8 @@ class Nav extends Component {
             // Initialize celebity list
             this.setState({
                 searchDrop: celebNames,
-                celebList: celebNames
+                celebList: celebNames,
+                celebrity: this.props.celebrity
             });
         })
     }
@@ -79,7 +82,7 @@ class Nav extends Component {
                         username: this.state.id
                     }));
                     // send username to parent when sign in is successful
-                    var data = {username: this.state.username, celebrity: this.state.celebrity}
+                    var data = {username: this.state.username, saved: false}
                     this.props.parentCallback(data);
                 } else if (result.status === 400) {
                     alert("Wrong Password!")
@@ -126,8 +129,8 @@ class Nav extends Component {
             username: "",
             id: ""
         }, () => {
-            console.log(this.state.username);
-            this.props.parentCallback(this.state.username);
+            var data = {username: this.state.username, saved: false, celebrity: this.state.celebrity}
+            this.props.parentCallback(data);
         });
     }
 
@@ -176,6 +179,18 @@ class Nav extends Component {
         });
     }
 
+    showSaved(event) {
+        var data = {saved: true}
+        this.props.parentCallback(data);
+        event.preventDefault();
+    }
+    
+    redirectHome(event) {
+        var data = {username: this.state.username, celebrity: this.state.celebrity, saved: false}
+        this.props.parentCallback(data);
+        event.preventDefault();
+    }
+
     render() { 
         return ( 
             <nav className="navbar">
@@ -183,7 +198,7 @@ class Nav extends Component {
                     <Row>
                         <Col xs="auto">
                             <Link to="/">
-                                <h3 className="logo">Secret Admirer</h3>
+                                <h3 className="logo" onClick={this.redirectHome}>Secret Admirer</h3>
                             </Link>
                         </Col>
                         <Col xs="6" sm="4" className="searchCol">
@@ -216,16 +231,7 @@ class Nav extends Component {
                 </div>
               
                 <ul className = "nav-links">
-                    <NavLink
-                        // pass username to savedImage page
-                        to={{
-                            pathname: "/saved",
-                            state: {username: this.state.username}
-                        }} 
-                        className="navHeadings" 
-                        activeClassName="current">
-                        Saved
-                    </NavLink>
+                    <li onClick={this.showSaved} className="navHeadings" activeClassName="current"> Saved </li>
                     {(this.state.username === "") ? 
                         <li onClick={this.openModal} className="navHeadings">Log In</li>
                     :

@@ -27,7 +27,7 @@ class Index extends React.Component {
 
     getRandomImageId() {
         const min = 0;
-        const max = 3;
+        const max = 4;
         return Math.floor(Math.random() * (max - min)) + min;
     }
 
@@ -48,7 +48,9 @@ class Index extends React.Component {
     render() {
         const images = [
             "https://upload.wikimedia.org/wikipedia/commons/0/0d/‘LG_Q7_BTS_에디션’_예약_판매_시작_%2842773472410%29_%28cropped%29.jpg",
-            "https://i.redd.it/obceohfe3jh21.jpg"
+            "https://i.redd.it/obceohfe3jh21.jpg",
+            "http://az879543.vo.msecnd.net/itzy/3.jpg",
+            "https://seoulbeats.com/wp-content/uploads/2018/04/20180411_seoulbeats_twice.jpg"
         ];
 
         return(
