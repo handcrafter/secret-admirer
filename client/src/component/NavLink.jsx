@@ -82,7 +82,7 @@ class Nav extends Component {
                         username: this.state.id
                     }));
                     // send username to parent when sign in is successful
-                    var data = {username: this.state.username, saved: false}
+                    var data = {username: this.state.username, saved: false};
                     this.props.parentCallback(data);
                 } else if (result.status === 400) {
                     alert("Wrong Password!")
@@ -129,7 +129,7 @@ class Nav extends Component {
             username: "",
             id: ""
         }, () => {
-            var data = {username: this.state.username, saved: false, celebrity: this.state.celebrity}
+            var data = {username: this.state.username, saved: false, celebrity: this.state.celebrity};
             this.props.parentCallback(data);
         });
     }

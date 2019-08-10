@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon server.js",
-    "client": "cd client && yarn start",
+    "server": "PORT=80 node server.js",
+    "server-dev": "nodemon server.js",
+    "client": "PORT=80 cd client && yarn start",
+    "client-dev": "cd client && yarn start",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "prod": "PORT=80 concurrently --kill-others-on-fail  \"node server.js\" \"yarn client\""
   },

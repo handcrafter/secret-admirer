@@ -17,17 +17,21 @@ Become the number one fan of your favourite star today!
 - MongoDB `version v4.0.3`
 - express `^4.16.4`
 - react `^16.8.6`
-- web pack `^4.32.2`
 
 ## Instruction
+for development, client runs on port 3000 server runs on 5000
+for production, client runs on port 80 server runs on 5000
+
+proxy has been setup at client ports so client port can respond to requests to server
+
 -   first install necessary packages -  `npm install`
 -   Start up database -  `mongod --dbpath data`
--   start up server -  `npm run dev`
--   verify your setup by running -  `npm run test`
--   the server is running on  `localhost:5000`
--   Start up client server in client directory -  `npm run client`
--   Client server is running on `localhost:8080`
--   Package and build client files for distribution -  `npm run create`
+-   start client for dev - `npm run client-dev`
+-   start client - `npm run client`
+-   start server for dev - `npm run server-dev`
+-   start server - `npm run server`
+-   Run program for dev - `npm run dev`
+-   Run program for production - `npm run prod`
 
 ## Structure of Code base
 ###	Client

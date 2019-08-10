@@ -51,11 +51,10 @@ class searchImage extends Component {
             var tmp = [];
             this.setState(
                 {urls: result}, () => {
-                    // eslint-disable-next-line
                     this.state.urls.map(path => {
                         var format = {src: `${path}`, width: 1, height: 1};
                         var newImgFormat = tmp.concat(format);
-                        tmp = newImgFormat;
+                        return tmp = newImgFormat;
                     });
                 });
             this.setState({images: tmp, isLoaded: true});

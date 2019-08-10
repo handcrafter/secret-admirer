@@ -17,17 +17,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(logger)
-
-app.get('/api/hello', (req, res) => {
-    res.send({ express: 'test' });
-  });
-  
-  app.post('/api/world', (req, res) => {
-    console.log(req.body);
-    res.send(
-      `I received your POST request. This is what you sent me: ${req.body.post}`,
-    );
-  });
   
 // databse
 database.connect();

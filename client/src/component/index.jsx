@@ -3,7 +3,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from './nav';
 
-require('../CSS/index.css');
+require('../css/index.css');
 
 class Index extends React.Component {
     constructor(props){
