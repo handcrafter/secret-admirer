@@ -1,11 +1,11 @@
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import React from 'react';
+import Nav from './component/nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Nav from './nav';
 
-require('../css/index.css');
+require('./css/index.css');
 
-class Index extends React.Component {
+class HOME extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -80,4 +80,4 @@ class Index extends React.Component {
     }
 }
 
-export default Index;
+export default HOME;

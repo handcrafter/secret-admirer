@@ -4,18 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "PORT=80 node server.js",
+    "server": "node server.js",
     "server-dev": "nodemon server.js",
-    "client": "PORT=80 cd client && yarn start",
-    "client-dev": "cd client && yarn start",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "client": "cd client && npm run client-prod",
+    "client-dev": "cd client && npm run client-dev",
+    "dev": "concurrently --kill-others-on-fail \"npm run server-dev\" \"npm run client-dev\"",
     "prod": "PORT=80 concurrently --kill-others-on-fail  \"node server.js\" \"yarn client\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel-loader": "^8.0.5",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^4.1.1",

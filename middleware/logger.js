@@ -1,4 +1,4 @@
-const moment = require('../client/node_modules/moment');
+const moment = require('moment');
 
 //middleware
 const logger = (req, res, next) => {

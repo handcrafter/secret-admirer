@@ -24,7 +24,7 @@ class SavedImage extends Component {
     componentDidMount() {
         if (!this.props.username) {
             // Empty username indicates signed out state. Default images will be used for gallery display
-            this.setState({images: [{src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/An_up-close_picture_of_a_curious_male_domestic_shorthair_tabby_cat.jpg/1920px-An_up-close_picture_of_a_curious_male_domestic_shorthair_tabby_cat.jpg', width: 1, height: 1}]});
+            this.setState({images: [{src: process.env.PUBLIC_URL+'/img/InitImg.jpg', width: 1, height: 1}]});
         } else {
             this.setState({username: this.props.username});
             var data = {username : this.props.username};
