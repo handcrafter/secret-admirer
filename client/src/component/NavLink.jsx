@@ -175,7 +175,7 @@ class Nav extends Component {
             celebrity: event.target.id,
             isSearchDrop: false
         }, () => {
-            this.navSearch();
+            this.navSearch(event);
         });
     }
 

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
-const Crawler = require('../client/node_modules/crawler');
+const Crawler = require('crawler');
 
 var Schema = mongoose.Schema;
 

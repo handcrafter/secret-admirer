@@ -27,7 +27,7 @@ class HOME extends Component {
 
     getRandomImageId() {
         const min = 0;
-        const max = 4;
+        const max = 5;
         return Math.floor(Math.random() * (max - min)) + min;
     }
 
@@ -47,10 +47,10 @@ class HOME extends Component {
 
     render() {
         const images = [
-            process.env.PUBLIC_URL+"/img/redvelvet1.jpg",
             process.env.PUBLIC_URL+"/img/BTS.jpg",
             process.env.PUBLIC_URL+"/img/IZONE.jpg",
-            process.env.PUBLIC_URL+"/img/twice.jpg"
+            process.env.PUBLIC_URL+"/img/twice.jpg",
+            process.env.PUBLIC_URL+"/img/redvelvet1.jpg",
         ];
 
         return(
