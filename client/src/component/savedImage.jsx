@@ -40,12 +40,11 @@ class SavedImage extends Component {
             ).then((result) => {
                 var imgFormat = [];
                 this.setState({FavouriteList:result.favourite}, () => {
-                    // eslint-disable-next-line
-                    this.state.FavouriteList.map(list => {
+                    this.state.FavouriteList.forEach(list => {
                         var format = {src: `${list}`, width: 1, height: 1};
                         var newImgFormat = imgFormat.concat(format);
                         imgFormat = newImgFormat;
-                    })
+                    });
                 });
                 this.setState({images: imgFormat});
             }).catch((error) => {
@@ -68,7 +67,6 @@ class SavedImage extends Component {
     }
 
     removeFromFavList() {
-        console.log(this.state.username);
         var data = {username: this.state.username, favourite: this.state.currentImgUrl};
         fetch('http://localhost:5000/removeFavourite', {
             credentials: 'same-origin',

@@ -48,16 +48,16 @@ class searchImage extends Component {
             })
         }).then(response => response.json()
         ).then((result) => {
-            var tmp = [];
+            var tmpImages = [];
             this.setState(
                 {urls: result}, () => {
-                    this.state.urls.map(path => {
+		    this.state.urls.forEach(path => {
                         var format = {src: `${path}`, width: 1, height: 1};
-                        var newImgFormat = tmp.concat(format);
-                        return tmp = newImgFormat;
+                        var newImgFormat = tmpImages.concat(format);
+                        tmpImages = newImgFormat;
                     });
                 });
-            this.setState({images: tmp, isLoaded: true});
+            this.setState({images: tmpImages, isLoaded: true});
         }).catch((error) => {
             console.error(error, 'Cannot get searched image urls');
         })

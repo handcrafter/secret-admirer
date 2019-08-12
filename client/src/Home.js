@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 require('./css/index.css');
 
-class HOME extends Component {
+class Home extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -80,4 +80,4 @@ class HOME extends Component {
     }
 }
 
-export default HOME;
+export default Home;
