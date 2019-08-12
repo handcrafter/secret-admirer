@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, Col} from 'reactstrap';
 import Carousel, { Modal, ModalGateway } from 'react-images';
 import Gallery from "react-photo-gallery";
+import config from '../config';
 
 class SavedImage extends Component {
     constructor(props) {
@@ -28,7 +29,7 @@ class SavedImage extends Component {
         } else {
             this.setState({username: this.props.username});
             var data = {username : this.props.username};
-            fetch('http://localhost:5000/listFavourite', {
+            fetch(config[1]+'/listFavourite', {
                 credentials: 'same-origin',
                 method: 'POST', 
                 body: JSON.stringify(data), 
@@ -68,7 +69,7 @@ class SavedImage extends Component {
 
     removeFromFavList() {
         var data = {username: this.state.username, favourite: this.state.currentImgUrl};
-        fetch('http://localhost:5000/removeFavourite', {
+        fetch(config[1]+'/removeFavourite', {
             credentials: 'same-origin',
             method: 'POST', 
             body: JSON.stringify(data), 

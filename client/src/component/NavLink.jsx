@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, ButtonDropdown, Col, DropdownToggle, DropdownItem, DropdownMenu, ListGroup, ListGroupItem, Modal, ModalHeader, ModalBody, ModalFooter, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import config from '../config';
 
 class Nav extends Component {
     constructor(props) {
@@ -32,7 +33,7 @@ class Nav extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:5000/list')
+        fetch(config[1]+'/list')
         .then((res) => res.json())
         .then((data) => {
             var celebNames = [];
@@ -64,7 +65,7 @@ class Nav extends Component {
             this.setState({modalState: 'Sign In'});
         } else {
             var userInfo = {id: this.state.id, password: this.state.password};
-            return fetch("http://localhost:5000/signin", {
+            return fetch(config[1]+"/signin", {
                 credentials: "same-origin",
                 method: "PUT",
                 body: JSON.stringify(userInfo),
@@ -102,7 +103,7 @@ class Nav extends Component {
             this.setState({modalState: 'Sign Up'});
         } else {
             var userInfo = {id: this.state.id, password: this.state.password};
-            return fetch('http://localhost:5000/signup', {
+            return fetch(config[1]+'/signup', {
                 credentials: 'same-origin',
                 method: 'POST',
                 body: JSON.stringify(userInfo),

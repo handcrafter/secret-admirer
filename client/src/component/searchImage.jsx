@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, Col, Spinner } from 'reactstrap';
 import Carousel, { Modal, ModalGateway } from 'react-images';
 import Gallery from "react-photo-gallery";
+import config from '../config';
 
 class searchImage extends Component {
     constructor(props) {
@@ -38,7 +39,7 @@ class searchImage extends Component {
         // Set celebrity as what user searched and get image urls
         var celebrity = {target: this.props.celebrity};
        
-        fetch('http://localhost:5000/getImageUrl', {
+        fetch(config[1]+'/getImageUrl', {
             credentials: 'same-origin',
             method: 'POST', 
             body: JSON.stringify(celebrity), 
@@ -76,7 +77,7 @@ class searchImage extends Component {
     }
 
     addToFavList(data) {
-        return fetch('http://localhost:5000/addFavourite', {
+        return fetch(config[1]+'/addFavourite', {
             credentials: 'same-origin',
             method: 'POST',
             body: JSON.stringify(data),
@@ -100,7 +101,7 @@ class searchImage extends Component {
     }
     
     removeFromFavList(data) {
-        fetch('http://localhost:5000/removeFavourite', {
+        fetch(config[1]+'/removeFavourite', {
             credentials: 'same-origin',
             method: 'POST', 
             body: JSON.stringify(data), 
@@ -135,7 +136,7 @@ class searchImage extends Component {
         // check if image is already in the list
         var imgUrl = this.state.images[index].src;
         var data = {username: this.state.username, url: imgUrl};
-        fetch('http://localhost:5000/isFavourite', {
+        fetch(config[1]+'/isFavourite', {
             credentials: 'same-origin',
             method: 'POST', 
             body: JSON.stringify(data), 

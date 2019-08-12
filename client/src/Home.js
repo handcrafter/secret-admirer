@@ -18,7 +18,8 @@ class Home extends Component {
     }
 
     componentDidMount () {
-        setInterval((() => {
+        console.log(process.env.NODE_ENV);
+	    setInterval((() => {
             this.setState({
                 currentImage: this.getRandomImageId()
             });
