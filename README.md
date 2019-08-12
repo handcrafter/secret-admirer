@@ -26,8 +26,8 @@ proxy has been setup at client ports so client port can respond to requests to s
 
 -   first install necessary packages -  `npm install`
 -   Start up database -  `mongod --dbpath data`
--   start client for dev - `npm run client-dev`
--   start client - `npm run client`
+-   start client server - `npm run client-dev`
+-   build client - `npm run client`
 -   start server for dev - `npm run server-dev`
 -   start server - `npm run server`
 -   Run program for dev - `npm run dev`
@@ -36,7 +36,7 @@ proxy has been setup at client ports so client port can respond to requests to s
 ## Structure of Code base
 ###	Client
 - **component** - react page component for displaying searched/saved Images, as well as, login configurations
-- **CSS** - style sheet for react components
+- **css** - style sheet for react components
 - **Index.jsx** - homepage
 ###	Server
 - **DB** - stores schemas for user, celebrity, favourites and establishes a connection to the database
