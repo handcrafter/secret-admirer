@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "node server.js",
+    "server": "PORT=80 node server.js",
     "server-dev": "nodemon server.js",
-    "client": "cd client && npm run client-prod",
+    "client": "cd client && npm run build",
     "client-dev": "cd client && npm run client-dev",
     "dev": "concurrently --kill-others-on-fail \"npm run server-dev\" \"npm run client-dev\"",
-    "prod": "PORT=80 concurrently --kill-others-on-fail  \"node server.js\" \"yarn client\""
+    "prod": "PORT=80 concurrently --kill-others-on-fail  \"npm run client\" \"node server.js\""
   },
   "keywords": [],
   "author": "",
