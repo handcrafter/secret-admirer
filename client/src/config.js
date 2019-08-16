@@ -6,4 +6,4 @@ if (process.env.NODE_ENV === "production") {
     URL = "http://secretadmirer.me";
 } 
 
-export default [PORT, URL];
+export default {PORT, URL};

@@ -39,7 +39,7 @@ class searchImage extends Component {
         // Set celebrity as what user searched and get image urls
         var celebrity = {target: this.props.celebrity};
        
-        fetch(config[1]+'/getImageUrl', {
+        fetch(config.URL+'/getImageUrl', {
             credentials: 'same-origin',
             method: 'POST', 
             body: JSON.stringify(celebrity), 
@@ -77,7 +77,7 @@ class searchImage extends Component {
     }
 
     addToFavList(data) {
-        return fetch(config[1]+'/addFavourite', {
+        return fetch(config.URL+'/addFavourite', {
             credentials: 'same-origin',
             method: 'POST',
             body: JSON.stringify(data),
@@ -101,7 +101,7 @@ class searchImage extends Component {
     }
     
     removeFromFavList(data) {
-        fetch(config[1]+'/removeFavourite', {
+        fetch(config.URL+'/removeFavourite', {
             credentials: 'same-origin',
             method: 'POST', 
             body: JSON.stringify(data), 
@@ -136,7 +136,7 @@ class searchImage extends Component {
         // check if image is already in the list
         var imgUrl = this.state.images[index].src;
         var data = {username: this.state.username, url: imgUrl};
-        fetch(config[1]+'/isFavourite', {
+        fetch(config.URL+'/isFavourite', {
             credentials: 'same-origin',
             method: 'POST', 
             body: JSON.stringify(data), 

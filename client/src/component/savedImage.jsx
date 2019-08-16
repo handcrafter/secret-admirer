@@ -29,7 +29,7 @@ class SavedImage extends Component {
         } else {
             this.setState({username: this.props.username});
             var data = {username : this.props.username};
-            fetch(config[1]+'/listFavourite', {
+            fetch(config.URL+'/listFavourite', {
                 credentials: 'same-origin',
                 method: 'POST', 
                 body: JSON.stringify(data), 
@@ -69,7 +69,7 @@ class SavedImage extends Component {
 
     removeFromFavList() {
         var data = {username: this.state.username, favourite: this.state.currentImgUrl};
-        fetch(config[1]+'/removeFavourite', {
+        fetch(config.URL+'/removeFavourite', {
             credentials: 'same-origin',
             method: 'POST', 
             body: JSON.stringify(data), 

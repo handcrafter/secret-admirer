@@ -33,11 +33,12 @@ class Nav extends Component {
     }
 
     componentDidMount() {
-        fetch(config[1]+'/list')
+	console.log(config.URL);
+        fetch(config.URL+'/list')
         .then((res) => res.json())
         .then((data) => {
             var celebNames = [];
-            data.map(name => {
+	    data.forEach(name => {
                 return celebNames.push(name.name);
             })
             // Initialize celebity list
@@ -65,7 +66,7 @@ class Nav extends Component {
             this.setState({modalState: 'Sign In'});
         } else {
             var userInfo = {id: this.state.id, password: this.state.password};
-            return fetch(config[1]+"/signin", {
+            return fetch(config.URL+"/signin", {
                 credentials: "same-origin",
                 method: "PUT",
                 body: JSON.stringify(userInfo),
@@ -103,7 +104,7 @@ class Nav extends Component {
             this.setState({modalState: 'Sign Up'});
         } else {
             var userInfo = {id: this.state.id, password: this.state.password};
-            return fetch(config[1]+'/signup', {
+            return fetch(config.URL+'/signup', {
                 credentials: 'same-origin',
                 method: 'POST',
                 body: JSON.stringify(userInfo),

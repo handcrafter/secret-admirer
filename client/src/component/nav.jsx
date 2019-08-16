@@ -18,7 +18,7 @@ class Main extends Component {
         this.getNavLinkData = this.getNavLinkData.bind(this);
     }
     
-    componentDidMount(){
+    componentDidMount() {
         var searchCelebrity = this.props.celebrity;
         console.log('Searched: ' + searchCelebrity);
         this.setState({celebrity: searchCelebrity, isLoaded:true, searched: searchCelebrity});
