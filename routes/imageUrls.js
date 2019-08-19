@@ -41,7 +41,7 @@ async function extracUrls(imageName) {
     const googleUrl = `https://www.google.com/search?q=${imageName}&tbm=isch`;
     
     console.log('- Launching browser.');
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     
     console.log('- Launching page.');
     const page = await browser.newPage();

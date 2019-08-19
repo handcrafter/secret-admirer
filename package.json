@@ -1,68 +1,30 @@
 {
-  "name": "structure",
+  "name": "secret-admirer",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ],
-    "plugins": [
-      [
-        "@babel/plugin-proposal-class-properties"
-      ]
-    ]
-  },
   "scripts": {
-    "test": "mocha",
-    "start": "PORT=80 concurrently \"nodemon app\" \"webpack-dev-server --open\"",
-    "create": "webpack",
-    "dev": "nodemon app",
-    "client": "webpack-dev-server --open"
+    "server": "node server.js",
+    "server-dev": "nodemon server.js",
+    "client": "cd client && npm run build",
+    "client-dev": "cd client && npm run client-dev",
+    "dev": "concurrently --kill-others-on-fail \"npm run server-dev\" \"npm run client-dev\"",
+    "prod": "PORT=80 npm run server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.6",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "bootstrap": "^4.3.1",
+    "concurrently": "^4.1.1",
     "cors": "^2.8.5",
     "crawler": "^1.2.1",
-    "css-loader": "^2.1.1",
     "express": "^4.16.4",
-    "html-webpack-plugin": "^3.2.0",
-    "js-beautify": "^1.6.14",
-    "mocha": "^6.1.4",
     "moment": "^2.24.0",
-    "mongoose": "^5.5.8",
+    "mongoose": "^5.6.9",
     "mongoose-unique-validator": "^2.0.3",
-    "nodemon": "^1.19.0",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
-    "popper.js": "^1.15.0",
-    "puppeteer": "^1.18.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-images": "^1.0.0",
-    "react-photo-gallery": "^8.0.0",
-    "react-router-dom": "^5.0.1",
-    "reactstrap": "^8.0.0",
-    "style-loader": "^0.23.1",
-    "uuid": "^3.3.2",
-    "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.4.1"
+    "puppeteer": "^1.19.0"
   },
-  "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "chai": "^4.2.0",
-    "eslint": "^5.16.0",
-    "eslint-plugin-react": "^7.13.0"
-  }
+  "devDependencies": {}
 }

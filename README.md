@@ -1,6 +1,6 @@
 # Welcome to Secret Admirer
 
-Secret admirer allows you to find the best picture of celebrities. 
+Secret admirer allows you to find the best picture of celebrities.
 Become the number one fan of your favourite star today!
 
 ## Technologies
@@ -17,22 +17,26 @@ Become the number one fan of your favourite star today!
 - MongoDB `version v4.0.3`
 - express `^4.16.4`
 - react `^16.8.6`
-- web pack `^4.32.2`
 
 ## Instruction
+for development, client runs on port 3000 server runs on 5000
+for production, client runs on port 80 server runs on 5000
+
+proxy has been setup at client ports so client port can respond to requests to server
+
 -   first install necessary packages -  `npm install`
 -   Start up database -  `mongod --dbpath data`
--   start up server -  `npm run dev`
--   verify your setup by running -  `npm run test`
--   the server is running on  `localhost:5000`
--   Start up client server in client directory -  `npm run client`
--   Client server is running on `localhost:8080`
--   Package and build client files for distribution -  `npm run create`
+-   start client server - `npm run client-dev`
+-   build client - `npm run client`
+-   start server for dev - `npm run server-dev`
+-   start server - `npm run server`
+-   Run program for dev - `npm run dev`
+-   Run program for production - `npm run prod`
 
 ## Structure of Code base
 ###	Client
 - **component** - react page component for displaying searched/saved Images, as well as, login configurations
-- **CSS** - style sheet for react components
+- **css** - style sheet for react components
 - **Index.jsx** - homepage
 ###	Server
 - **DB** - stores schemas for user, celebrity, favourites and establishes a connection to the database
@@ -45,8 +49,8 @@ Become the number one fan of your favourite star today!
 - **reactstrap** bootstrap style for react components
 
 ## Code Description
-**index.jsx** 
-- First page that user will encounter. 
+**index.jsx**
+- First page that user will encounter.
 - user can search their favourite celebrity using search bar
 - searched value is passed to displaying page upon button click handled by search function
 ```
@@ -59,7 +63,7 @@ Search(event) {
 	}
 }
 ```
-**searchImage.jsx** 
+**searchImage.jsx**
 - Displays images in gallery view using `react-photo-gallery`
 - Searched value is sent to image extractor using fetch call then image-extractor returns array of image urls on success
 - Fill the gallery images using extracted urls
@@ -80,11 +84,11 @@ Search(event) {
 </ModalGateway>
 ```
 
-**savedImage.jsx** 
+**savedImage.jsx**
 - Retrieve image urls saved in favourite list from database and display it on the gallery
 - Favourite list is searched based on user ID
 
-**NavLinks.jsx** 
+**NavLinks.jsx**
 - Defines contents to be displayed in navigation bar including login and search bar
 - Provides SignIn/Signup and search functionalities
 - Pass user info to Nav.jsx when sign in is successful
@@ -98,4 +102,3 @@ navSearch() {
 	}
 }
 ```
-
