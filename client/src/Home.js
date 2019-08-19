@@ -28,7 +28,7 @@ class Home extends Component {
 
     getRandomImageId() {
         const min = 0;
-        const max = 5;
+        const max = 4;
         return Math.floor(Math.random() * (max - min)) + min;
     }
 

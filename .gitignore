@@ -6,3 +6,4 @@ dist
 .vscode
 yarn-error.log
 yarn.lock
+server.out
