@@ -23,6 +23,8 @@ class searchImage extends Component {
         this.isFavourite = this.isFavourite.bind(this);
         this.addToFavList = this.addToFavList.bind(this);
         this.removeFromFavList = this.removeFromFavList.bind(this);
+        this.moreImage = this.moreImage.bind(this);
+        this.isDuplicateImage = this.isDuplicateImage.bind(this);
     }
 
     //get updated username when user sign in
@@ -52,7 +54,7 @@ class searchImage extends Component {
             var tmpImages = [];
             this.setState(
                 {urls: result}, () => {
-		    this.state.urls.forEach(path => {
+                    this.state.urls.forEach(path => {
                         var format = {src: `${path}`, width: 1, height: 1};
                         var newImgFormat = tmpImages.concat(format);
                         tmpImages = newImgFormat;
@@ -63,6 +65,45 @@ class searchImage extends Component {
             console.error(error, 'Cannot get searched image urls');
         })
     }
+    
+    moreImage = () => {
+        // Set celebrity as what user searched and get more image urls
+        var celebrity = {target: this.props.celebrity};
+       
+        fetch(config.URL+'/getMoreImageUrl', {
+            credentials: 'same-origin',
+            method: 'POST', 
+            body: JSON.stringify(celebrity), 
+            headers: new Headers({
+                'Content-Type' : 'application/json',
+                'Accept': 'application/json'
+            })
+        }).then(response => response.json()
+        ).then((result) => {
+            var tmpImages = this.state.images;
+            this.setState (
+                {urls: result}, () => {
+                    this.state.urls.forEach(path => {
+                        if (!this.isDuplicateImage(path)) {
+                            var format = {src: `${path}`, width: 1, height: 1};
+                            var newImgFormat = tmpImages.concat(format);
+                            tmpImages = newImgFormat; 
+                        }
+                    });
+                });
+            this.setState({images: tmpImages, isLoaded: true});
+        }).catch((error) => {
+            console.error(error, 'Cannot get searched image urls');
+        })
+    }
+
+    isDuplicateImage(path) {
+        var result = this.state.images.some(function(image) {
+            return image.src === path;
+        })
+        return result;
+    }
+    
 
     setImgAsFavourite = () => {
         // data to be saved in the favourite list
@@ -72,7 +113,11 @@ class searchImage extends Component {
         if (this.state.isFavImage) {
             this.removeFromFavList(favImg);
         } else {
-            this.addToFavList(favImg);
+            if (!this.state.username) {
+                alert("Please sign in before saving image");
+            } else {
+                this.addToFavList(favImg);
+            }
         }
     }
 
@@ -179,7 +224,11 @@ class searchImage extends Component {
                 <Col>
                     <br/>
                     {isLoaded ? 
-                        <Gallery photos={this.state.images} direction={"column"} onClick={this.viewSelectedImage} /> :
+                        <div>
+                            <Gallery photos={this.state.images} direction={"column"} onClick={this.viewSelectedImage} />
+                            <p onClick={this.moreImage} className="listItem"> Load more </p>
+                        </div>
+                        :
                         <Spinner color="primary" style={{ width: '3rem', height: '3rem' }} type="grow" /> 
                     }
                     <ModalGateway>
