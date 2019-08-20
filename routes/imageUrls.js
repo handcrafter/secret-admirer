@@ -6,7 +6,7 @@ const router = express.Router();
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 // Images extracting function
-async function scrollDown(page) {
+async function getImageURL(page) {
     try {
         await page.evaluate(
             async () =>
@@ -37,7 +37,7 @@ async function scrollDown(page) {
 }
 
 // Images extracting function
-async function scrollDownMore(page) {
+async function getMoreImageURL(page) {
     try {
         await page.evaluate(
             async () =>
@@ -68,7 +68,7 @@ async function scrollDownMore(page) {
 }
 
 // Images extracting function
-async function extracUrls(imageName) {
+async function extractUrls(imageName) {
     const googleUrl = `https://www.google.com/search?q=${imageName}&tbm=isch`;
     
     console.log('- Launching browser.');
@@ -92,12 +92,12 @@ async function extracUrls(imageName) {
             }
         }
     });
-    await scrollDown(page);
+    await getImageURL(page);
     await browser.close();
     return imagesUrls;
 }
 
-async function extracMoreUrls(imageName) {
+async function extractMoreUrls(imageName) {
     const googleUrl = `https://www.google.com/search?q=${imageName}&tbm=isch`;
     
     console.log('- Launching browser.');
@@ -121,7 +121,7 @@ async function extracMoreUrls(imageName) {
             }
         }
     });
-    await scrollDownMore(page);
+    await getMoreImageURL(page);
     await browser.close();
     return imagesUrls;
 }
@@ -129,16 +129,16 @@ async function extracMoreUrls(imageName) {
 router.post('/getImageUrl', urlencodedParser, async(req, res) => {
     try {
         const target = [req.body.target];
-        if (target.length) {
+        if (target.length === 0) {
+            res.status(400).send("Invalid search target: target must not be empty");
+        } else {
             const [imageName] = target;
             console.log(`- Looking for '${imageName}'.`);
-            var urls = await extracUrls(imageName);
+            var urls = await extractUrls(imageName);
 
             console.log('- Retrived images:', urls.length);
-            console.log('- Done.')
             res.send(urls);
         }
-        res.status(400).send("An 'imageName' argument is required.");
     }
     catch (error) {
         console.error(error, 'Error occur during Image extraction process');
@@ -148,16 +148,16 @@ router.post('/getImageUrl', urlencodedParser, async(req, res) => {
 router.post('/getMoreImageUrl', urlencodedParser, async(req, res) => {
     try {
         const target = [req.body.target];
-        if (target.length) {
+        if (target.length === 0) {
+            res.status(400).send("Invalid search target: target must not be empty");
+        } else {
             const [imageName] = target;
             console.log(`- Looking for '${imageName}'.`);
-            var urls = await extracMoreUrls(imageName);
-            
+            var urls = await extractMoreUrls(imageName);
+
             console.log('- Retrived images:', urls.length);
-            console.log('- Done.')
             res.send(urls);
         }
-        res.status(400).send("An 'imageName' argument is required.");
     }
     catch (error) {
         console.error(error, 'Error occur during Image extraction process');

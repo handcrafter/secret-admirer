@@ -113,7 +113,11 @@ class searchImage extends Component {
         if (this.state.isFavImage) {
             this.removeFromFavList(favImg);
         } else {
-            this.addToFavList(favImg);
+            if (!this.state.username) {
+                alert("Please sign in before saving image");
+            } else {
+                this.addToFavList(favImg);
+            }
         }
     }
 
