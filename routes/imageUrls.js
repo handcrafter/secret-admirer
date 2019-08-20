@@ -16,6 +16,7 @@ async function scrollDown(page) {
                         const interval = setInterval(() => {
                             const offset = document.body.offsetHeight;
                             const { scrollY, screen: { height } } = window;
+                            console.log("off = " + offset);
                             window.scrollBy(0, offset);
                             if (maxIntervals > 0 && offset - scrollY > height) {
                                 maxIntervals -= 1;
@@ -23,7 +24,39 @@ async function scrollDown(page) {
                                 clearInterval(interval);
                                 resolve();
                             }
-                        }, 1500);
+                        }, 500);
+                    } catch (error) {
+                        reject(error);
+                    }
+                })
+        );
+    } catch (error) {
+        console.error('- Error while scrolling:', error);
+    } finally {
+        console.error('- Scrolling finished.');
+    }
+}
+
+// Images extracting function
+async function scrollDownMore(page) {
+    try {
+        await page.evaluate(
+            async () =>
+                new Promise((resolve, reject) => {
+                    try {
+                        let maxIntervals = 25;
+                        const interval = setInterval(() => {
+                            const offset = document.body.offsetHeight;
+                            const { scrollY, screen: { height } } = window;
+                            console.log("off = " + offset);
+                            window.scrollBy(0, offset);
+                            if (maxIntervals > 0 && offset - scrollY > height) {
+                                maxIntervals -= 1;
+                            } else {
+                                clearInterval(interval);
+                                resolve();
+                            }
+                        }, 1000);
                     } catch (error) {
                         reject(error);
                     }
@@ -67,6 +100,35 @@ async function extracUrls(imageName) {
     return imagesUrls;
 }
 
+async function extracMoreUrls(imageName) {
+    const googleUrl = `https://www.google.com/search?q=${imageName}&tbm=isch`;
+    
+    console.log('- Launching browser.');
+    const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+    
+    console.log('- Launching page.');
+    const page = await browser.newPage();
+
+    console.log('- Going to:', googleUrl);
+    await page.goto(googleUrl);
+    
+    const imagesUrls = [];
+    
+    page.on('response', (interceptedResponse) => {
+        const request = interceptedResponse.request();
+        const resource = request.resourceType();
+        if (resource === 'image') {
+            const url = request.url();
+            if (url.indexOf('images') > 0) {
+                imagesUrls.push(url);
+            }
+        }
+    });
+    await scrollDownMore(page);
+    await browser.close();
+    return imagesUrls;
+}
+
 router.post('/getImageUrl', urlencodedParser, async(req, res) => {
     try {
         const target = [req.body.target];
@@ -75,6 +137,25 @@ router.post('/getImageUrl', urlencodedParser, async(req, res) => {
             console.log(`- Looking for '${imageName}'.`);
             var urls = await extracUrls(imageName);
 
+            console.log('- Retrived images:', urls.length);
+            console.log('- Done.')
+            res.send(urls);
+        }
+        res.status(400).send("An 'imageName' argument is required.");
+    }
+    catch (error) {
+        console.error(error, 'Error occur during Image extraction process');
+    }
+})
+
+router.post('/getMoreImageUrl', urlencodedParser, async(req, res) => {
+    try {
+        const target = [req.body.target];
+        if (target.length) {
+            const [imageName] = target;
+            console.log(`- Looking for '${imageName}'.`);
+            var urls = await extracMoreUrls(imageName);
+            
             console.log('- Retrived images:', urls.length);
             console.log('- Done.')
             res.send(urls);
