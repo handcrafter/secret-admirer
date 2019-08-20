@@ -47,7 +47,6 @@ async function scrollDownMore(page) {
                         const interval = setInterval(() => {
                             const offset = document.body.offsetHeight;
                             const { scrollY, screen: { height } } = window;
-                            console.log("off = " + offset);
                             window.scrollBy(0, offset);
                             if (maxIntervals > 0 && offset - scrollY > height) {
                                 maxIntervals -= 1;
