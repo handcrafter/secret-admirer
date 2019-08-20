@@ -54,7 +54,7 @@ class searchImage extends Component {
             var tmpImages = [];
             this.setState(
                 {urls: result}, () => {
-		    this.state.urls.forEach(path => {
+		            this.state.urls.forEach(path => {
                         var format = {src: `${path}`, width: 1, height: 1};
                         var newImgFormat = tmpImages.concat(format);
                         tmpImages = newImgFormat;
@@ -83,7 +83,7 @@ class searchImage extends Component {
             var tmpImages = this.state.images;
             this.setState (
                 {urls: result}, () => {
-		            this.state.urls.forEach(path => {
+                    this.state.urls.forEach(path => {
                         if (!this.isDuplicateImage(path)) {
                             var format = {src: `${path}`, width: 1, height: 1};
                             var newImgFormat = tmpImages.concat(format);
