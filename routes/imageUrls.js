@@ -54,7 +54,7 @@ async function getMoreImageURL(page) {
                                 clearInterval(interval);
                                 resolve();
                             }
-                        }, 1000);
+                        }, 800);
                     } catch (error) {
                         reject(error);
                     }
