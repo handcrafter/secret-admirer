@@ -15,7 +15,9 @@ class searchImage extends Component {
             isLoaded: false,
             isFavImage: false,
             favImgUrl: '',
-            username: ""
+            username: "",
+            scrollPosition: 0,
+            LoadMoreImg: false
         };
         this.viewSelectedImage = this.viewSelectedImage.bind(this);
         this.closeSelectedImage = this.closeSelectedImage.bind(this);
@@ -25,6 +27,7 @@ class searchImage extends Component {
         this.removeFromFavList = this.removeFromFavList.bind(this);
         this.moreImage = this.moreImage.bind(this);
         this.isDuplicateImage = this.isDuplicateImage.bind(this);
+        this.listenToScroll = this.listenToScroll.bind(this);
     }
 
     //get updated username when user sign in
@@ -38,6 +41,9 @@ class searchImage extends Component {
     }
 
     componentDidMount() {
+        // Scroll change event Listener
+        window.addEventListener('scroll', this.listenToScroll);
+
         // Set celebrity as what user searched and get image urls
         var celebrity = {target: this.props.celebrity};
        
@@ -67,6 +73,7 @@ class searchImage extends Component {
     }
     
     moreImage = () => {
+        this.setState({LoadMoreImg: true});
         // Set celebrity as what user searched and get more image urls
         var celebrity = {target: this.props.celebrity};
        
@@ -91,7 +98,7 @@ class searchImage extends Component {
                         }
                     });
                 });
-            this.setState({images: tmpImages, isLoaded: true});
+            this.setState({images: tmpImages, isLoaded: true, LoadMoreImg: false});
         }).catch((error) => {
             console.error(error, 'Cannot get searched image urls');
         })
@@ -204,6 +211,18 @@ class searchImage extends Component {
 
     closeSelectedImage = () => {
         this.setState(state => ({ modalIsOpen: false}));
+    }
+
+    listenToScroll = () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = winScroll / height;
+        this.setState({scrollPosition: scrolled})
+       
+        // Start loading more images if scroll is down more than 50% and images are not already loading
+        if (this.state.scrollPosition > 0.5 && this.state.LoadMoreImg === false) {
+            this.moreImage();
+        }
     }
 
     render() { 
