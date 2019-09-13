@@ -65,7 +65,6 @@ class searchImage extends Component {
                     this.state.urls.forEach(path => {
                         // set image format as the same ratio with the original image dimention
                         img.src = path;
-                        console.log(img.width + "x" + img.height)
 
                         var widthRatio = parseInt(img.width/100);
                         var heightRatio  = parseInt(img.height/100);

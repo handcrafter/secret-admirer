@@ -23,7 +23,7 @@ async function getImageURL(page) {
                                 clearInterval(interval);
                                 resolve();
                             }
-                        }, 1000);
+                        }, 500);
                     } catch (error) {
                         reject(error);
                     }
