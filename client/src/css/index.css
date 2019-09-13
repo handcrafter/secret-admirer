@@ -10,6 +10,24 @@ body {
     text-align: center;
 }
 
+img {
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    image-resolution: 300dpi; 
+    -webkit-image-resolution:300dpi snap;
+    -moz-image-resolution:300dpi snap;
+    -o-image-resolution:300dpi snap;
+    -ms-image-resolution:300dpi snap;
+}
+
+.gallery img {
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    image-resolution: 300dpi; 
+}
+
 .row:after {
     content: "";
     display: table;
