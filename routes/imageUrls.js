@@ -137,7 +137,7 @@ router.post('/getImageUrl', urlencodedParser, async(req, res) => {
             var urls = await extractUrls(imageName);
             
             // Prevent returning 0 images
-            while(urls.length === 0) {
+            while (urls.length === 0) {
                 urls = await extractUrls(imageName);
             }
 
