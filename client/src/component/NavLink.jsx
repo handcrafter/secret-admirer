@@ -76,6 +76,7 @@ class Nav extends Component {
                 })
             })
             .then(result => {
+                console.log("dd");
                 if (result.status === 200) {
                     console.log("Sign in successful");
                     this.setState(prevState => ({
@@ -182,9 +183,17 @@ class Nav extends Component {
     }
 
     showSaved(event) {
-        var data = {saved: true}
-        this.props.parentCallback(data);
-        event.preventDefault();
+        if (!this.state.username) {
+            alert("Please sign in to access saved images")
+            this.setState(prevState => ({
+                modal: !prevState.modal,
+                modalState: 'Sign In'
+            }));
+        } else {
+            var data = {saved: true}
+            this.props.parentCallback(data);
+            event.preventDefault();
+        }
     }
     
     redirectHome(event) {

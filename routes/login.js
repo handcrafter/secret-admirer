@@ -35,7 +35,7 @@ router.post('/signup', function(req, res, next) {
 })
 
 router.put('/signin', urlencodedParser, async(req, res) => {
-    console.log(req.body)
+    console.log(req.body);
     let userid = await user.User.findOne({id: req.body.id});
     if (!userid) {
         res.status(401).send('Invalid id please sign up');
