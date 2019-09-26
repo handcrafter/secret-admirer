@@ -40,7 +40,7 @@ class searchImage extends Component {
         return null;
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         // Scroll change event Listener
         window.addEventListener('scroll', this.listenToScroll);
 
@@ -58,10 +58,27 @@ class searchImage extends Component {
         }).then(response => response.json()
         ).then((result) => {
             var tmpImages = [];
+            var img = new Image();
+            
             this.setState(
                 {urls: result}, () => {
                     this.state.urls.forEach(path => {
-                        var format = {src: `${path}`, width: 1, height: 1};
+                        // set image format as the same ratio with the original image dimention
+                        img.src = path;
+
+                        var widthRatio = parseInt(img.width/100);
+                        var heightRatio  = parseInt(img.height/100);
+
+                        if (widthRatio === 0 && heightRatio === 0) {
+                            widthRatio = 1;
+                            heightRatio = 1;
+                        } else if(widthRatio === 0) {
+                            widthRatio = 1;
+                        } else if (heightRatio === 0) {
+                            heightRatio = 1;
+                        }
+
+                        var format = {src: `${path}`, width: widthRatio, height: heightRatio};
                         var newImgFormat = tmpImages.concat(format);
                         tmpImages = newImgFormat;
                     });
@@ -244,7 +261,7 @@ class searchImage extends Component {
                     <br/>
                     {isLoaded ? 
                         <div>
-                            <Gallery photos={this.state.images} direction={"column"} onClick={this.viewSelectedImage} />
+                            <Gallery photos={this.state.images} direction={"column"} onClick={this.viewSelectedImage} className="gallery"/>
                             <p onClick={this.moreImage} className="listItem"> Load more </p>
                         </div>
                         :
@@ -253,7 +270,7 @@ class searchImage extends Component {
                     <ModalGateway>
                         {modalIsOpen ? (
                             <Modal onClose={this.closeSelectedImage}>
-                                <Carousel currentIndex={this.state.selectedIndex} views={this.state.images} components={{ Header: ModalHeader }}/>
+                                <Carousel className="gallery" currentIndex={this.state.selectedIndex} views={this.state.images} components={{ Header: ModalHeader }}/>
                             </Modal>
                         ) : null}
                     </ModalGateway>

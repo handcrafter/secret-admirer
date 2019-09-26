@@ -69,7 +69,7 @@ async function getMoreImageURL(page) {
 
 // Images extracting function
 async function extractUrls(imageName) {
-    const googleUrl = `https://www.google.com/search?q=${imageName}&tbm=isch`;
+    const googleUrl = `https://www.google.com/search?q=${imageName}&tbm=isch`;    
     
     console.log('- Launching browser.');
     const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
@@ -135,6 +135,11 @@ router.post('/getImageUrl', urlencodedParser, async(req, res) => {
             const [imageName] = target;
             console.log(`- Looking for '${imageName}'.`);
             var urls = await extractUrls(imageName);
+            
+            // Prevent returning 0 images
+            while (urls.length === 0) {
+                urls = await extractUrls(imageName);
+            }
 
             console.log('- Retrived images:', urls.length);
             res.send(urls);
