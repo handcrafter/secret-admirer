@@ -76,7 +76,6 @@ class Nav extends Component {
                 })
             })
             .then(result => {
-                console.log("dd");
                 if (result.status === 200) {
                     console.log("Sign in successful");
                     this.setState(prevState => ({
