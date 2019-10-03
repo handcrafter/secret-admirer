@@ -248,8 +248,15 @@ class searchImage extends Component {
         const ModalHeader = ({ innerProps, isModal}) => isModal ? (
             <div {...innerProps}>
                 {isFavImage ? 
-                    <p onClick={this.setImgAsFavourite}  className="modalFavClick">♥</p> :
-                    <p onClick={this.setImgAsFavourite}  className="modalFav">♡</p>
+                    <div>
+                        <p onClick={this.closeSelectedImage} className="modalExit">⌦</p>
+                        <p onClick={this.setImgAsFavourite}  className="modalFavClick">♥</p>
+                    </div>
+                    :
+                    <div>
+                        <p onClick={this.closeSelectedImage} className="modalExit">⌦</p>
+                        <p onClick={this.setImgAsFavourite}  className="modalFav">♡</p>
+                    </div>
                 }
             </div>
         ) : null;
@@ -263,8 +270,7 @@ class searchImage extends Component {
                         <div>
                             <Gallery photos={this.state.images} direction={"column"} onClick={this.viewSelectedImage} className="gallery"/>
                             <p onClick={this.moreImage} className="listItem"> Load more </p>
-                        </div>
-                        :
+                        </div> :
                         <Spinner color="primary" style={{ width: '3rem', height: '3rem' }} type="grow" /> 
                     }
                     <ModalGateway>

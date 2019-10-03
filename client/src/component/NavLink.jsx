@@ -18,7 +18,9 @@ class Nav extends Component {
             celebList: [],
             isSearching: false,
             searchDrop: [],
-            isSearchDrop: false
+            isSearchDrop: false,
+            width: window.innerWidth,
+            mobSearchBar: true
         };
         this.logInDropDown = this.logInDropDown.bind(this);
         this.logout = this.logout.bind(this);
@@ -30,15 +32,18 @@ class Nav extends Component {
         this.dropDownSelect = this.dropDownSelect.bind(this);
         this.showSaved = this.showSaved.bind(this);
         this.redirectHome = this.redirectHome.bind(this);
+        this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
+        this.mobileSearch = this.mobileSearch.bind(this);
     }
 
     componentDidMount() {
-	console.log(config.URL);
+        window.addEventListener('resize', this.handleWindowSizeChange);
+
         fetch(config.URL+'/list')
         .then((res) => res.json())
         .then((data) => {
             var celebNames = [];
-	    data.forEach(name => {
+            data.forEach(name => {
                 return celebNames.push(name.name);
             })
             // Initialize celebity list
@@ -56,6 +61,10 @@ class Nav extends Component {
             modalState: 'Sign In'
         }));
     }
+
+    handleWindowSizeChange = () => {
+        this.setState({ width: window.innerWidth });
+    };
     
     handleInputChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
@@ -201,109 +210,199 @@ class Nav extends Component {
         event.preventDefault();
     }
 
-    render() { 
-        return ( 
-            <nav className="navbar">
-                <div className="logoDiv">
-                    <Row>
-                        <Col xs="auto">
-                            <Link to="/">
-                                <h3 className="logo" onClick={this.redirectHome}>Secret Admirer</h3>
-                            </Link>
-                        </Col>
-                        <Col xs="6" sm="4" className="searchCol">
-                            <form onSubmit={this.navSearch}>
-                                <input 
-                                    type="text" 
-                                    placeholder = "Search"
-                                    className="navSearch" 
-                                    onChange={this.searchInputChange}                                         
-                                    value={this.state.celebrity}
-                                    required
-                                />
-                            </form>
-                            {this.state.isSearchDrop ? 
-                                <div className="dropDown">
-                                    <ul className="celebul"> {
-                                        this.state.searchDrop.map(searched => 
-                                            <ListGroup width="100">
-                                                <ListGroupItem onClick={this.dropDownSelect} className="listItem" id={searched}>
-                                                    {searched}
-                                                </ListGroupItem>
-                                            </ListGroup>
-                                        )
-                                    } </ul>
+    // Toggle searchbar on mobile version
+    mobileSearch() {
+        this.setState(prevState => ({mobSearchBar: !prevState.mobSearchBar}));
+    }
+
+    render() {
+        const { width } = this.state;
+        const isMobile = width <= 500;
+
+        if (isMobile) {
+            return (
+                <nav className="navbar">
+                    <ul className = "navMobile">
+                        <Link to="/">
+                            <h3 className="logoMobile" onClick={this.redirectHome}>SA</h3>
+                        </Link>
+                        <li onClick={this.mobileSearch} className="navHeadingsMobile" activeClassName="current"> Search </li>
+                        <li onClick={this.showSaved} className="navHeadingsMobile" activeClassName="current"> Saved </li>
+                        {(this.state.username === "") ? 
+                            <li onClick={this.openModal} className="navHeadingsMobile">Log In</li> :
+                            <div>
+                                <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.logInDropDown} className="loginMargin">
+                                    <DropdownToggle caret className="loginDrop">
+                                        {this.state.username}
+                                    </DropdownToggle>
+                                    <DropdownMenu>
+                                        <DropdownItem onClick={this.logout} >Log out</DropdownItem>
+                                    </DropdownMenu>
+                                </ButtonDropdown>
+                            </div>
+                        }
+                    </ul>
+
+                   {(this.state.mobSearchBar) &&  
+                        <form onSubmit={this.navSearch}>
+                            <input 
+                                type="text" 
+                                placeholder = "Search"
+                                className="navSearchMobile" 
+                                onChange={this.searchInputChange}                                         
+                                value={this.state.celebrity}
+                                required
+                            />
+                        </form>
+                    }
+
+                    <Modal isOpen={this.state.modal} toggle={this.openModal} className={this.props.className}>
+                        <ModalHeader openModal={this.openModal}>{this.state.modalState}</ModalHeader>
+                        <ModalBody>
+                            <div className="form-group">
+                                <p>
+                                    Username : 
+                                    <input
+                                        type="text"
+                                        value={this.state.id}
+                                        onChange={this.handleInputChange}
+                                        name="id"
+                                        placeholder="Enter your ID..."
+                                        required
+                                    />
+                                </p>
+                            </div>
+                            <div className="form-group">
+                                <p>
+                                Password : 
+                                    <input
+                                        type="password"
+                                        value={this.state.password}
+                                        onChange={this.handleInputChange}
+                                        name="password"
+                                        placeholder="Enter your password"
+                                        required
+                                    />
+                                </p>
+                            </div>
+                        </ModalBody>
+                        <ModalFooter>
+                            {(this.state.modalState === "Sign In") ? 
+                                <div>
+                                    <Button color="primary" onClick={this.signin}>Sign In</Button>
+                                    <Button color="secondary" onClick={this.signup}>Sign Up</Button>
                                 </div>
-                            : null
+                            : 
+                                <div>
+                                    <Button color="primary" onClick={this.signup}>Sign Up</Button>
+                                    <Button color="secondary" onClick={this.openModal}>Cancel</Button>
+                                </div>        
                             }
-                        </Col>
-                    </Row>
-                </div>
-              
-                <ul className = "nav-links">
-                    <li onClick={this.showSaved} className="navHeadings" activeClassName="current"> Saved </li>
-                    {(this.state.username === "") ? 
-                        <li onClick={this.openModal} className="navHeadings">Log In</li>
-                    :
-                        <div>
+                        </ModalFooter>
+                    </Modal>
+                </nav>
+            );
+        } else {
+            return ( 
+                <nav className="navbar">
+                    <div className="logoDiv">
+                        <Row>
+                            <Col xs="auto">
+                                <Link to="/">
+                                    <h3 className="logo" onClick={this.redirectHome}>Secret Admirer</h3>
+                                </Link>
+                            </Col>
+                            <Col xs="6" sm="4" className="searchCol">
+                                <form onSubmit={this.navSearch}>
+                                    <input 
+                                        type="text" 
+                                        placeholder = "Search"
+                                        className="navSearch" 
+                                        onChange={this.searchInputChange}                                         
+                                        value={this.state.celebrity}
+                                        required
+                                    />
+                                </form>
+                                {this.state.isSearchDrop ? 
+                                    <div className="dropDown">
+                                        <ul className="celebul"> {
+                                            this.state.searchDrop.map(searched => 
+                                                <ListGroup width="100">
+                                                    <ListGroupItem onClick={this.dropDownSelect} className="listItem" id={searched}>
+                                                        {searched}
+                                                    </ListGroupItem>
+                                                </ListGroup>
+                                            )
+                                        } </ul>
+                                    </div>
+                                : null
+                                }
+                            </Col>
+                        </Row>
+                    </div>
+                  
+                    <ul className = "nav-links">
+                        <li onClick={this.showSaved} className="navHeadings" activeClassName="current"> Saved </li>
+                        {(this.state.username === "") ? 
+                            <li onClick={this.openModal} className="navHeadings">Log In</li>
+                        :
                             <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.logInDropDown}>
-                                <DropdownToggle caret className="loginDrop">
+                                <DropdownToggle caret className="logOut">
                                     {this.state.username}
                                 </DropdownToggle>
                                 <DropdownMenu>
                                     <DropdownItem onClick={this.logout}>Log out</DropdownItem>
                                 </DropdownMenu>
                             </ButtonDropdown>
-                        </div>
-                    }
-                </ul>
-
-                <Modal isOpen={this.state.modal} toggle={this.openModal} className={this.props.className}>
-                    <ModalHeader openModal={this.openModal}>{this.state.modalState}</ModalHeader>
-                    <ModalBody>
-                        <div className="form-group">
-                            <p>
-                                Username : 
-                                <input
-                                    type="text"
-                                    value={this.state.id}
-                                    onChange={this.handleInputChange}
-                                    name="id"
-                                    placeholder="Enter your ID..."
-                                    required
-                                />
-                            </p>
-                        </div>
-                        <div className="form-group">
-                            <p>
-                            Password : 
-                                <input
-                                    type="password"
-                                    value={this.state.password}
-                                    onChange={this.handleInputChange}
-                                    name="password"
-                                    placeholder="Enter your password"
-                                    required
-                                />
-                            </p>
-                        </div>
-                    </ModalBody>
-                    <ModalFooter>
-                        {(this.state.modalState === "Sign In") ? 
-                            <div>
-                                <Button color="primary" onClick={this.signin}>Sign In</Button>
-                                <Button color="secondary" onClick={this.signup}>Sign Up</Button>
-                            </div>
-                        : 
-                            <div>
-                                <Button color="primary" onClick={this.signup}>Sign Up</Button>
-                                <Button color="secondary" onClick={this.openModal}>Cancel</Button>
-                            </div>        
                         }
-                    </ModalFooter>
-                </Modal>
-            </nav>
-        );
+                    </ul>
+    
+                    <Modal isOpen={this.state.modal} toggle={this.openModal} className={this.props.className}>
+                        <ModalHeader openModal={this.openModal}>{this.state.modalState}</ModalHeader>
+                        <ModalBody>
+                            <div className="form-group">
+                                <p>
+                                    Username : 
+                                    <input
+                                        type="text"
+                                        value={this.state.id}
+                                        onChange={this.handleInputChange}
+                                        name="id"
+                                        placeholder="Enter your ID..."
+                                        required
+                                    />
+                                </p>
+                            </div>
+                            <div className="form-group">
+                                <p>
+                                Password : 
+                                    <input
+                                        type="password"
+                                        value={this.state.password}
+                                        onChange={this.handleInputChange}
+                                        name="password"
+                                        placeholder="Enter your password"
+                                        required
+                                    />
+                                </p>
+                            </div>
+                        </ModalBody>
+                        <ModalFooter>
+                            {(this.state.modalState === "Sign In") ? 
+                                <div>
+                                    <Button color="primary" onClick={this.signin}>Sign In</Button>
+                                    <Button color="secondary" onClick={this.signup}>Sign Up</Button>
+                                </div> : 
+                                <div>
+                                    <Button color="primary" onClick={this.signup}>Sign Up</Button>
+                                    <Button color="secondary" onClick={this.openModal}>Cancel</Button>
+                                </div>        
+                            }
+                        </ModalFooter>
+                    </Modal>
+                </nav>
+            );
+        }
     }
 }
   
