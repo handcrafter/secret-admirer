@@ -270,8 +270,7 @@ class searchImage extends Component {
                         <div>
                             <Gallery photos={this.state.images} direction={"column"} onClick={this.viewSelectedImage} className="gallery"/>
                             <p onClick={this.moreImage} className="listItem"> Load more </p>
-                        </div>
-                        :
+                        </div> :
                         <Spinner color="primary" style={{ width: '3rem', height: '3rem' }} type="grow" /> 
                     }
                     <ModalGateway>

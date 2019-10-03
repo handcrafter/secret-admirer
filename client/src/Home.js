@@ -21,7 +21,6 @@ class Home extends Component {
 
     componentDidMount () {
         window.addEventListener('resize', this.handleWindowSizeChange);
-        console.log(this.state.width);
         console.log(process.env.NODE_ENV);
 	    setInterval((() => {
             this.setState({
@@ -112,7 +111,7 @@ class Home extends Component {
                     </div>
                 </div>
             )
-        }   
+        }
     }
 }
 

@@ -38,12 +38,12 @@ class Nav extends Component {
 
     componentDidMount() {
         window.addEventListener('resize', this.handleWindowSizeChange);
-	    
+
         fetch(config.URL+'/list')
         .then((res) => res.json())
         .then((data) => {
             var celebNames = [];
-	        data.forEach(name => {
+            data.forEach(name => {
                 return celebNames.push(name.name);
             })
             // Initialize celebity list
@@ -229,8 +229,7 @@ class Nav extends Component {
                         <li onClick={this.mobileSearch} className="navHeadingsMobile" activeClassName="current"> Search </li>
                         <li onClick={this.showSaved} className="navHeadingsMobile" activeClassName="current"> Saved </li>
                         {(this.state.username === "") ? 
-                            <li onClick={this.openModal} className="navHeadingsMobile">Log In</li>
-                        :
+                            <li onClick={this.openModal} className="navHeadingsMobile">Log In</li> :
                             <div>
                                 <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.logInDropDown} className="loginMargin">
                                     <DropdownToggle caret className="loginDrop">
@@ -393,8 +392,7 @@ class Nav extends Component {
                                 <div>
                                     <Button color="primary" onClick={this.signin}>Sign In</Button>
                                     <Button color="secondary" onClick={this.signup}>Sign Up</Button>
-                                </div>
-                            : 
+                                </div> : 
                                 <div>
                                     <Button color="primary" onClick={this.signup}>Sign Up</Button>
                                     <Button color="secondary" onClick={this.openModal}>Cancel</Button>
