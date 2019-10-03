@@ -248,8 +248,15 @@ class searchImage extends Component {
         const ModalHeader = ({ innerProps, isModal}) => isModal ? (
             <div {...innerProps}>
                 {isFavImage ? 
-                    <p onClick={this.setImgAsFavourite}  className="modalFavClick">♥</p> :
-                    <p onClick={this.setImgAsFavourite}  className="modalFav">♡</p>
+                    <div>
+                        <p onClick={this.closeSelectedImage} className="modalExit">⌦</p>
+                        <p onClick={this.setImgAsFavourite}  className="modalFavClick">♥</p>
+                    </div>
+                    :
+                    <div>
+                        <p onClick={this.closeSelectedImage} className="modalExit">⌦</p>
+                        <p onClick={this.setImgAsFavourite}  className="modalFav">♡</p>
+                    </div>
                 }
             </div>
         ) : null;
