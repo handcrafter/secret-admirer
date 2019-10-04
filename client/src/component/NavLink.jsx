@@ -20,7 +20,8 @@ class Nav extends Component {
             searchDrop: [],
             isSearchDrop: false,
             width: window.innerWidth,
-            mobSearchBar: true
+            mobSearchBar: true,
+            keyIndex : -1
         };
         this.logInDropDown = this.logInDropDown.bind(this);
         this.logout = this.logout.bind(this);
@@ -34,6 +35,7 @@ class Nav extends Component {
         this.redirectHome = this.redirectHome.bind(this);
         this.handleWindowSizeChange = this.handleWindowSizeChange.bind(this);
         this.mobileSearch = this.mobileSearch.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
     componentDidMount() {
@@ -54,7 +56,7 @@ class Nav extends Component {
             });
         })
     }
-    
+
     openModal() {
         this.setState(prevState => ({
             modal: !prevState.modal,
@@ -153,6 +155,7 @@ class Nav extends Component {
 
     navSearch(event) {
         console.log(this.state.celebrity);
+        this.setState({isSearchDrop: false});
         // Send user searched celebrity value if such value is not empty
         if (this.state.celebrity) {
             var data = {username: this.state.username, celebrity: this.state.celebrity};
@@ -165,16 +168,18 @@ class Nav extends Component {
         if (!event.target.value) {
             this.setState({
                 isSearchDrop: false,
+                keyIndex: -1,
                 celebrity: event.target.value
             })
         } else {
             var updatedList = this.state.celebList;
             updatedList = updatedList.filter(function(item) {
-                return item.toLowerCase().search(event.target.value.toLowerCase()) !== -1;
+                return (item.toLowerCase().search(event.target.value.toLowerCase()) !== -1);
             })
             this.setState({
                 isSearchDrop: true,
                 celebrity: event.target.value,
+                keyIndex: -1,
                 searchDrop : updatedList
             });
         }
@@ -215,13 +220,40 @@ class Nav extends Component {
         this.setState(prevState => ({mobSearchBar: !prevState.mobSearchBar}));
     }
 
+    handleKeyPress = (event) => {
+        // press down
+        var index = this.state.keyIndex;
+        var length = this.state.searchDrop.length-1;
+        if (event.key === 'ArrowDown' && this.state.isSearchDrop) {
+            if (index >= length) {
+                this.setState({keyIndex: length});
+            } else {
+                index++;
+                this.setState({keyIndex: index});
+            }
+        } 
+        // press up
+        else if (event.key === 'ArrowUp' && this.state.isSearchDrop) {
+            if (this.state.keyIndex === -1 || this.state.keyIndex === 0) {
+                this.setState({keyIndex: 0});
+            } else {
+                index--;
+                this.setState({keyIndex: index});
+            }
+        }
+        //press Enter
+        else if (event.key === 'Enter' && this.state.isSearchDrop && this.state.keyIndex > -1) {
+            this.setState({celebrity: this.state.searchDrop[this.state.keyIndex]});
+        }
+    }
+
     render() {
         const { width } = this.state;
         const isMobile = width <= 500;
 
         if (isMobile) {
             return (
-                <nav className="navbar">
+                <nav className="navbarMobile">
                     <ul className = "navMobile">
                         <Link to="/">
                             <h3 className="logoMobile" onClick={this.redirectHome}>SA</h3>
@@ -313,7 +345,7 @@ class Nav extends Component {
                                 </Link>
                             </Col>
                             <Col xs="6" sm="4" className="searchCol">
-                                <form onSubmit={this.navSearch}>
+                                <form onSubmit={this.navSearch} onKeyDown={this.handleKeyPress}>
                                     <input 
                                         type="text" 
                                         placeholder = "Search"
@@ -324,13 +356,18 @@ class Nav extends Component {
                                     />
                                 </form>
                                 {this.state.isSearchDrop ? 
-                                    <div className="dropDown">
+                                    <div className="searchDropDown" >
                                         <ul className="celebul"> {
-                                            this.state.searchDrop.map(searched => 
-                                                <ListGroup width="100">
-                                                    <ListGroupItem onClick={this.dropDownSelect} className="listItem" id={searched}>
-                                                        {searched}
-                                                    </ListGroupItem>
+                                            this.state.searchDrop.map((searched, index) => 
+                                                <ListGroup width="100" >
+                                                    {this.state.keyIndex === index ?
+                                                        <ListGroupItem onClick={this.dropDownSelect} className="listItemFocus" key={index} id={searched}>
+                                                            {searched}
+                                                        </ListGroupItem>:
+                                                        <ListGroupItem onClick={this.dropDownSelect} className="listItem" key={index} id={searched}>
+                                                            {searched}
+                                                        </ListGroupItem>
+                                                    }
                                                 </ListGroup>
                                             )
                                         } </ul>
