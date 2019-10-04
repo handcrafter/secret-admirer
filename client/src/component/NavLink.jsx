@@ -361,10 +361,10 @@ class Nav extends Component {
                                                 <ListGroup width="100" >
                                                     {this.state.keyIndex === index ?
                                                         <ListGroupItem onClick={this.dropDownSelect} className="listItemFocus" key={index} >
-                                                        {searched}
+                                                            {searched}
                                                         </ListGroupItem>:
                                                         <ListGroupItem onClick={this.dropDownSelect} className="listItem" key={index} >
-                                                        {searched}
+                                                            {searched}
                                                         </ListGroupItem>
                                                     }
                                                 </ListGroup>
