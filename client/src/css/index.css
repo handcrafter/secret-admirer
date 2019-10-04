@@ -349,7 +349,7 @@ input {
     color: white;
 }
 
-.navbarMob {
+.navbarMobile {
     height: auto;
     background: linear-gradient(to right,rgb(120, 224, 216),#008CBA);
     color: white;
@@ -495,7 +495,7 @@ input {
     width : 100%;
 }
 
-.searchDrop {
+.searchDropDown {
     z-index: 100;
     margin-top: 50px;
     padding-left: 20px;

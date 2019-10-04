@@ -223,13 +223,14 @@ class Nav extends Component {
     handleKeyPress = (event) => {
         // press down
         var index = this.state.keyIndex;
+        var length = this.state.searchDrop.length-1;
         if (event.key === 'ArrowDown' && this.state.isSearchDrop) {
-            if (this.state.keyIndex >= this.state.searchDrop.length) {
-                var ind = this.state.searchDrop.length-1;
-                this.setState({keyIndex: ind});
+            if (index >= length) {
+                this.setState({keyIndex: length});
+            } else {
+                index++;
+                this.setState({keyIndex: index});
             }
-            index++;
-            this.setState({keyIndex: index});
         } 
         // press up
         else if (event.key === 'ArrowUp' && this.state.isSearchDrop) {
@@ -252,7 +253,7 @@ class Nav extends Component {
 
         if (isMobile) {
             return (
-                <nav className="navbarMob">
+                <nav className="navbarMobile">
                     <ul className = "navMobile">
                         <Link to="/">
                             <h3 className="logoMobile" onClick={this.redirectHome}>SA</h3>
@@ -355,15 +356,15 @@ class Nav extends Component {
                                     />
                                 </form>
                                 {this.state.isSearchDrop ? 
-                                    <div className="searchDrop" >
+                                    <div className="searchDropDown" >
                                         <ul className="celebul"> {
                                             this.state.searchDrop.map((searched, index) => 
                                                 <ListGroup width="100" >
                                                     {this.state.keyIndex === index ?
-                                                        <ListGroupItem onClick={this.dropDownSelect} className="listItemFocus" key={index} >
+                                                        <ListGroupItem onClick={this.dropDownSelect} className="listItemFocus" key={index} id={searched}>
                                                             {searched}
                                                         </ListGroupItem>:
-                                                        <ListGroupItem onClick={this.dropDownSelect} className="listItem" key={index} >
+                                                        <ListGroupItem onClick={this.dropDownSelect} className="listItem" key={index} id={searched}>
                                                             {searched}
                                                         </ListGroupItem>
                                                     }
