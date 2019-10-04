@@ -193,6 +193,11 @@ input {
     color: black;
 }
 
+.listItemFocus {
+    color: white;
+    background: darkblue;
+}
+
 .logoDiv {
     width: 80%;
 }
@@ -207,6 +212,7 @@ input {
     padding: 5px 5px 5px 5px;
     align-content: right;
     text-align: right;
+    position: relative;
 }
 
 .logoMobile {
@@ -343,11 +349,17 @@ input {
     color: white;
 }
 
-.navbar {
+.navbarMob {
     height: auto;
     background: linear-gradient(to right,rgb(120, 224, 216),#008CBA);
     color: white;
     overflow: auto;
+}
+
+.navbar {
+    height: 15vh;
+    background: linear-gradient(to right,rgb(120, 224, 216),#008CBA);
+    color: white;
 }
 
 .navMobile {
@@ -411,7 +423,7 @@ input {
     background-color: transparent;
     padding-left: 20px;
     font-size: 2rem;
-    position:absolute;
+    position: absolute;
 }
 
 .navSearchMobile {
@@ -481,6 +493,13 @@ input {
     margin-right : 0px;
     font-size: 2rem;
     width : 100%;
+}
+
+.searchDrop {
+    z-index: 100;
+    margin-top: 50px;
+    padding-left: 20px;
+    position: absolute;
 }
 
 .txtClr {
