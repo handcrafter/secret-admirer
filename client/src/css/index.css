@@ -116,21 +116,14 @@ button {
 .dropdown-menu .show{
     margin-top: 30px;
 }
-.frontRight {
+
+.front-page {
     background: linear-gradient(to right,rgb(120, 224, 216), skyblue);
     width: 50%;
-    height: 775px;
-    position: relative;
-    float: right;
-    z-index: 2;
-}
-
-.frontPage {
-    text-align: center;
-    vertical-align: middle;
-    position: relative;
     height: 100%;
-    top: 30%;
+    position: absolute;
+    right: 0px;
+    z-index: 2;
 }
 
 .frontPage p {
@@ -138,17 +131,25 @@ button {
     font-weight: bolder;
 }
 
-.frontImage {
-    width: 50%;
-    height: 100%;
+.front-text {
+    text-align: center;
+    vertical-align: middle;
     position: relative;
-    z-index: 1;
-    float: left;
+    height: 100%;
+    top: 30%;
 }
 
-.frontImage img {
+.front-image {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    left: 0px;
+}
+
+.front-image img {
     width: 100%;
-    height: 775px;
+    height: 100%;
 }
 
 .fullscreen img {
@@ -215,12 +216,13 @@ input {
     position: relative;
 }
 
-.logoMobile {
+.logo-mobile {
     color:white;
     font-size: 3rem;
     align-content: right;
     text-align: right;
-    padding-right: 30px;
+    padding-right: 15px;
+    padding-left: 10px;
 }
 
 .loginDrop {
@@ -255,14 +257,21 @@ input {
     text-decoration-color: white;
 }
 
-.mobileFront {
+.mobile-front {
     background: linear-gradient(to right,rgb(120, 224, 216),#008CBA);
     height: 100%;
-    padding-top: 50%;
-    padding-bottom: 50%;
+    width: 100%;
+    position: absolute;
 }
 
-.mainSearch {
+.mobile-front-form {
+    margin-top: 40%;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+}
+
+.mobile-front-search {
     font-size: 2rem;
     width: 50%;
     border: 5px solid white;
@@ -274,11 +283,39 @@ input {
     padding-left: 20px;
 }
 
-.mainSearch::placeholder {
+.mobile-front-search::placeholder {
     color: white;
 }
 
-.mainSearch:focus {
+.mobile-front-search:focus {
+    outline:none;
+    width: 70%;
+}
+
+.mobile-title {
+    background: white;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 3rem;
+}
+
+.main-search {
+    font-size: 2rem;
+    width: 50%;
+    border: 5px solid white;
+    color: white;
+    border-radius: 20px;
+    -webkit-transition: width .35s ease-in-out;
+    transition: width .35s ease-in-out;
+    background-color: transparent;
+    padding-left: 20px;
+}
+
+.main-search::placeholder {
+    color: white;
+}
+
+.main-search:focus {
     outline:none;
     width: 70%;
 }
@@ -349,7 +386,7 @@ input {
     color: white;
 }
 
-.navbarMobile {
+.navbar-mobile {
     height: auto;
     background: linear-gradient(to right,rgb(120, 224, 216),#008CBA);
     color: white;
@@ -362,7 +399,7 @@ input {
     color: white;
 }
 
-.navMobile {
+.nav-mobile {
     display: flex;
     justify-content: space-around;
     align-items: right;
@@ -373,9 +410,9 @@ input {
     
 }
 
-.navHeadingsMobile {
+.nav-headings-mobile {
     color: white;
-    font-size : 20px;
+    font-size : 1.5rem;
     margin-top: 15px;
     padding-right: 20px;
 }
@@ -390,13 +427,13 @@ input {
     right: 0px;
 }
 
-.navHeadings {
+.nav-headings {
     color: white;
-    font-size : 20px;
+    font-size : 1.5rem;
     margin-top: 15px;
 }
 
-.navHeadings:hover {
+.nav-headings:hover {
     color: white;
     text-decoration: underline;
     text-decoration-color: white;
@@ -426,7 +463,7 @@ input {
     position: absolute;
 }
 
-.navSearchMobile {
+.nav-search-mobile {
     left: 0;
     width: 300px;
     border: 5px solid white;
@@ -437,6 +474,7 @@ input {
     background-color: transparent;
     padding-left: 20px;
     font-size: 2rem;
+    margin-bottom: 15px;
 }
 
 .navSearchMobile::placeholder {
@@ -506,8 +544,9 @@ input {
     color: #008CBA;
 }
 
-.titleColour {
+.title-colour {
     background: white;
     -webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
+    font-size: 4rem;
 }

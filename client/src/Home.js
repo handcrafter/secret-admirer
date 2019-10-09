@@ -65,42 +65,40 @@ class Home extends Component {
 
         if (isMobile) {
             return(
-                <div>
-                    <div className="mobileFront">
-                        <form onSubmit={this.Search} className="frontPage">
-                            <p className = "titleColour">SECRET ADMIRER</p>
+                <div className="mobile-front">
+                    <form onSubmit={this.Search} className="mobile-front-form">
+                        <p className = "mobile-title">SECRET ADMIRER</p>
+                        <br/>
+                        <fieldset>
+                            <input 
+                                type="text" 
+                                placeholder = "Search"
+                                className="mobile-front-search" 
+                                onChange={this.handleInputChange}                                         
+                                value={this.state.searchValue}
+                                required
+                            />
                             <br/>
-                            <fieldset>
-                                <input 
-                                    type="text" 
-                                    placeholder = "Search"
-                                    className="mainSearch" 
-                                    onChange={this.handleInputChange}                                         
-                                    value={this.state.searchValue}
-                                    required
-                                />
-                                <br/>
-                                <button className="buttonGo"> Go </button>
-                            </fieldset>
-                        </form>
-                    </div>
+                            <button className="buttonGo"> Go </button>
+                        </fieldset>
+                    </form>
                 </div>
             )
         } else {
             return(
                 <div>
-                    <div className="frontImage">
+                    <div className="front-image">
                         <img src={images[this.state.currentImage]} alt="slide"/>
                     </div>
-                    <div className="frontRight">
-                        <form onSubmit={this.Search} className="frontPage">
-                            <p className = "titleColour">SECRET ADMIRER</p>
+                    <div className="front-page">
+                        <form onSubmit={this.Search} className="front-text">
+                            <p className = "title-colour">SECRET ADMIRER</p>
                             <br/>
                             <fieldset>
                                 <input 
                                     type="text" 
                                     placeholder = "Search"
-                                    className="mainSearch" 
+                                    className="main-search" 
                                     onChange={this.handleInputChange}                                         
                                     value={this.state.searchValue}
                                     required

@@ -253,15 +253,15 @@ class Nav extends Component {
 
         if (isMobile) {
             return (
-                <nav className="navbarMobile">
-                    <ul className = "navMobile">
+                <nav className="navbar-mobile">
+                    <ul className = "nav-mobile">
                         <Link to="/">
-                            <h3 className="logoMobile" onClick={this.redirectHome}>SA</h3>
+                            <h3 className="logo-mobile" onClick={this.redirectHome}>SA</h3>
                         </Link>
-                        <li onClick={this.mobileSearch} className="navHeadingsMobile" activeClassName="current"> Search </li>
-                        <li onClick={this.showSaved} className="navHeadingsMobile" activeClassName="current"> Saved </li>
+                        <li onClick={this.mobileSearch} className="nav-headings-mobile" activeClassName="current"> Search </li>
+                        <li onClick={this.showSaved} className="nav-headings-mobile" activeClassName="current"> Saved </li>
                         {(this.state.username === "") ? 
-                            <li onClick={this.openModal} className="navHeadingsMobile">Log In</li> :
+                            <li onClick={this.openModal} className="nav-headings-mobile">Log In</li> :
                             <div>
                                 <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.logInDropDown} className="loginMargin">
                                     <DropdownToggle caret className="loginDrop">
@@ -280,7 +280,7 @@ class Nav extends Component {
                             <input 
                                 type="text" 
                                 placeholder = "Search"
-                                className="navSearchMobile" 
+                                className="nav-search-mobile" 
                                 onChange={this.searchInputChange}                                         
                                 value={this.state.celebrity}
                                 required
@@ -379,9 +379,9 @@ class Nav extends Component {
                     </div>
                   
                     <ul className = "nav-links">
-                        <li onClick={this.showSaved} className="navHeadings" activeClassName="current"> Saved </li>
+                        <li onClick={this.showSaved} className="nav-headings" activeClassName="current"> Saved </li>
                         {(this.state.username === "") ? 
-                            <li onClick={this.openModal} className="navHeadings">Log In</li>
+                            <li onClick={this.openModal} className="nav-headings">Log In</li>
                         :
                             <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.logInDropDown}>
                                 <DropdownToggle caret className="logOut">
