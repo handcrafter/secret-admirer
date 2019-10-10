@@ -67,12 +67,12 @@ class Home extends Component {
             return(
                 <div className="mobile-front">
                     <form onSubmit={this.Search} className="mobile-front-form">
-                        <p className = "mobile-title">SECRET ADMIRER</p>
+                        <p className="mobile-title">SECRET ADMIRER</p>
                         <br/>
                         <fieldset>
                             <input 
                                 type="text" 
-                                placeholder = "Search"
+                                placeholder="Search"
                                 className="mobile-front-search" 
                                 onChange={this.handleInputChange}                                         
                                 value={this.state.searchValue}
@@ -92,12 +92,12 @@ class Home extends Component {
                     </div>
                     <div className="front-page">
                         <form onSubmit={this.Search} className="front-text">
-                            <p className = "title-colour">SECRET ADMIRER</p>
+                            <p className="title-colour">SECRET ADMIRER</p>
                             <br/>
                             <fieldset>
                                 <input 
                                     type="text" 
-                                    placeholder = "Search"
+                                    placeholder="Search"
                                     className="main-search" 
                                     onChange={this.handleInputChange}                                         
                                     value={this.state.searchValue}
