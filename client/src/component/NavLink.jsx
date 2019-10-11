@@ -264,7 +264,7 @@ class Nav extends Component {
                             <li onClick={this.openModal} className="nav-headings-mobile">Log In</li> :
                             <div>
                                 <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.logInDropDown} className="loginMargin">
-                                    <DropdownToggle caret className="loginDrop">
+                                    <DropdownToggle caret className="login-drop">
                                         {this.state.username}
                                     </DropdownToggle>
                                     <DropdownMenu>
@@ -337,34 +337,34 @@ class Nav extends Component {
         } else {
             return ( 
                 <nav className="navbar">
-                    <div className="logoDiv">
+                    <div className="logo-div">
                         <Row>
                             <Col xs="auto">
                                 <Link to="/">
                                     <h3 className="logo" onClick={this.redirectHome}>Secret Admirer</h3>
                                 </Link>
                             </Col>
-                            <Col xs="6" sm="4" className="searchCol">
+                            <Col xs="6" sm="4" className="search-column">
                                 <form onSubmit={this.navSearch} onKeyDown={this.handleKeyPress}>
                                     <input 
                                         type="text" 
                                         placeholder = "Search"
-                                        className="navSearch" 
+                                        className="nav-search" 
                                         onChange={this.searchInputChange}                                         
                                         value={this.state.celebrity}
                                         required
                                     />
                                 </form>
                                 {this.state.isSearchDrop ? 
-                                    <div className="searchDropDown" >
-                                        <ul className="celebul"> {
+                                    <div className="search-drop-down" >
+                                        <ul className="celeb-ul"> {
                                             this.state.searchDrop.map((searched, index) => 
                                                 <ListGroup width="100" >
                                                     {this.state.keyIndex === index ?
-                                                        <ListGroupItem onClick={this.dropDownSelect} className="listItemFocus" key={index} id={searched}>
+                                                        <ListGroupItem onClick={this.dropDownSelect} className="list-item-focus" key={index} id={searched}>
                                                             {searched}
                                                         </ListGroupItem>:
-                                                        <ListGroupItem onClick={this.dropDownSelect} className="listItem" key={index} id={searched}>
+                                                        <ListGroupItem onClick={this.dropDownSelect} className="list-item" key={index} id={searched}>
                                                             {searched}
                                                         </ListGroupItem>
                                                     }

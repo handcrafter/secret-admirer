@@ -7,7 +7,7 @@ button {
     margin-left: 20px;
 }
 
-.buttonGo {
+.button-go {
     background-color:transparent; 
     border: 5px solid white;
     width: 100px;
@@ -22,55 +22,12 @@ button {
     border-radius: 20px;
 }
 
-.buttonGo:hover {
+.button-go:hover {
     color: white;
     background-color: #008CBA;
 }
 
-.btn-secondary:hover {
-    color: white;
-    background-color: transparent;
-    border-color: transparent;
-}
-
-.btnFav {
-    background-color: #f0e32c;
-    border-color: #f0e32c;
-    color: white;
-}
-
-.btnSignup {
-    background-color: #008CBA;
-    border-color: #008CBA;
-    color: white;
-}
-
-.btnSignup:hover {
-    background-color: white;
-    border-color:  #008CBA;
-    color:  #008CBA;
-}
-
-.btnLogin {
-    background-color: white;
-    border-color: #008CBA;
-    color: #008CBA;
-}
-
-.btnLogin:hover {
-    background-color:  #008CBA;
-    border-color: white;
-    color: white;
-}
-
-.centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.celebul {
+.celeb-ul {
     padding-right : 0px;
     padding-left : 0px;
     margin-left : 0px;
@@ -83,7 +40,6 @@ button {
     height: 300px; 
     text-align: center;
 }
-
 
 .container {
     position: relative;
@@ -164,12 +120,6 @@ button {
     image-resolution: 300dpi; 
 }
 
-.galleryImg {
-    margin-top: 8px;
-    vertical-align: middle;
-    width: 100%;
-}
-
 img {
     image-rendering: auto;
     image-rendering: crisp-edges;
@@ -181,25 +131,20 @@ img {
     -ms-image-resolution:300dpi snap;
 }
 
-.imgBlur {
-    -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
-    filter: blur(5px);  
-}
-
 input {
     margin-left : 15px;
 }
 
-.listItem {
+.list-item {
     color: black;
 }
 
-.listItemFocus {
+.list-item-focus {
     color: white;
     background: darkblue;
 }
 
-.logoDiv {
+.logo-div {
     width: 80%;
 }
 
@@ -225,20 +170,13 @@ input {
     padding-left: 10px;
 }
 
-.loginDrop {
+.login-drop {
     background: transparent;
     border-color: transparent;
     font-size : 20px;
 }
 
-.logOut {
-    background: transparent;
-    border-color: transparent;
-    font-size : 20px;
-    padding-top: 15px;
-}
-
-.loginDrop button{
+.login-drop button{
     background: transparent;
     border-color: transparent;
     font-size : 20px;
@@ -255,6 +193,13 @@ input {
     color: white;
     text-decoration: underline;
     text-decoration-color: white;
+}
+
+.logOut {
+    background: transparent;
+    border-color: transparent;
+    font-size : 20px;
+    padding-top: 15px;
 }
 
 .mobile-front {
@@ -320,7 +265,7 @@ input {
     width: 70%;
 }
 
-.modalExit {
+.modal-exit {
     background-color:transparent; 
     color: white;
     text-align: center;
@@ -332,7 +277,7 @@ input {
     top: 0px;
 }
 
-.modalFav {
+.modal-fav {
     background-color:transparent; 
     color: white;
     text-align: center;
@@ -344,11 +289,11 @@ input {
     top : 0px;
 }
 
-.modalFav:hover {
+.modal-fav:hover {
     color: rgb(197, 55, 55);
 }
 
-.modalFavClick {
+.modal-fav-click {
     color:  rgb(197, 55, 55);
     font-size: 5rem;
     text-align: center;
@@ -359,7 +304,7 @@ input {
     top : 37px;
 }
 
-.modalRemove {
+.modal-remove {
     color: white;
     text-align: center;
     font-size: 3rem;
@@ -370,19 +315,11 @@ input {
     top : 50px;
 }
 
-.modalFooter {
+.modal-footer {
     position: absolute;
     right: 25px;
     bottom: 5px;
     font-size: 15px;
-    color: white;
-}
-
-.navHedaingLogin {
-    color: white;
-}
-
-.navHedaingLogin:hover {
     color: white;
 }
 
@@ -443,13 +380,7 @@ input {
     width: 100px;
 }
 
-.navSearchButton {
-    margin-top: 20px;
-    width: 40px;
-    height: 40px;
-}
-
-.navSearch {
+.nav-search {
     left: 0;
     width: 300px;
     border: 5px solid white;
@@ -461,6 +392,11 @@ input {
     padding-left: 20px;
     font-size: 2rem;
     position: absolute;
+}
+
+.navS-search:focus {
+    outline: none;
+    width: 400px;
 }
 
 .nav-search-mobile {
@@ -477,34 +413,10 @@ input {
     margin-bottom: 15px;
 }
 
-.navSearchMobile::placeholder {
-    color: white;
-}
-
-.navSearch:focus {
-    outline: none;
-    width: 400px;
-}
-
-.navSearch::placeholder {
-    color: white;
-}
-
-.navDropMenu {
-    color: black;
-    font-size: 18px;
-}
-
 .row:after {
     content: "";
     display: table;
     clear: both;
-}
-
-.rowCentered {
-    position: relative;
-    left: 50%;
-    right: 50%;
 }
 
 * {
@@ -516,32 +428,15 @@ input {
     margin-top : 15%;
 }
 
-.searchCol{
+.search-column{
     margin-top: 10px;
 }
 
-.searchForm {
-    margin-bottom : 20px;
-}
-
-.searchBox {
-    padding-right : 0px;
-    padding-left : 0px;
-    margin-left : 0px;
-    margin-right : 0px;
-    font-size: 2rem;
-    width : 100%;
-}
-
-.searchDropDown {
+.search-drop-down {
     z-index: 100;
     margin-top: 50px;
     padding-left: 20px;
     position: absolute;
-}
-
-.txtClr {
-    color: #008CBA;
 }
 
 .title-colour {

@@ -107,14 +107,14 @@ class SavedImage extends Component {
         
         const ModalHeader = ({ innerprops, isModal} = this.props) => isModal ? (
             <div {...innerprops}>
-                <span className="modalRemove" onClick={this.removeFromFavList}>🗑</span>
+                <span className="modal-remove" onClick={this.removeFromFavList}>🗑</span>
             </div>
         ) : null;
         
         const ModalFooter = ({ innerProps, isModal }) => isModal ? (
             <div {...innerProps}>
               <span>
-                  <p className="modalFooter">{this.state.selectedIndex} of {this.state.images.length}</p>
+                  <p className="modal-footer">{this.state.selectedIndex} of {this.state.images.length}</p>
               </span>
             </div>
           ) : null;

@@ -249,13 +249,13 @@ class searchImage extends Component {
             <div {...innerProps}>
                 {isFavImage ? 
                     <div>
-                        <p onClick={this.closeSelectedImage} className="modalExit">⌦</p>
-                        <p onClick={this.setImgAsFavourite}  className="modalFavClick">♥</p>
+                        <p onClick={this.closeSelectedImage} className="modal-exit">⌦</p>
+                        <p onClick={this.setImgAsFavourite}  className="modal-fav-click">♥</p>
                     </div>
                     :
                     <div>
-                        <p onClick={this.closeSelectedImage} className="modalExit">⌦</p>
-                        <p onClick={this.setImgAsFavourite}  className="modalFav">♡</p>
+                        <p onClick={this.closeSelectedImage} className="modal-exit">⌦</p>
+                        <p onClick={this.setImgAsFavourite}  className="modal-fav">♡</p>
                     </div>
                 }
             </div>
@@ -269,7 +269,7 @@ class searchImage extends Component {
                     {isLoaded ? 
                         <div>
                             <Gallery photos={this.state.images} direction={"column"} onClick={this.viewSelectedImage} className="gallery"/>
-                            <p onClick={this.moreImage} className="listItem"> Load more </p>
+                            <p onClick={this.moreImage} className="list-item"> Load more </p>
                         </div> :
                         <Spinner color="primary" style={{ width: '3rem', height: '3rem' }} type="grow" /> 
                     }

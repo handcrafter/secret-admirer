@@ -79,7 +79,7 @@ class Home extends Component {
                                 required
                             />
                             <br/>
-                            <button className="buttonGo"> Go </button>
+                            <button className="button-go"> Go </button>
                         </fieldset>
                     </form>
                 </div>
@@ -103,7 +103,7 @@ class Home extends Component {
                                     value={this.state.searchValue}
                                     required
                                 />
-                                <button className="buttonGo"> Go </button>
+                                <button className="button-go"> Go </button>
                             </fieldset>
                         </form>
                     </div>
