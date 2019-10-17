@@ -242,7 +242,7 @@ class searchImage extends Component {
        
         // Start loading more images if scroll is down more than 50% and images are not already loading
         if (this.state.scrollPosition > 0.5 && this.state.loadMoreImg === false) {
-            var newImage = this.state.moreImage;
+            var newImage = this.state.imageLoadedBackground;
             // append images loaded in background to gallery and load more on the background
             this.setState({images: newImage}, ()=>{
                 this.moreImage();
