@@ -9,6 +9,7 @@ class searchImage extends Component {
         super(props);
         this.state = {
             images: [{src: 'client/src/InitImg.jpg', width: 1, height: 1}],
+            moreImage: [{src: 'client/src/InitImg.jpg', width: 1, height: 1}],
             modalIsOpen: false,
             selectedIndex: 0,
             urls: [],
@@ -83,7 +84,10 @@ class searchImage extends Component {
                         tmpImages = newImgFormat;
                     });
                 });
-            this.setState({images: tmpImages, isLoaded: true});
+            this.setState({images: tmpImages, isLoaded: true}, () => {
+                // call moreImage after first search to load more images on background
+                this.moreImage();
+            });
         }).catch((error) => {
             console.error(error, 'Cannot get searched image urls');
         })
@@ -115,7 +119,7 @@ class searchImage extends Component {
                         }
                     });
                 });
-            this.setState({images: tmpImages, isLoaded: true, LoadMoreImg: false});
+            this.setState({moreImage: tmpImages, isLoaded: true, LoadMoreImg: false});
         }).catch((error) => {
             console.error(error, 'Cannot get searched image urls');
         })
@@ -238,7 +242,11 @@ class searchImage extends Component {
        
         // Start loading more images if scroll is down more than 50% and images are not already loading
         if (this.state.scrollPosition > 0.5 && this.state.LoadMoreImg === false) {
-            this.moreImage();
+            var newImage = this.state.moreImage;
+            // append images loaded in background to gallery and load more on the background
+            this.setState({images: newImage}, ()=>{
+                this.moreImage();
+            })
         }
     }
 
