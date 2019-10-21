@@ -394,6 +394,10 @@ input {
     position: absolute;
 }
 
+.nav-search::placeholder {
+    color: white;
+}
+
 .navS-search:focus {
     outline: none;
     width: 400px;
