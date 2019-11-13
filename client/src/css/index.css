@@ -80,7 +80,6 @@ button {
 }
 
 .front-page {
-    background: linear-gradient(to bottom,#e6ccff, #80bfff);
     background: url("frontImage.png");
     width: 50%;
     height: 100%;
@@ -98,7 +97,6 @@ button {
     text-align: center;
     vertical-align: middle;
     position: relative;
-    
     top: 30%;
 }
 

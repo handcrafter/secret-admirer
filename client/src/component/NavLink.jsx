@@ -165,7 +165,6 @@ class Nav extends Component {
     }
 
     searchInputChange = (event) => {
-        console.log(event.target.value);
         if (!event.target.value) {
             this.setState({
                 isSearchDrop: false,
