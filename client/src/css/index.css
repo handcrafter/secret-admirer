@@ -1,5 +1,11 @@
-body {
+* {
+    box-sizing: border-box;
+}
+
+html, body {
     background: white;
+    height: 100%;
+    margin:0 auto;
 }
 
 button {
@@ -74,7 +80,7 @@ button {
 }
 
 .front-page {
-    background: linear-gradient(to right,rgb(120, 224, 216), skyblue);
+    background: url("frontImage.png");
     width: 50%;
     height: 100%;
     position: absolute;
@@ -91,7 +97,6 @@ button {
     text-align: center;
     vertical-align: middle;
     position: relative;
-    height: 100%;
     top: 30%;
 }
 
@@ -106,6 +111,13 @@ button {
 .front-image img {
     width: 100%;
     height: 100%;
+    transition: transform .5s, filter 1.5s ease-in-out;
+    filter: grayscale(100%);
+}
+
+.front-image:hover img {
+    filter: grayscale(0);
+    transform: scale(1.1);
 }
 
 .fullscreen img {
@@ -120,15 +132,12 @@ button {
     image-resolution: 300dpi; 
 }
 
+.gallery:hover img{
+    box-shadow: inset 0 0 0 25px #53a7ea;
+}
+
 img {
     image-rendering: auto;
-    image-rendering: crisp-edges;
-    image-rendering: pixelated;
-    image-resolution: 300dpi; 
-    -webkit-image-resolution:300dpi snap;
-    -moz-image-resolution:300dpi snap;
-    -o-image-resolution:300dpi snap;
-    -ms-image-resolution:300dpi snap;
 }
 
 input {
@@ -203,7 +212,7 @@ input {
 }
 
 .mobile-front {
-    background: linear-gradient(to right,rgb(120, 224, 216),#008CBA);
+    background: linear-gradient(to bottom,#e6ccff, #80bfff);
     height: 100%;
     width: 100%;
     position: absolute;
@@ -325,14 +334,14 @@ input {
 
 .navbar-mobile {
     height: auto;
-    background: linear-gradient(to right,rgb(120, 224, 216),#008CBA);
+    background: linear-gradient(to right,#e6ccff, #80bfff);
     color: white;
     overflow: auto;
 }
 
 .navbar {
     height: 15vh;
-    background: linear-gradient(to right,rgb(120, 224, 216),#008CBA);
+    background: linear-gradient(to right,#e6ccff, #80bfff);
     color: white;
 }
 
@@ -417,14 +426,14 @@ input {
     margin-bottom: 15px;
 }
 
+.react-photo-gallery--gallery img:hover {
+    opacity: 0.3;
+}
+
 .row:after {
     content: "";
     display: table;
     clear: both;
-}
-
-* {
-    box-sizing: border-box;
 }
 
 .signup {
@@ -448,4 +457,6 @@ input {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 4rem;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
+

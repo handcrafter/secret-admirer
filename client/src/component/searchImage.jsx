@@ -199,7 +199,8 @@ class searchImage extends Component {
 
     viewSelectedImage = (event, image) => {
         this.setState({ 
-            selectedIndex: image.index
+            selectedIndex: image.index,
+            modalIsOpen: true
         }, 
             this.isFavourite(image.index)
         );
